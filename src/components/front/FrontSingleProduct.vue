@@ -1,0 +1,126 @@
+<template>
+  <div>
+    <Loading :active.sync="isLoading"></Loading>
+    <div class="single-box">
+      <div class="single-item">
+          <div class="single-img">
+              <div class="single-img-nav">
+                  <img :src="product.imageUrl">
+              </div>
+              <div class="single-img-nav2">
+                  <img :src="product.imageUrl2">
+                  <img :src="product.imageUrl3">
+              </div>
+          </div>
+          <div class="single-nav">
+            <h3>{{product.title}}</h3>
+            <pre>{{product.content}}</pre>
+            <div class="single-money">
+              <p>NT{{product.price | currency}}</p>
+            </div>
+            <div class="single-num">
+              <select name="" class="form-control" v-model="product.num" style="width:160px;">
+                <option :value="num" v-for="num in 10" :key="num">
+                  {{num}} {{product.unit}}
+                </option>
+              </select>
+              <button type="button" class="btn" @click="addToCart(product.id, product.num)">
+                <i class="fas fa-circle-notch fa-spin" v-if="product.id === loadingItem"></i>加入購物車
+              </button>
+            </div>
+            <div class="single-heart">
+              <a href="#"><i class="fas fa-heart"></i>加入我的收藏</a>
+            </div>
+            <div class="single-native">
+              <pre>{{product.description}}</pre>
+              <h5>商品購買須知</h5>
+              <p>產品因拍攝關係顏色可能略有差異，實際以廠商出貨為主。 商品情境照為示意用，僅商品主體不包含其他配件，請以規格內容物為主。盡可能確保所列商品備貨充足，但偶爾仍會有產品售罄的情況。如您所訂購的商品庫存不足，我們將盡快以電子郵件通知您。任何訂單變動均會在訂單總額與出貨訊息內更新。</p>
+              <h5>退換貨須知</h5>
+              <p>依《消費者保護法》的規定，於全站購物皆享有商品到貨【七日猶豫期】（含例假日）之權益。若收到的商品有任何問題，可於猶豫期內申請退貨。</p>
+            </div>
+          </div>
+      </div>
+    </div>
+    <GoTop></GoTop>
+  </div>
+</template>
+
+<script>
+
+import GoTop from '../GoTop';
+
+export default {
+  data(){
+    return{
+      productId: "",
+      product: {
+        num: 1
+      },
+      loadingItem: '',
+    }
+  },
+  components:{
+    GoTop,
+  },
+  watch: {
+    $route(to, from) {
+      this.productId = this.$route.params.productID;
+      console.log(this.productId);
+      this.getSingleProduct();
+    }
+  },
+  methods: {
+    getSingleProduct() {
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${this.productId}`;
+      this.$store.dispatch('updateLoading',true);
+      this.$http.get(api).then(response => {
+        console.log(response);
+        if (response.data.success) {
+          this.product = response.data.product;
+          console.log(response.data.product);
+          this.$set(this.product, "num", 1);
+          this.$store.dispatch('updateLoading',false);
+        }
+      })
+    },
+  getCart() {
+    this.$store.dispatch('getCart');
+  },
+  addToCard(id, direct, qty = 1) {
+    const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+    const cart = {
+      product_id: id,
+      qty
+    };
+    this.$http.post(url, { data: cart }).then(response => {
+      if(response.data.success) {
+          this.getCart();
+          this.loadingItem = '';
+
+          // if (direct) {
+          //   this.router.push(``)
+          // }
+      }
+    })
+  },
+  removeCart(id) {
+    this.$store.dispatch('removeCart', id);
+  },
+
+  },
+  computed: {
+    isLoading() {
+      return this.$store.state.isLoading;
+    },
+    cart(){
+      return this.$store.state.cart;
+    },
+  },
+  created() {
+    this.productId = this.$route.params.productID;
+    this.getSingleProduct();
+    this.getCart();
+  }
+  
+}
+</script>

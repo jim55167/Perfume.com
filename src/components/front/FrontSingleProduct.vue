@@ -56,7 +56,6 @@ export default {
       product: {
         num: 1
       },
-      loadingItem: '',
     }
   },
   components:{
@@ -83,29 +82,15 @@ export default {
         }
       })
     },
-  getCart() {
-    this.$store.dispatch('getCart');
-  },
-  addToCard(id, direct, qty = 1) {
-    const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-    const cart = {
-      product_id: id,
-      qty
-    };
-    this.$http.post(url, { data: cart }).then(response => {
-      if(response.data.success) {
-          this.getCart();
-          this.loadingItem = '';
-
-          // if (direct) {
-          //   this.router.push(``)
-          // }
-      }
-    })
-  },
-  removeCart(id) {
-    this.$store.dispatch('removeCart', id);
-  },
+    getCart() {
+      this.$store.dispatch('getCart');
+    },
+    addToCart(id, qty = 1) {
+      this.$store.dispatch('addToCart', { id, qty});  
+    },
+    removeCart(id) {
+      this.$store.dispatch('removeCart', id);
+    },
 
   },
   computed: {
@@ -115,6 +100,9 @@ export default {
     cart(){
       return this.$store.state.cart;
     },
+    loadingItem() {
+      return this.$store.state.loadingItem;
+    }
   },
   created() {
     this.productId = this.$route.params.productID;

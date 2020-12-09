@@ -17,7 +17,7 @@
           <div class="home-box-text">
               <h4>Gabrielle CHANEL</h4>
               <p>全新嗅覺體驗，花香四溢、明亮馥郁。結合茉莉、依蘭依蘭、橙花和最迷人的格拉斯晚香玉之花香，呈現出夢幻花香氣息。 極具女性特質的香奈兒嘉柏麗香水，專為光芒四射的她而生。</p>
-              <a href="#">查看更多</a>
+              <a href="https://www.chanel.com/tw/" target="_blank">查看更多</a>
           </div>
           <div>
               <img src="~@/assets/home/home1.png">
@@ -25,19 +25,19 @@
         </div>
         <div class="home-item">
           <div>
-              <img src="~@/assets/home/home2.png">
+              <img src="~@/assets/home/home2.jpg">
           </div>
           <div class="home-box-text2">
-              <h4>Five O’clock Au Gingembre</h4>
-              <p>生薑與溫醇的肉桂香、紅糖的香甜摻和成一氣，溫暖微辛的氣息反倒形成一股輕煙氤氳開來，還帶點微微煙醺感漫溢在整個鼻息之間，細聞之下,又還有溫溫淡淡的木香，溫和而暖心。</p>
-              <a href="#">查看更多</a>
+              <h4>JLo Still</h4>
+              <p>這款香水以呈現成熟、優雅的韻味為訴求，性感的的花香調，融入了柑橘、玫瑰、茉莉、小蒼蘭、橙花等元素，表現出女性的性感與韻味。</p>
+              <a href="https://www.beauty321.com/post/22460#p2" target="_blank">查看更多</a>
           </div>         
         </div>
         <div class="home-item">
           <div class="home-box-text">
               <h4>CHANEL N°5</h4>
               <p>N°5，女性魅力的極致精髓。散發柔美澄透的乙醛花束香氣。經典傳奇香氛，蘊藏於極簡設計的獨特瓶身。</p>
-              <a href="#">查看更多</a>
+              <a href="https://www.chanel.com/tw/fragrance/chanel-number-5/" target="_blank">查看更多</a>
           </div>
           <div>
               <img src="~@/assets/home/home3.png">
@@ -59,7 +59,9 @@
             <div class="home-box-text3">
                 <h4>3. <br>Critical percentage of planned maintenance</h4>
                 <p>Calculating the critical percentage of planned maintenance will help you prioritize the most important operations that should be performed immediately.</p>
-                <button class="btn default"><a>Plan a free online training</a></button>
+                <button class="btn default">
+                  <a href="https://uk.lush.com/?gclid=CjwKCAiAiML-BRAAEiwAuWVgglmqlvvT6eUCpujr6rRLWwg8norkCerZWOCXMTUwXAyavs_Fr7JiIxoCpRsQAvD_BwE" target="_blank" style="text-decoration: none;color:#000000;padding:20px 65px;">Plan a free online training</a>
+                </button>
             </div>           
           </div>         
         </div>
@@ -92,13 +94,13 @@
     <div class="home-bottle">
       <div class="home-bottle-box">
         <div>
-          <img src="~@/assets/home/home5.png">
+          <img src="~@/assets/home/home5.jpg">
         </div>
         <div class="home-bottle-text">
           <h4>Bottle-Recycling</h4>
           <p>Recycle your used empty bottles and be rewarded!</p>
           <i>For the past 10 years, we have collected over 800,000 bottles through Empty Bottle Recycling Campaign and planted more than 860 pine trees for a better environment.For the past 10 years, we have collected over 800,000 bottles through Empty Bottle Recycling Campaign and planted more than 860 pine trees for a better environment.</i>
-          <a href="#">查看更多</a>
+          <a href="https://www.dior.com/en_at" target="_blank">查看更多</a>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         isLoading: false,
+        loadingItem: '',
         products:[],
         categories:[],
         cart: {
@@ -14,8 +15,8 @@ export default new Vuex.Store({
           },
     },
     actions:{
-        updateLoading(context, status){//context是vuex固定參數
-            context.commit('LOADING', status);
+        updateLoading(context, payload){//context是vuex固定參數
+            context.commit('LOADING', payload);
         },
         getAllProducts(context){
             const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
@@ -27,11 +28,11 @@ export default new Vuex.Store({
               context.commit('LOADING', false);
             });
         },
-        updateCart(context, {cartItem_id, product_id, qty}) {
-          const delete_api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${cartItem_id}`;
+        updateCart(context, {id, productId, qty}) {
+          const delete_api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart/${id}`;
           const add_api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
           const cart = {
-            product_id: product_id,
+            product_id: productId,
             qty
           };
           context.commit('LOADING', true);
@@ -44,7 +45,7 @@ export default new Vuex.Store({
               });        
             }           
           });
-          console.log(cartItem_id, product_id);
+          console.log(id, productId);
         },
         getCart(context) {
             const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
@@ -66,24 +67,26 @@ export default new Vuex.Store({
                 console.log('刪除購物車項目', response);
             });
           },
-          addtoCart(context, {id, qty}) {
+          addToCart(context, {id, qty}) {
             const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
+            context.commit('LOADINGITEM', id);
             context.commit('LOADING', true);
             const cart = {
               product_id: id,
               qty
             };
-            axios.post(url, { data: cart }).then(response => {
-              context.commit('LOADING', false);
+            axios.post(url, { data: cart }).then(response => {              
               context.dispatch('getCart');
-              context.$emit('cartQty',qty);
+              context.commit('LOADINGITEM', '');
+              context.commit('LOADING', false);
+              alert('已加入購物車');
               console.log('加入購物車:', response);
             });
           },
     },
     mutations: {
-        LOADING(state, status) {
-            state.isLoading = status;
+        LOADING(state, payload) {
+            state.isLoading = payload;
         },
         PRODUCTS(state, payload){
             state.products = payload;
@@ -95,9 +98,11 @@ export default new Vuex.Store({
           const categories = new Set();
           payload.forEach((item) => {
             categories.add(item.category);
-            // console.log(categories)
           });
           state.categories = Array.from(categories);
+        },
+        LOADINGITEM(state, payload) {
+          state.loadingItem = payload;
         },
     }
 })

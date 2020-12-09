@@ -10,7 +10,10 @@ import FrontEnd from '@/components/front/FrontEnd';
 import FrontProducts from '@/components/front/FrontProducts';
 import FrontSingleProduct from '@/components/front/FrontSingleProduct';
 import Coupons from '@/components/back/Coupons';
-// import FrontCheckout from '@/components/front/FrontCheckout';
+import FrontCartItems from '@/components/front/FrontCartItems';
+import FrontShoppingCart from '@/components/front/FrontShoppingCart';
+import FrontOrder from '@/components/front/FrontOrder';
+import FrontCheckout from '@/components/front/FrontCheckout';
 
 
 
@@ -57,7 +60,29 @@ export default new VueRouter({
                     path: 'front_single_product/:productID',
                     name: 'FrontSingleProduct',
                     component: FrontSingleProduct,
-                }
+                },
+                {
+                    path: 'shopping_cart',
+                    name: 'FrontShoppingCart',
+                    component: FrontShoppingCart,
+                    children: [
+                        {
+                            path: 'front_cart_items',
+                            name: 'FrontCartItems',
+                            component: FrontCartItems,
+                        }, 
+                        {
+                            path: 'front_order',
+                            name: 'FrontOrder',
+                            component: FrontOrder,
+                        },
+                        {
+                            path: 'front_checkout/:orderId',
+                            name: 'FrontCheckout',
+                            component: FrontCheckout,
+                        },
+                    ]
+                },
             ]
         },
         {

@@ -6,6 +6,7 @@
     margin: 0 auto;
     top: 0;
     z-index: 100;
+    border-bottom: 2px solid #916000;
 
     .navbar-items{
         margin: 0 auto;
@@ -38,7 +39,18 @@
 
                     .fas{
                         padding-right: 3px;
-                    }
+                    }                   
+                }
+
+                .badge{
+                    display: flex;
+                    line-height: 1.5;
+                    align-items: center;
+                    font-size: 18px;
+                    color: #8D8D8D;
+                    opacity: 1;
+                    text-decoration: none;
+                    font-weight: inherit !important;
                 }
             }
         }

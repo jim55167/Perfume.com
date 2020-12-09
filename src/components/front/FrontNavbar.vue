@@ -21,7 +21,10 @@
               <a href="#"><i class="fas fa-heart"></i>Wishlist</a>
             </li>
             <li class="nav-item">
-              <a href="#"><i class="fas fa-shopping-cart"></i>Cart</a>
+              <router-link href="#" to="/shopping_cart/front_cart_items">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="badge">Cart<a>({{cart.carts.length}})</a></span>               
+              </router-link>
             </li>
           </ul>
       </div>
@@ -58,10 +61,18 @@ export default {
         }
       });
     },
+    getCart() {
+      this.$store.dispatch('getCart');
+    },
   },
-
+  computed: {
+    cart(){
+    return this.$store.state.cart;
+  },
+  },
   created() {
     this.checkLoginStatus();
+    this.getCart();
   },
 };
 </script>

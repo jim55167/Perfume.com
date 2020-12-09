@@ -3,25 +3,39 @@
     <Loading :active.sync="isLoading"></Loading>
     <div class="products-navbar">
       <div class="products-navbar-item">
-        <a href="#" :class="{ active: currentFilter === 'All'}"
-         @click="setFilter('All')">All</a>
-        <a href="#" :class="{ active: currentFilter === 'Jo Malone'}"
-         @click="setFilter('Jo Malone')">Jo Malone</a>
-        <a href="#" :class="{ active: currentFilter === 'Dior'}"
-         @click="setFilter('Dior')">Dior</a>
-        <a href="#" :class="{ active: currentFilter === 'CHANEL'}"
-         @click="setFilter('CHANEL')">CHANEL</a>
-        <a href="#" :class="{ active: currentFilter === 'YSL'}"
-         @click="setFilter('YSL')">YSL</a>
-        <a href="#" :class="{ active: currentFilter === 'Penhaligon'}"
-         @click="setFilter('Penhaligon')">Penhaligon</a>
-        <a href="#" :class="{ active: currentFilter === 'Chloe'}"
-         @click="setFilter('Chloe')">Chloe</a>
+        <a href="#" :class="{ 'active': visibility === 'All'}"
+         @click="visibility='All'">All</a>
+        <a href="#" :class="{ 'active': visibility === 'Jo Malone'}"
+         @click="visibility='Jo Malone'">Jo Malone</a>
+        <a href="#" :class="{ 'active': visibility === 'Dior'}"
+         @click="visibility='Dior'">Dior</a>
+        <a href="#" :class="{ 'active': visibility === 'CHANEL'}"
+         @click="visibility='CHANEL'">CHANEL</a>
+        <a href="#" :class="{ 'active': visibility === 'YSL'}"
+         @click="visibility='YSL'">YSL</a>
+        <a href="#" :class="{ 'active': visibility === 'Penhaligon'}"
+         @click="visibility='Penhaligon'">Penhaligon</a>
+        <a href="#" :class="{ 'active': visibility === 'Chloe'}"
+         @click="visibility='Chloe'">Chloe</a>
+        <!-- <a href="#" :class="{ 'active': visibility === 'All'}"
+         @click="categoryData('All')">All</a>
+        <a href="#" :class="{ 'active': visibility === 'Jo Malone'}"
+         @click="categoryData('Jo Malone')">Jo Malone</a>
+        <a href="#" :class="{ 'active': visibility === 'Dior'}"
+         @click="categoryData('Dior')">Dior</a>
+        <a href="#" :class="{ 'active': visibility === 'CHANEL'}"
+         @click="categoryData('CHANEL')">CHANEL</a>
+        <a href="#" :class="{ 'active': visibility === 'YSL'}"
+         @click="categoryData('YSL')">YSL</a>
+        <a href="#" :class="{ 'active': visibility === 'Penhaligon'}"
+         @click="categoryData('Penhaligon')">Penhaligon</a>
+        <a href="#" :class="{ 'active': visibility === 'Chloe'}"
+         @click="categoryData('Chloe')">Chloe</a> -->
       </div>
     </div>
     <div class="products-box">
       <div class="products-item">
-        <div class="products-list" v-for="(item, key) in products.slice(pageStart, pageStart + countPage)" :key="key">         
+        <div class="products-list" v-for="(item, key) in categoryData.slice(pageStart, pageStart + countPage)" :key="key">         
           <div class="products">
             <a href="#" @click.prevent="getProduct(item.id)" style="text-decoration: none;">
               <img :src="item.imageUrl">
@@ -31,16 +45,17 @@
                 <span style="text-decoration:line-through;">NT{{ item.origin_price | currency}}</span>
               </p>
             </a>
-              <a href="#">
+              <a href="#" title="加入收藏">
                 <i class="fas fa-heart"></i>
               </a>
-              <a href="#">
+              <a href="#" title="加入購物車" @click.prevent="addToCart(item.id)">
                 <i class="fas fa-shopping-cart"></i>
               </a>           
           </div>
         </div>
       </div>
     </div>
+    <!-- pagination -->
     <div style="display: flex;"> 
       <nav aria-label="Page navigation example" style="margin:0 auto 15px">
         <ul class="pagination">
@@ -99,16 +114,6 @@ export default {
         }
       });
     },
-    getCategory() {
-      const vm = this;
-      const categories = new Set();
-      vm.products.forEach((item) => {
-        categories.add(item.category);
-
-      });
-      vm.categories = Array.from(categories);
-      console.log(vm.categories);
-    },
     getPage(page) {
       if (page <= 0 || page > this.totalPage) {
         return;
@@ -118,10 +123,65 @@ export default {
     getCart() {
       this.$store.dispatch('getCart');
     },
+    addToCart(id, qty = 1) {
+      this.$store.dispatch('addToCart', { id, qty});
+    },
   },
   computed: {
     categoryData(){
-      
+      if (this.visibility == 'All') {
+        return this.products;
+        console.log(this.products);
+      }else if(this.visibility == 'Jo Malone'){
+        let categoryList = [];
+        this.products.forEach(function(item) {
+          if (item.category == 'Jo Malone'){
+            categoryList.push(item)
+            console.log(categoryList);
+          }
+        })
+        return categoryList;
+      } else if(this.visibility == 'Dior'){
+        let categoryList = [];
+        this.products.forEach(function(item) {
+          if (item.category == 'Dior'){
+            categoryList.push(item)
+          }
+        })
+        return categoryList;
+      } else if(this.visibility == 'CHANEL'){
+        let categoryList = [];
+        this.products.forEach(function(item) {
+          if (item.category == 'CHANEL'){
+            categoryList.push(item)
+          }
+        })
+        return categoryList;
+      } else if(this.visibility == 'YSL'){
+        let categoryList = [];
+        this.products.forEach(function(item) {
+          if (item.category == 'YSL'){
+            categoryList.push(item)
+          }
+        })
+        return categoryList;
+      } else if(this.visibility == 'Penhaligon'){
+        let categoryList = [];
+        this.products.forEach(function(item) {
+          if (item.category == 'Penhaligon'){
+            categoryList.push(item)
+          }
+        })
+        return categoryList;
+      } else if(this.visibility == 'Chloe'){
+        let categoryList = [];
+        this.products.forEach(function(item) {
+          if (item.category == 'Chloe'){
+            categoryList.push(item)
+          }
+        })
+        return categoryList;
+      }       
     },
     products(){
       return this.$store.state.products;
@@ -139,11 +199,12 @@ export default {
       return (this.current_page - 1) * this.countPage;
     },
     totalPage() {
-      return Math.ceil( this.products.length / this.countPage);
+      return Math.ceil( this.categoryData.length / this.countPage);
     },
   },
   created() {
     this.getAllProducts();
+    this.getCart();
   },
 }
 </script>

@@ -2,25 +2,41 @@
     width: 100%;
     padding-top: 75px;
     padding-bottom: 60px;
+    @media screen and (max-width: 414px){
+        padding-top: 40px
+    }
 
     .single-item{
         display: flex;
         width: 1110px;
         margin: 0 auto;
+        @media screen and (max-width: 414px){
+            flex-wrap: wrap;
+            width: 385px;
+        }
 
         .single-img{
             width: 760px;
+            @media screen and (max-width: 414px){
+                width: 385px;
+            }
 
             .single-img-nav{
                 padding-bottom: 30px;
                 
                img{
                    width: 730px;
+                   @media screen and (max-width: 414px){
+                       width: 385px;
+                   }
                }
             }
 
             .single-img-nav2{
                 display: flex;
+                @media screen and (max-width: 414px){
+                    display: none;
+                }
                 
                img{
                    width: 350px;
@@ -31,6 +47,9 @@
 
         .single-nav{
             width: 350px;
+            @media screen and (max-width: 414px){
+                width: 385px;
+            }
 
             h3{
                 text-align: left;
@@ -76,7 +95,10 @@
                     border-radius: 4px 0px 0px 4px;
                     opacity: 1;
                     height: 50px;
-
+                    width: 160px;
+                    @media screen and (max-width: 414px){
+                        width: 180px;
+                    }
                 }
 
                 .btn{
@@ -86,12 +108,17 @@
                     opacity: 1;                   
                     width: 190px;
                     color: #FFFFFF;
-
-                }
+                    @media screen and (max-width: 414px){
+                        width: 205px;
+                    }
+                }   
             }
 
             .single-heart{
                 padding-bottom: 83px;
+                @media screen and (max-width: 414px){
+                    padding-bottom: 40px;
+                }
 
                 a{
                     text-align: right;
@@ -139,6 +166,19 @@
                     color: #000000;
                     opacity: 1;
                     padding-bottom: 20px;
+                }
+            }
+        }
+
+        .single-img-nav3{
+            display: none;
+            @media screen and (max-width: 414px){
+                display: block;
+            }
+            img{
+                @media screen and (max-width: 414px){
+                    width: 385px;
+                    padding-bottom: 16px;
                 }
             }
         }

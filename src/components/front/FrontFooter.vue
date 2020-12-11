@@ -1,20 +1,6 @@
 <template>
   <div>
     <div class="footer-box">
-      <div class="footer-box-item">
-        <img src="~@/assets/home/foot.jpg" style="width: 100%" />
-        <div class="footer-text">
-          <h4>
-            記得<br />
-            訂閱以獲取更多資訊！
-          </h4>
-          <div class="footer-mail">
-            <input type="email" placeholder="Your email address" />
-            <a role="button">Subscribe</a>
-          </div>
-        </div>
-      </div>
-
       <nav class="footer-navbar navbar-expand-lg navbar-light">
         <div class="footer-navbar-item">
           <div class="footer-navbar-logo">

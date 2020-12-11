@@ -5,28 +5,104 @@
     padding: initial !important;
     margin: 0 auto;
     top: 0;
-    z-index: 100;
+    z-index: 50;
     border-bottom: 2px solid #916000;
 
     .navbar-items{
+        width: 1110px;
         margin: 0 auto;
         display: flex;
 
+        @media screen and (max-width: 414px){
+            width: 414px;
+        }
+
         .navbar-logo{
-            width: 533px;
+            width: 100%;
             padding: 9px 0;
 
+            @media screen and (max-width: 414px){
+                width: 100%;
+                padding-left: 20px;
+            }
         }
+        .navbar-mobile-box{
+            position: relative;
+
+                .badge{
+                    display: none;
+                    @media screen and (max-width: 414px){
+                        display: block;
+                        position: absolute;
+                        top: 9px;
+                        right: 9px;
+                        width: 16px;
+                        height: 16px;
+                        align-items: center;
+                        font-size: 12px;
+                        color: #ffffff;
+                        text-decoration: none;
+                        border-radius: 50%;
+                        background-color: #916000;
+                    }
+                }
+
+                .fas{
+                    display: none;
+                    @media screen and (max-width: 414px){
+                        display: block;
+                        font-size: 20px;
+                        color: #8d8d8d;
+                        padding: 18px 20px;
+                    }
+                }
+        }
+
     }
 
         .navbar-nav{
-            width: 577px;
+            width: 100%;
             justify-content: flex-end;
+
+            @media screen and (max-width: 414px){
+                width: 414px;
+                max-height: 0;
+                display: block;
+                overflow: hidden;
+                transition: 0.5s;
+                position: absolute;
+                top: 56px;
+                left: 0;
+                right: 0;
+                background-color: #707070;
+                z-index: 100;
+
+                &.menu-show{
+                    max-height: 500px;
+                }
+            }
 
             .nav-item{
                 padding: 0 16px;
                 text-align: left;
                 display: flex;
+
+                @media screen and (max-width: 414px){
+                    width: 414px;
+                    height: 50px;
+                    align-items: center;
+                    margin: 0 auto;
+                    padding: initial;
+                    border-top: 1px solid #FFFFFF;
+
+                    .home-link{
+                        width: 414px;
+                        display: inline-block;
+                        text-align: center;
+                        padding: 11px 0;
+                    }
+                }
+
 
                 a{
                     display: flex;
@@ -40,6 +116,11 @@
                     .fas{
                         padding-right: 3px;
                     }                   
+
+                    @media screen and (max-width: 414px){
+                        color:#FFFFFF;
+                        
+                    }
                 }
 
                 .badge{
@@ -51,7 +132,41 @@
                     opacity: 1;
                     text-decoration: none;
                     font-weight: inherit !important;
+
+                }
+
+                &.mobile-shop{
+                    @media screen and (max-width: 414px){
+                        display: none;
+                    }
+                }
+
+                &.nav-setting{
+                    display: none;
+                    
+                    @media screen and (max-width: 414px){
+                        display: block;     
+                    }
                 }
             }
         }
+
+        .showmenu{
+            display: none;
+
+            @media screen and (max-width: 414px){
+                padding-top: 5px;
+                margin-right: 20px;
+                display: block;
+                float: right;
+                border: 0;
+                color: black;
+                font-size:25px;
+
+                img{
+                    width:40px;
+                }
+            }
+          }
+          
 }

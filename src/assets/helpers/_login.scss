@@ -6,12 +6,21 @@
         width: 1110px;
         margin: 0 auto;
         padding: 82px 0;
+        @media screen and (max-width: 414px){
+            width: 414px;
+            padding: 40px 0;
+            flex-wrap: wrap;
+        }
 
         .login-img{
-            width: 730px;
-
+            @media screen and (max-width: 414px){
+                margin: 0 auto;
+            }
             img{
                 width: 730px;
+                @media screen and (max-width: 414px){
+                    width: 385px;
+                }
             }
         }
 
@@ -20,6 +29,9 @@
             background: rgb(255,255,255);
             margin: 240px auto;
             border-radius: 5px;
+            @media screen and (max-width: 414px){
+                margin: 40px auto;
+            }
         }
         h3{
             text-align: left;

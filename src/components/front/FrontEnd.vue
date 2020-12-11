@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="overflow:hidden;">
     <FrontNavbar></FrontNavbar>
     <div class="container-fluid px-0">
       <main style="margin-top:58px;">

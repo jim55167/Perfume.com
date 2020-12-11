@@ -1,12 +1,30 @@
 .home-container {
   position: relative;
+  width: 100%;
+  height:870px;
+  position: relative;
+  background-image: url('~@/assets/home/banner.jpg');
+  background-position: center;
+  background-size:cover;
+  background-repeat:no-repeat;
+
+  img{
+    width: 100%;
+    @media screen and (max-width: 414px){
+      width: inherit;
+      max-height: 480px;
+    }
+  }
   
   .text-block {
     position: absolute;
     bottom: 35%;
     right: 20%;
     color: white;
-    transform: translate(0%, -1%);
+
+    @media screen and (max-width: 414px){
+      right: -10%;
+    }
 
     h4 {
       font-size: 40px;
@@ -16,6 +34,10 @@
       color: #FFFFFF;
       opacity: 1;
       font-family: SF Pro Text;
+
+      @media screen and (max-width: 414px){
+        font-size: 32px;
+      }
     }
 
     p {
@@ -26,6 +48,11 @@
       opacity: 1;
       text-align: left;
       font-family: SF Pro Text;
+
+      @media screen and (max-width: 414px){
+        width: 384px;
+        font-size: 20px;
+      }
     }
 
     .btn {
@@ -38,6 +65,9 @@
         color: #FFFFFF;
         border-radius: 30px;
         padding: 10px 0;
+        @media screen and (max-width: 414px){
+          margin-left: 20px;
+        }
 
         &:hover {
           background: #FFFFFF4D 0% 0% no-repeat padding-box;
@@ -57,13 +87,31 @@
         margin: 0 auto;
         display: flex;
 
+        @media screen and (max-width: 414px){
+          width: 384px;
+          flex-direction: column-reverse;
+
+          img{
+            width: 384px;
+          }
+        }
+
         .home-box-text{
             width: 335px;
             margin: 160px 110px;
 
+            @media screen and (max-width: 414px){
+              width: 384px;
+              margin: 0 auto;
+            }
+
             h4{
                 font-size: 32px;
                 font-family: SF Pro Text;
+
+                @media screen and (max-width: 414px){
+                  padding-top: 8px;
+                }
             }
 
             p{
@@ -79,13 +127,36 @@
                 opacity: 1;
                 font-size: 14px;
                 font-weight: 600;
+
+                @media screen and (max-width: 414px){
+                  font-size: 16px;
+                  margin-bottom: 32px;
+                  display: inline-block;
+                }
             }
         }
     }
     .home-item{
+
+      &.home-item-reverse{
+        @media screen and (max-width: 414px){
+          display: table;
+          width: 384px;
+          flex-direction: column-reverse;
+
+          img{
+            width: 384px;
+          }
+        }
+      }
         .home-box-text2{
             width: 335px;
             margin: 130px 110px;
+
+            @media screen and (max-width: 414px){
+              width: 384px;
+              margin: 0 auto;
+            }
 
             h4{
                 font-size: 32px;
@@ -105,6 +176,12 @@
                 opacity: 1;
                 font-size: 14px;
                 font-weight: 600;
+
+                @media screen and (max-width: 414px){
+                  font-size: 16px;
+                  margin-bottom: 32px;
+                  display: inline-block;
+                }
             }
         }
     }
@@ -114,6 +191,10 @@
             margin-top: 40px;
             margin-left: 110px;
             margin-right: 95px;
+            @media screen and (max-width: 414px){
+              margin: 0 auto;
+            }
+
 
             h4{
                 font-size: 24px;
@@ -122,6 +203,10 @@
                 opacity: 1;
                 padding-top: 52px;
                 font-family: SF Pro Text;
+                @media screen and (max-width: 414px){
+                  padding-top: 8px;
+                  font-weight: 600;
+                }
             }
 
             p{
@@ -137,6 +222,9 @@
                 font-size: 20px;
                 margin-top: 60px;
                 font-family: SF Pro Text;
+                @media screen and (max-width: 414px){
+                  margin-top: 20px;
+                }
                       
                 &.default {
                   width: 350px;
@@ -144,6 +232,9 @@
                   border-radius: 30px;
                   opacity: 1;
                   padding: 13px 0;
+                  @media screen and (max-width: 414px){
+                    margin-left: 15px;
+                  }
           
                   &:hover {
                     background:#0000000D 0% 0% no-repeat padding-box;
@@ -158,9 +249,62 @@
     background-color: #E0E0E0;
 
     .home-item-box{
-        width: 1110px;
+        width: 1140px;
         margin: 0 auto;
         display: flex;
+        padding: 40px 0;
+        @media screen and (max-width: 414px){
+          width: 385px;
+          flex-direction: column;
+        }
+
+        .home-products-item{
+          padding-top:40px; 
+          padding-bottom:40px;
+          padding:15px;
+          @media screen and (max-width: 414px){
+            margin: 0 auto;
+          }
+
+          .home-willlike{
+            position: relative;
+
+            .glass {
+              top: 0;
+              width: 350px;
+              position: absolute;
+              transition: all 0.3s;
+              background-color: rgba(0, 0, 0, 0);
+              height: 500px;
+
+              span {
+                color: transparent;
+                transition: all 0.3s;
+                line-height: 500px;
+                font-size: 20px;
+                font-weight: bold;
+
+              }
+            }
+            &:hover {
+              text-decoration: none;
+              .glass {
+                background-color: rgba(144, 142, 142, 0.6);
+                span {
+                  color: #FFFFFF;
+                }
+              }
+            }
+
+            img{
+              width: 350px;
+              height: 500px;
+            }
+          }
+        }
+
+          
+
 
         h4{
             font-size: 24px;
@@ -194,14 +338,26 @@
     width: 1110px;
     margin: 0 auto;
     display: flex;
+    @media screen and (max-width: 414px){
+      width: 385px;
+      flex-direction: column;
+    }
 
     img{
       padding: 60px 0;
+      @media screen and (max-width: 414px){
+        width: 385px;
+        padding: 40px 0 8px;
+
+      }
     }
 
     .home-bottle-text{
       padding-top: 142px;
       padding-left: 30px;
+      @media screen and (max-width: 414px){
+        padding: inherit;
+      }
 
       h4{
         text-align: left;
@@ -227,7 +383,10 @@
         display: block;
         font-size: 16px;
         margin-top: 16px;
-
+        @media screen and (max-width: 414px){
+          margin-bottom: 32px;
+          display: inline-block;
+        }
 
       }
     }

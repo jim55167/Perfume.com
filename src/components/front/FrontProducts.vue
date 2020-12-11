@@ -78,6 +78,20 @@
         </ul>
       </nav> 
     </div>
+    <div class="footer-box">
+      <div class="footer-box-item">
+        <div class="footer-text">
+          <h4>
+            記得<br />
+            訂閱以獲取更多資訊！
+          </h4>
+          <div class="footer-mail">
+            <input type="email" placeholder="Your email address" />
+            <a role="button">Subscribe</a>
+          </div>
+        </div>
+      </div>
+    </div>
     <GoTop></GoTop>
   </div>
 </template>

@@ -19,7 +19,7 @@
               <p>NT{{product.price | currency}}</p>
             </div>
             <div class="single-num">
-              <select name="" class="form-control" v-model="product.num" style="width:160px;">
+              <select name="" class="form-control" v-model="product.num">
                 <option :value="num" v-for="num in 10" :key="num">
                   {{num}} {{product.unit}}
                 </option>
@@ -38,6 +38,10 @@
               <h5>退換貨須知</h5>
               <p>依《消費者保護法》的規定，於全站購物皆享有商品到貨【七日猶豫期】（含例假日）之權益。若收到的商品有任何問題，可於猶豫期內申請退貨。</p>
             </div>
+          </div>
+          <div class="single-img-nav3">
+            <img :src="product.imageUrl2">
+            <img :src="product.imageUrl3">
           </div>
       </div>
     </div>
@@ -73,7 +77,7 @@ export default {
       const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${this.productId}`;
       this.$store.dispatch('updateLoading',true);
       this.$http.get(api).then(response => {
-        console.log(response);
+ 
         if (response.data.success) {
           this.product = response.data.product;
           console.log(response.data.product);

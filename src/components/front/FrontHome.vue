@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="home-container">
-      <img src="~@/assets/home/banner.jpg" style="width: 100%" />
       <div class="text-block">
         <h4>Perfume your day</h4>
         <p>
@@ -23,7 +22,7 @@
               <img src="~@/assets/home/home1.png">
           </div>
         </div>
-        <div class="home-item">
+        <div class="home-item home-item-reverse">
           <div>
               <img src="~@/assets/home/home2.jpg">
           </div>
@@ -43,7 +42,7 @@
               <img src="~@/assets/home/home3.png">
           </div>
         </div>
-        <div class="home-item">
+        <div class="home-item home-item-reverse">
           <div>
               <img src="~@/assets/home/home4.png">
           </div>
@@ -67,29 +66,24 @@
         </div>
     </div>
     <div class="home-products">
-        <div class="home-item-box">
-            <div style="padding-top:40px; padding-bottom:40px;">
-                <img src="~@/assets/home/p1.png">
-                <h4>Poppy & Barley</h4>
-                <p>Jo Malone</p>
-                <tr style="display:flex;">
-                    <td>NT$1,380</td>
-                    <td style="text-decoration:line-through;color:#8D8D8D;">NT$1,580</td>
-                </tr>
+      <div class="home-item-box" >
+        <div class="home-products-item" v-for="(item, index) in recommandProducts" :key="index">
+          <a href="#" @click.prevent="getRandomProduct(item.id)">
+            <div class="home-willlike">
+              <img :src="item.imageUrl2">
+              <div class="glass d-flex justify-content-center">
+                <span>查看更多</span>
+              </div>
             </div>
-            <div style="padding:40px 30px;">
-                <img src="~@/assets/home/p2.png">
-                <h4>Body Wash</h4>
-                <p>Curology</p>
-                <p>NT$1,580</p>
-            </div>
-            <div style="padding-top:40px; padding-bottom:40px;">
-                <img src="~@/assets/home/p3.png">
-                <h4>Apple Cider Vinegar Capsule</h4>
-                <p>Tonik</p>
-                <p>NT$1,580</p>
-            </div>
+          </a>
+            <h4>{{item.title}}</h4>
+            <p>{{item.category}}</p>
+            <tr style="display:flex;">
+              <td>NT{{item.price}}</td>
+              <td style="text-decoration:line-through;color:#8D8D8D;">NT{{item.origin_price}}</td>
+            </tr>
         </div>
+      </div>
     </div>
     <div class="home-bottle">
       <div class="home-bottle-box">
@@ -104,5 +98,105 @@
         </div>
       </div>
     </div>
+
+    <div class="footer-box">
+      <div class="footer-box-item">
+        <div class="footer-text">
+          <h4>
+            記得<br />
+            訂閱以獲取更多資訊！
+          </h4>
+          <div class="footer-mail">
+            <input type="email" placeholder="Your email address" />
+            <a role="button">Subscribe</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <GoTop></GoTop>
   </div>
 </template>
+
+<script>
+
+import $ from 'jquery';
+import GoTop from '../GoTop';
+
+export default {
+  data(){
+    return{
+      productId: "",
+      recommandProducts: [],
+      localCateProducts: [],
+      product: {
+        num: 1
+      },
+    }
+  },
+  components: {
+    GoTop,
+  },
+  methods: {
+    getSingleProduct() {
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${this.productId}`;
+      this.$store.dispatch('updateLoading',true);
+      this.randomProduct(this.localCateProducts, 3);
+      this.$http.get(api).then(response => {
+ 
+        if (response.data.success) {
+          this.product = response.data.product;
+          console.log(response.data.product);
+          this.$set(this.product, "num", 1);
+          this.$store.dispatch('updateLoading',false);
+        }
+      })
+    },
+    getRandomProduct(id) {
+      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
+      this.$store.dispatch('updateLoading',true);
+      this.$http.get(api).then(response => {
+        if (response.data.success) {
+          this.$store.dispatch('updateLoading',false);
+          this.$router.push( `../front_single_product/${response.data.product.id}`).catch(err => {err});  
+        }
+      });
+    },
+    randomProduct(arr, num) {   
+      let newArr = [];
+      if (arr.length <= num) {
+        num = arr.length; 
+      }
+    
+      rand(num);
+
+      function rand(selectQty) {
+        if (selectQty == 0) {
+          return;
+        }
+        let index = Math.floor(Math.random() * arr.length);
+        let flag = true;
+        newArr.forEach(function(item) {
+          if (item == arr[index]) { 
+            flag = false;
+          }
+        });
+        if (flag) {
+          newArr.push(arr[index]);
+          selectQty--;
+        }
+        rand(selectQty);
+      }
+      this.recommandProducts = newArr;
+      console.log(this.recommandProducts);
+    }
+  },
+  created() {
+    this.productId = this.$route.params.productID;
+    this.localCateProducts = JSON.parse(
+      localStorage.getItem("cateFilteredList")
+    );
+    this.getSingleProduct();
+  }
+
+}
+</script>

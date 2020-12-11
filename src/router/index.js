@@ -14,6 +14,7 @@ import FrontCartItems from '@/components/front/FrontCartItems';
 import FrontShoppingCart from '@/components/front/FrontShoppingCart';
 import FrontOrder from '@/components/front/FrontOrder';
 import FrontCheckout from '@/components/front/FrontCheckout';
+import FrontWishlist from '@/components/front/FrontWishlist';
 
 
 
@@ -55,6 +56,11 @@ export default new VueRouter({
                     path: 'front_products',
                     name: 'FrontProducts',
                     component: FrontProducts,
+                },
+                {
+                    path: 'front_wishlist',
+                    name: 'FrontWishlist',
+                    component: FrontWishlist,
                 },
                 {
                     path: 'front_single_product/:productID',

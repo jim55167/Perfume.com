@@ -17,7 +17,7 @@ import FrontFooter from "./FrontFooter";
 export default {
   components: {
     FrontNavbar,
-    FrontFooter
+    FrontFooter,
   },
 
   data() {

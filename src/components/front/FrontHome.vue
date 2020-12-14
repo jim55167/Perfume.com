@@ -87,7 +87,7 @@
     </div>
     <div class="home-bottle">
       <div class="home-bottle-box">
-        <div>
+        <div class="home-bottle-box-img">
           <img src="~@/assets/home/home5.jpg">
         </div>
         <div class="home-bottle-text">

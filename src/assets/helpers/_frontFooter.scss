@@ -17,6 +17,9 @@
       @media screen and (max-width: 414px){
         left: 5%;
       }
+      @media screen and (max-width: 375px){
+        left: 3%;
+      }
   
       h4 {
         width: 350px;
@@ -34,10 +37,10 @@
         border: 2px solid #916000;
         border-radius: 0px 4px 4px 0px;
         opacity: 1;
-        width: 350px;
+        width: 345px;
   
         input {
-          width: 219px;
+          width: 216px;
           text-align: center;
           font-size: 16;
           font-family: pxSF Pro Text;
@@ -50,7 +53,7 @@
         }
   
         a {
-          padding: 13px 30px;
+          padding: 13px 28px;
           font-size: 16px;
           font-family: pxSF Pro Text;
           color: #FFFFFF;
@@ -86,6 +89,9 @@
       @media screen and (max-width: 414px){
         width: 414px;
       }
+      @media screen and (max-width: 375px){
+        width: 375px;
+      }
 
       .footer-navbar-logo {
         width: 533px;
@@ -96,6 +102,9 @@
           margin: 0 auto;
           width: 385px;
           justify-content: space-between;
+        }
+        @media screen and (max-width: 375px){
+          width: 345px;
         }
         p{
             text-align: left;

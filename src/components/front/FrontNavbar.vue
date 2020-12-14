@@ -72,7 +72,7 @@ export default {
       this.$http.post(api).then((response) => {
         if (response.data.success) {
           this.is_login = false;
-          this.$router.push("/home").catch(err => {});
+          this.$router.push("/home").catch(err => {err});
         }
       });
     },

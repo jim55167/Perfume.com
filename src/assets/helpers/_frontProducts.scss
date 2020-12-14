@@ -9,6 +9,9 @@
         @media screen and (max-width: 414px){
             width: 414px;
         }
+        @media screen and (max-width: 375px){
+            display: none;
+        }
 
         a{
             text-align: left;
@@ -33,6 +36,10 @@
     @media screen and (max-width: 414px){
         width: 414px;
     }
+    @media screen and (max-width: 414px){
+        width: 375px;
+        padding-top: 40px;
+    }
 
     .products-item{
         width: 1140px;
@@ -41,6 +48,9 @@
         flex-wrap: wrap;
         @media screen and (max-width: 414px){
             width: 384px;
+        }
+        @media screen and (max-width: 375px){
+            width: 360px;
         }
 
         .products-list{           
@@ -56,9 +66,15 @@
                 @media screen and (max-width: 414px){
                     width: 175px;
                 }
+                @media screen and (max-width: 375px){
+                    width: 165px;
+                }
 
                 img{
                     width: 175px;
+                    @media screen and (max-width: 375px){
+                        width: 165px;
+                    }
                 }
 
                 h4{

@@ -32,21 +32,22 @@ export default new VueRouter({
             path: '/',
             redirect: '/home',
         },
-        // {
-        //     path: '/login',//元件呈現的名稱
-        //     name: 'Login',//對應的虛擬路徑
-        //     component: Login,//對應的元件
-        // },
+        {
+            path: '/login',//元件呈現的名稱
+            name: 'Login',//對應的虛擬路徑
+            component: Login,//對應的元件
+        },
         {
             path: '/',
             name: 'FrontEnd',
             component: FrontEnd,
             children: [
                 {
-                    path: 'login',
-                    name: 'Login',
-                    component: Login,
+                    path: '/login',//元件呈現的名稱
+                    name: 'Login',//對應的虛擬路徑
+                    component: Login,//對應的元件
                 },
+
                 {
                     path: 'home',
                     name: 'FrontHome',

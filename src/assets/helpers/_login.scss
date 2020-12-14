@@ -11,6 +11,9 @@
             padding: 40px 0;
             flex-wrap: wrap;
         }
+        @media screen and (max-width: 375px){
+            width: 375px;
+        }
 
         .login-img{
             @media screen and (max-width: 414px){
@@ -20,6 +23,9 @@
                 width: 730px;
                 @media screen and (max-width: 414px){
                     width: 385px;
+                }
+                @media screen and (max-width: 375px){
+                    width: 345px;
                 }
             }
         }

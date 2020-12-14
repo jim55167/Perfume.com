@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- <Loading :active.sync="isLoading"></Loading> -->
     <div class="login">
       <div class="login-box">
         <div class="login-img">
@@ -48,17 +49,19 @@ export default {
       signin() {
         const api = `${process.env.APIPATH}/admin/signin`;
         this.isLoading = true;
+        // this.$store.dispatch('updateLoading',true);
         // API 伺服器路徑
         //所申請的 APIPath
         this.$http.post(api, this.user).then((response) => {
         this.isLoading = false;
+        // this.$store.dispatch('updateLoading',false);
         console.log(response.data);
         if(response.data.success){
           const token = response.data.token;
           const expired = response.data.expired;
           console.log(token, expired);
           document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
-            this.$router.push('/home').catch(err => {});
+          this.$router.push('/home').catch(err => {err});
         }
       });
     },
@@ -68,5 +71,10 @@ export default {
       this.seen = !this.seen;
     }
   },
+  // computed: {
+  //   isLoading() {
+  //     return this.$store.state.isLoading;
+  //   }
+  // }
 }
 </script>

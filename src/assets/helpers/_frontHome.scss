@@ -7,13 +7,8 @@
   background-position: center;
   background-size:cover;
   background-repeat:no-repeat;
-
-  img{
-    width: 100%;
-    @media screen and (max-width: 414px){
-      width: inherit;
-      max-height: 480px;
-    }
+  @media screen and (max-width: 414px){
+    max-height: 480px;
   }
   
   .text-block {
@@ -24,6 +19,9 @@
 
     @media screen and (max-width: 414px){
       right: -10%;
+    }
+    @media screen and (max-width: 375px){
+      right: -23%;
     }
 
     h4 {
@@ -53,6 +51,9 @@
         width: 384px;
         font-size: 20px;
       }
+      @media screen and (max-width: 375px){
+        width: 345px;
+      }
     }
 
     .btn {
@@ -66,7 +67,11 @@
         border-radius: 30px;
         padding: 10px 0;
         @media screen and (max-width: 414px){
+          width: 345px;
           margin-left: 20px;
+        }
+        @media screen and (max-width: 375px){
+          margin-left: 0;
         }
 
         &:hover {
@@ -96,6 +101,13 @@
           }
         }
 
+        @media screen and (max-width: 375px){
+          width: 345px;
+          img{
+            width: 345px;
+          }
+        }
+
         .home-box-text{
             width: 335px;
             margin: 160px 110px;
@@ -103,6 +115,9 @@
             @media screen and (max-width: 414px){
               width: 384px;
               margin: 0 auto;
+            }
+            @media screen and (max-width: 375px){
+              width: 345px;
             }
 
             h4{
@@ -148,6 +163,12 @@
             width: 384px;
           }
         }
+        @media screen and (max-width: 375px){
+          width: 345px;
+          img{
+            width: 345px;
+          }
+        }
       }
         .home-box-text2{
             width: 335px;
@@ -156,6 +177,9 @@
             @media screen and (max-width: 414px){
               width: 384px;
               margin: 0 auto;
+            }
+            @media screen and (max-width: 375px){
+              width: 345px;
             }
 
             h4{
@@ -193,6 +217,9 @@
             margin-right: 95px;
             @media screen and (max-width: 414px){
               margin: 0 auto;
+            }
+            @media screen and (max-width: 375px){
+              width: 345px;
             }
 
 
@@ -235,6 +262,9 @@
                   @media screen and (max-width: 414px){
                     margin-left: 15px;
                   }
+                  @media screen and (max-width: 375px){
+                    margin: 0 auto;
+                  }
           
                   &:hover {
                     background:#0000000D 0% 0% no-repeat padding-box;
@@ -257,13 +287,17 @@
           width: 385px;
           flex-direction: column;
         }
+        @media screen and (max-width: 414px){
+          width: 375px;
+        }
 
         .home-products-item{
-          padding-top:40px; 
-          padding-bottom:40px;
+          padding-top:25px; 
+          padding-bottom:25px;
           padding:15px;
           @media screen and (max-width: 414px){
             margin: 0 auto;
+            padding:16px 0;
           }
 
           .home-willlike{
@@ -342,21 +376,35 @@
       width: 385px;
       flex-direction: column;
     }
+    @media screen and (max-width: 375px){
+      width: 375px;
+    }
 
+    .home-bottle-box-img{
+      margin: 0 auto;
+      
+    }
     img{
       padding: 60px 0;
       @media screen and (max-width: 414px){
         width: 385px;
         padding: 40px 0 8px;
-
+      }
+      @media screen and (max-width: 375px){
+        width: 345px;
       }
     }
 
     .home-bottle-text{
       padding-top: 142px;
       padding-left: 30px;
+      margin: 0 auto;
+      
       @media screen and (max-width: 414px){
         padding: inherit;
+      }
+      @media screen and (max-width: 375px){
+        width: 345px;
       }
 
       h4{
@@ -387,7 +435,6 @@
           margin-bottom: 32px;
           display: inline-block;
         }
-
       }
     }
   }

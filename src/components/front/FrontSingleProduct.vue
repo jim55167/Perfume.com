@@ -46,6 +46,12 @@
       </div>
     </div>
     <GoTop></GoTop>
+     <div class="screen" v-if="lightBox">
+      <div class="view-box">
+        <div class="box">已加入購物車</div>
+        <div class="cancel" @click="cancelLocation">X</div> 
+      </div>
+    </div>
   </div>
 </template>
 
@@ -90,12 +96,15 @@ export default {
       this.$store.dispatch('getCart');
     },
     addToCart(id, qty = 1) {
-      this.$store.dispatch('addToCart', { id, qty});  
+      this.$store.dispatch('addToCart', { id, qty}); 
+      this.$store.dispatch('isLightBox',true); 
     },
     removeCart(id) {
       this.$store.dispatch('removeCart', id);
     },
-
+    cancelLocation(){
+      this.$store.dispatch('isLightBox',false);
+    },
   },
   computed: {
     isLoading() {
@@ -106,7 +115,10 @@ export default {
     },
     loadingItem() {
       return this.$store.state.loadingItem;
-    }
+    },
+    lightBox(){
+      return this.$store.state.lightBox;
+    },
   },
   created() {
     this.productId = this.$route.params.productID;

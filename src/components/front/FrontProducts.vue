@@ -93,6 +93,12 @@
       </div>
     </div>
     <GoTop></GoTop>
+    <div class="screen" v-if="lightBox">
+      <div class="view-box">
+        <div class="box">已加入購物車</div>
+        <div class="cancel" @click="cancelLocation">X</div> 
+      </div>
+    </div>
   </div>
 </template>
 
@@ -107,6 +113,7 @@ export default {
       current_page: 1,
       countPage: 12, 
       visibility: 'All',
+      // lightBox:false,
     }
   },
    components: {
@@ -138,9 +145,15 @@ export default {
       this.$store.dispatch('getCart');
     },
     addToCart(id, qty = 1) {
+      this.$store.dispatch('isLightBox',true);
       this.$store.dispatch('addToCart', { id, qty});
+      
     },
-  },
+    cancelLocation(){
+      // this.lightBox = true;
+      this.$store.dispatch('isLightBox',false);
+    },
+  }, 
   computed: {
     categoryData(){
       if (this.visibility == 'All') {
@@ -205,6 +218,9 @@ export default {
     },
     isLoading() {
       return this.$store.state.isLoading;
+    },
+    lightBox(){
+      return this.$store.state.lightBox;
     },
     cart(){
       return this.$store.state.cart;

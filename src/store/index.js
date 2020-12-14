@@ -13,10 +13,14 @@ export default new Vuex.Store({
         cart: {
             carts: [],
           },
+        lightBox: 'false'
     },
     actions:{
         updateLoading(context, payload){//context是vuex固定參數
-            context.commit('LOADING', payload);
+          context.commit('LOADING', payload);
+        },
+        isLightBox(context, payload){
+          context.commit('LIGHTBOX', payload);
         },
         getAllProducts(context){
             const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/products/all`;
@@ -69,25 +73,29 @@ export default new Vuex.Store({
           },
           addToCart(context, {id, qty}) {
             const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
-            context.commit('LOADINGITEM', id);
+            context.commit('LOADINGITEM', id);           
             context.commit('LOADING', true);
             const cart = {
               product_id: id,
               qty
             };
-            axios.post(url, { data: cart }).then(response => {              
+            
+            axios.post(url, { data: cart }).then(response => {                            
               context.dispatch('getCart');
               context.commit('LOADINGITEM', '');
               context.commit('LOADING', false);
-              alert('已加入購物車');
               console.log('加入購物車:', response);
             });
+            
           },
     },
     mutations: {
         LOADING(state, payload) {
             state.isLoading = payload;
         },
+        LIGHTBOX(state, payload){
+          state.lightBox = payload;
+        }, 
         PRODUCTS(state, payload){
             state.products = payload;
         },

@@ -13,7 +13,7 @@ export default new Vuex.Store({
         cart: {
             carts: [],
           },
-        lightBox: 'false'
+        lightBox: false
     },
     actions:{
         updateLoading(context, payload){//context是vuex固定參數

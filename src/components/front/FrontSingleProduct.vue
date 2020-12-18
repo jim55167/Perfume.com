@@ -29,7 +29,9 @@
               </button>
             </div>
             <div class="single-heart">
-              <a href="#"><i class="fas fa-heart"></i>加入我的收藏</a>
+              <a href="#" title="加入收藏" @click.prevent="addLove(product.id)">
+                <i :class="showLove(product.id)"></i>加入我的收藏
+              </a>
             </div>
             <div class="single-native">
               <pre>{{product.description}}</pre>
@@ -66,6 +68,7 @@ export default {
       product: {
         num: 1
       },
+      love: [],
     }
   },
   components:{
@@ -105,8 +108,30 @@ export default {
     cancelLocation(){
       this.$store.dispatch('isLightBox',false);
     },
+    addLove(id) {
+      const vm = this;
+      let index = vm.love.findIndex((element) => {
+        return id === element
+      });
+      if(vm.love.indexOf(id) < 0) {
+        vm.love.push(id)
+      } else {
+        console.log(vm.love)
+        vm.love.splice(index, 1);
+      }
+      localStorage.setItem('cateFilteredList', JSON.stringify(vm.love));
+    }
   },
   computed: {
+    showLove() {
+      return function(id) {
+        if(this.love.indexOf(id) > -1) {
+          return 'far fa-heart'
+        } else {
+          return 'fas fa-heart'
+        }
+      }
+    },
     isLoading() {
       return this.$store.state.isLoading;
     },

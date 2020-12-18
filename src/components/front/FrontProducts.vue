@@ -17,20 +17,7 @@
          @click="visibility='Penhaligon'">Penhaligon</a>
         <a href="#" :class="{ 'active': visibility === 'Chloe'}"
          @click="visibility='Chloe'">Chloe</a>
-        <!-- <a href="#" :class="{ 'active': visibility === 'All'}"
-         @click="categoryData('All')">All</a>
-        <a href="#" :class="{ 'active': visibility === 'Jo Malone'}"
-         @click="categoryData('Jo Malone')">Jo Malone</a>
-        <a href="#" :class="{ 'active': visibility === 'Dior'}"
-         @click="categoryData('Dior')">Dior</a>
-        <a href="#" :class="{ 'active': visibility === 'CHANEL'}"
-         @click="categoryData('CHANEL')">CHANEL</a>
-        <a href="#" :class="{ 'active': visibility === 'YSL'}"
-         @click="categoryData('YSL')">YSL</a>
-        <a href="#" :class="{ 'active': visibility === 'Penhaligon'}"
-         @click="categoryData('Penhaligon')">Penhaligon</a>
-        <a href="#" :class="{ 'active': visibility === 'Chloe'}"
-         @click="categoryData('Chloe')">Chloe</a> -->
+
       </div>
     </div>
     <div class="products-box">
@@ -45,12 +32,14 @@
                 <span style="text-decoration:line-through;">NT{{ item.origin_price | currency}}</span>
               </p>
             </a>
-              <a href="#" title="加入收藏">
-                <i class="fas fa-heart"></i>
+            <div class="products-add">
+              <a href="#" title="加入收藏" @click.prevent="addLove(item.id)">
+                <i :class="showLove(item.id)"></i>
               </a>
               <a href="#" title="加入購物車" @click.prevent="addToCart(item.id)">
                 <i class="fas fa-shopping-cart"></i>
-              </a>           
+              </a> 
+            </div>          
           </div>
         </div>
       </div>
@@ -113,6 +102,7 @@ export default {
       current_page: 1,
       countPage: 12, 
       visibility: 'All',
+      love: JSON.parse(localStorage.getItem('cateFilteredList')) || [],
     }
   },
    components: {
@@ -150,8 +140,31 @@ export default {
     cancelLocation(){
       this.$store.dispatch('isLightBox',false);
     },
+    addLove(id) {
+      const vm = this;
+      let index = vm.love.findIndex((element) => {
+        return id === element
+      });
+      if(vm.love.indexOf(id) < 0) {
+        vm.love.push(id)
+      } else {
+        console.log(vm.love)
+        vm.love.splice(index, 1);
+      }
+      localStorage.setItem('cateFilteredList', JSON.stringify(vm.love));
+    }
   }, 
   computed: {
+    showLove() {
+      return function(id) {
+        if(this.love.indexOf(id) > -1) {
+          return 'far fa-heart'
+        } else {
+          return 'fas fa-heart'
+        }
+      }
+    },
+
     categoryData(){
       if (this.visibility == 'All') {
         return this.products;

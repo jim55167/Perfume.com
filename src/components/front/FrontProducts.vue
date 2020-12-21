@@ -41,6 +41,12 @@
               </a> 
             </div>          
           </div>
+          <div class="screen" v-if="lightBox">
+            <div class="view-box">
+              <div class="box">已加入購物車</div>
+              <div class="cancel" @click="cancelLocation">X</div> 
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -82,27 +88,19 @@
       </div>
     </div>
     <GoTop></GoTop>
-    <div class="screen" v-if="lightBox">
-      <div class="view-box">
-        <div class="box">已加入購物車</div>
-        <div class="cancel" @click="cancelLocation">X</div> 
-      </div>
-    </div>
   </div>
 </template>
 
 <script>
-
 import $ from 'jquery';
 import GoTop from '../GoTop';
-
 export default {
   data(){
     return{
       current_page: 1,
       countPage: 12, 
       visibility: 'All',
-      love: JSON.parse(localStorage.getItem('cateFilteredList')) || [],
+      love: JSON.parse(localStorage.getItem('loveList')) || [],
     }
   },
    components: {
@@ -146,25 +144,25 @@ export default {
         return id === element
       });
       if(vm.love.indexOf(id) < 0) {
-        vm.love.push(id)
+        vm.love.push(id)        
       } else {
         console.log(vm.love)
         vm.love.splice(index, 1);
+        
       }
-      localStorage.setItem('cateFilteredList', JSON.stringify(vm.love));
+      localStorage.setItem('loveList', JSON.stringify(vm.love));
     }
   }, 
   computed: {
     showLove() {
       return function(id) {
         if(this.love.indexOf(id) > -1) {
-          return 'far fa-heart'
+          return 'far fa-heart'          
         } else {
           return 'fas fa-heart'
         }
       }
     },
-
     categoryData(){
       if (this.visibility == 'All') {
         return this.products;
@@ -248,4 +246,3 @@ export default {
   },
 }
 </script>
-

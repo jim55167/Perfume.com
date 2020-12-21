@@ -63,16 +63,14 @@
 </template>
 
 <script>
-
 import $ from 'jquery';
 import GoTop from '../GoTop';
-
 export default {
   data(){
     return{
       current_page: 1,
       countPage: 12, 
-      love: JSON.parse(localStorage.getItem('cateFilteredList')) || [],
+      love: JSON.parse(localStorage.getItem('loveList')) || [],
     }
   },
    components: {
@@ -85,7 +83,6 @@ export default {
     getProduct(id) {
       const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
       this.$store.dispatch('updateLoading',true);
-      localStorage.setItem('cateFilteredList', JSON.stringify(this.products));
       this.$http.get(api).then((response) => {
         console.log(response);
         if(response.data.success){
@@ -121,7 +118,7 @@ export default {
         console.log(vm.love)
         vm.love.splice(index, 1);
       }
-      localStorage.setItem('cateFilteredList', JSON.stringify(vm.love));
+      localStorage.setItem('loveList', JSON.stringify(vm.love));
     }
   }, 
   computed: {
@@ -179,4 +176,3 @@ export default {
   },
 }
 </script>
-

@@ -54,13 +54,17 @@
         <div class="cancel" @click="cancelLocation">X</div> 
       </div>
     </div>
+     <div class="screen" v-if="lightBox">
+      <div class="view-box">
+        <div class="box">已加入收藏</div>
+        <div class="cancel" @click="cancelLocation">X</div> 
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-
 import GoTop from '../GoTop';
-
 export default {
   data(){
     return{
@@ -68,7 +72,7 @@ export default {
       product: {
         num: 1
       },
-      love: [],
+      love: JSON.parse(localStorage.getItem('loveList')) || [],
     }
   },
   components:{
@@ -119,7 +123,8 @@ export default {
         console.log(vm.love)
         vm.love.splice(index, 1);
       }
-      localStorage.setItem('cateFilteredList', JSON.stringify(vm.love));
+      localStorage.setItem('loveList', JSON.stringify(vm.love));
+      this.$store.dispatch('isLightBox',true);
     }
   },
   computed: {

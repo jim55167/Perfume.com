@@ -74,7 +74,6 @@ export default new Vuex.Store({
           addToCart(context, {id, qty}) {
             const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/cart`;
             context.commit('LOADINGITEM', id);           
-            context.commit('LOADING', true);
             const cart = {
               product_id: id,
               qty

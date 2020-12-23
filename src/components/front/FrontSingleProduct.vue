@@ -54,12 +54,6 @@
         <div class="cancel" @click="cancelLocation">X</div> 
       </div>
     </div>
-     <div class="screen" v-if="lightBox">
-      <div class="view-box">
-        <div class="box">已加入收藏</div>
-        <div class="cancel" @click="cancelLocation">X</div> 
-      </div>
-    </div>
   </div>
 </template>
 

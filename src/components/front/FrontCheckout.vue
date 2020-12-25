@@ -102,16 +102,15 @@ export default {
   },
   methods: {
     getOrder() {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/order/${this.orderId}`;
+      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/order/${ this.orderId }`;
       this.$store.dispatch('updateLoading',true);
       this.$http.get(api).then(response => {
         this.order = response.data.order;
-        console.log(response);
         this.$store.dispatch('updateLoading',false);
       });
     },
     payOrder() {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/pay/${this.orderId}`;
+      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/pay/${ this.orderId }`;
       this.$store.dispatch('updateLoading',true);
       this.$http.post(api).then(response => {
         if (response.data.success) {
@@ -134,7 +133,6 @@ export default {
   created() {
     this.orderId = this.$route.params.orderId;
     this.getOrder();
-    console.log(this.orderId);
   }
 };
 </script>

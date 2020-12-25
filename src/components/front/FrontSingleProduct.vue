@@ -13,15 +13,15 @@
               </div>
           </div>
           <div class="single-nav">
-            <h3>{{product.title}}</h3>
-            <pre>{{product.content}}</pre>
+            <h3>{{ product.title }}</h3>
+            <pre>{{ product.content }}</pre>
             <div class="single-money">
-              <p>NT{{product.price | currency}}</p>
+              <p>NT{{ product.price | currency }}</p>
             </div>
             <div class="single-num">
               <select name="" class="form-control" v-model="product.num">
                 <option :value="num" v-for="num in 10" :key="num">
-                  {{num}} {{product.unit}}
+                  {{ num }} {{ product.unit }}
                 </option>
               </select>
               <button type="button" class="btn" @click="addToCart(product.id, product.num)">
@@ -34,7 +34,7 @@
               </a>
             </div>
             <div class="single-native">
-              <pre>{{product.description}}</pre>
+              <pre>{{ product.description }}</pre>
               <h5>商品購買須知</h5>
               <p>產品因拍攝關係顏色可能略有差異，實際以廠商出貨為主。 商品情境照為示意用，僅商品主體不包含其他配件，請以規格內容物為主。盡可能確保所列商品備貨充足，但偶爾仍會有產品售罄的情況。如您所訂購的商品庫存不足，我們將盡快以電子郵件通知您。任何訂單變動均會在訂單總額與出貨訊息內更新。</p>
               <h5>退換貨須知</h5>
@@ -58,7 +58,9 @@
 </template>
 
 <script>
+
 import GoTop from '../GoTop';
+
 export default {
   data(){
     return{
@@ -69,13 +71,9 @@ export default {
       love: JSON.parse(localStorage.getItem('loveList')) || [],
     }
   },
-  components:{
-    GoTop,
-  },
   watch: {
     $route(to, from) {
       this.productId = this.$route.params.productID;
-      console.log(this.productId);
       this.getSingleProduct();
     }
   },
@@ -84,10 +82,8 @@ export default {
       const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${this.productId}`;
       this.$store.dispatch('updateLoading',true);
       this.$http.get(api).then(response => {
- 
         if (response.data.success) {
           this.product = response.data.product;
-          console.log(response.data.product);
           this.$set(this.product, "num", 1);
           this.$store.dispatch('updateLoading',false);
         }
@@ -114,7 +110,6 @@ export default {
       if(vm.love.indexOf(id) < 0) {
         vm.love.push(id)
       } else {
-        console.log(vm.love)
         vm.love.splice(index, 1);
       }
       localStorage.setItem('loveList', JSON.stringify(vm.love));
@@ -148,7 +143,9 @@ export default {
     this.productId = this.$route.params.productID;
     this.getSingleProduct();
     this.getCart();
-  }
-  
-}
+  },
+  components:{
+    GoTop,
+  },
+};
 </script>

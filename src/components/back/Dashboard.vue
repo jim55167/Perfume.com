@@ -14,13 +14,13 @@
 <script>
 import Navbar from "./Navbar";
 
-export default {
-  components: {
-    Navbar,
-  },
+export default {  
   created(){
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
     this.$http.defaults.headers.common.Authorization = `${token}`;
-  }
+  },
+  components: {
+    Navbar,
+  },
 };
 </script>

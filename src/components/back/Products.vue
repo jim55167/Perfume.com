@@ -37,7 +37,7 @@
       </tbody>
     </table>
     <!-- bootstrap pagination -->
-    <div style="display: flex;"> 
+    <div class="d-flex"> 
       <nav aria-label="Page navigation example" style="margin:0 auto">
         <ul class="pagination">
           <li class="page-item" :class="{ 'disabled': current_page === 1 }">
@@ -250,15 +250,13 @@ export default {
   },
   methods: {
     getProducts() {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/products/all`; //'https://vue-course-api.hexschool.io/api/jim55167/products'
+      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/products/all`; //'https://vue-course-api.hexschool.io/api/jim55167/products'
       this.isLoading = true;
       this.$http.get(api).then((response) => {
-        console.log(response.data);
         this.isLoading = false;
         let obj = response.data.products;
-        let arr = Object.keys(obj).map(function(k) { return obj[k] });
+        let arr = Object.keys(obj).map((k) => obj[k] );
         this.products = arr;
-        console.log(arr);
       });
     },
     openModal(isNew, item) {   //新增、編輯視窗
@@ -266,10 +264,9 @@ export default {
           this.tempProduct = {};
           this.isNew = true;
         } else {
-          this.tempProduct = Object.assign({}, item); //Object.assign會將值寫到新的物件
+          this.tempProduct = {...item}; //Object.assign會將值寫到新的物件
           this.isNew = false;          
         }
-        console.log(item);
         $('#productModal').modal('show');
     },
     deleteModal(item) {
@@ -277,26 +274,24 @@ export default {
       this.tempProduct = item;
     },
     updateProduct() {
-      let api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product`;
+      let api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/product`;
       let httpMethod = 'post';
       if (!this.isNew) { //判斷isNew是否為新，假設isNew不是新的
-        api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${this.tempProduct.id}`;
+        api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/product/${ this.tempProduct.id }`;
         httpMethod = 'put';
       }      
       this.$http[ httpMethod ](api, { data: this.tempProduct }).then((response) => {
-        console.log(response.data);
         if (response.data.success) {
           $('#productModal').modal('hide'); //新增成功的話則關閉modal
           this.getProducts(); //並且重新取得遠端內容
         } else {
           $('#productModal').modal('hide'); //若新增失敗會跳出錯誤訊息
           this.getProducts();
-          console.log('新增失敗');
         }
       });
     },
     deleteProduct() {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/product/${this.tempProduct.id}`;
+      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/product/${ this.tempProduct.id }`;
       this.$http.delete(api, { data:this.tempProduct }).then((response) => {
         if(response.data.success) {
           $('#delProductModal').modal('hide');
@@ -305,66 +300,57 @@ export default {
       });
     },
     uploadFile() { //上傳圖片
-      console.log(this);
       const uploadedFile = this.$refs.files.files[0];
       const formData = new FormData();
       formData.append('file-to-upload', uploadedFile);
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
+      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/upload`;
       this.fileUploading = true;
-      this.$http.post(url, formData, {
+      this.$http.post(api, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
-        console.log(response.data);
         this.fileUploading = false;
         if(response.data.success) {
           this.$set(this.tempProduct, 'imageUrl', response.data.imageUrl);
-          console.log(this.tempProduct);
         } else {
           this.$bus.$emit('message:push', response.data.message, 'danger');       
         }
       })
     },
     infoImg() {
-      console.log(this);
       const uploadeImg = this.$refs.files2.files[0];
       const formData = new FormData();
       formData.append('file-to-upload', uploadeImg);
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
+      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/upload`;
       this.fileUploading = true;
-      this.$http.post(url, formData, {
+      this.$http.post(api, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
-        console.log(response.data);
         this.fileUploading = false;
         if(response.data.success) {
           this.$set(this.tempProduct, 'imageUrl2', response.data.imageUrl);
-          console.log(this.tempProduct);
         } else {
           this.$bus.$emit('message:push', response.data.message, 'danger');       
         }
       })
     },
     infoSizeImg() {
-      console.log(this);
       const infoSizeImgs = this.$refs.files3.files[0];
       const formData = new FormData();
       formData.append('file-to-upload', infoSizeImgs);
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/upload`;
+      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/upload`;
       this.fileUploading = true;
-      this.$http.post(url, formData, {
+      this.$http.post(api, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       }).then((response) => {
-        console.log(response.data);
         this.fileUploading = false;
         if(response.data.success) {
           this.$set(this.tempProduct, 'imageUrl3', response.data.imageUrl);
-          console.log(this.tempProduct);
         } else {
           this.$bus.$emit('message:push', response.data.message, 'danger');       
         }

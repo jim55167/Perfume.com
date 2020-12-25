@@ -1,17 +1,16 @@
 <template>
-  <div class="row justify-content-center">
+  <div class="justify-content-center">
     <Loading :active.sync="isLoading"></Loading>
-
     <div class="container mt-4" v-if="cartHasItem">
       <div class="cart-wrap">
         <div class="shopping-step mb-4">
-          <div class="step" :class="{'active-step' : activedPage == 'FrontCartItems'}">
+          <div class="step" :class="{ 'active-step' : activedPage == 'FrontCartItems' }">
             <h5>1.確認訂單</h5>
           </div>
-          <div class="step" :class="{'active-step' : activedPage == 'FrontOrder'}">
+          <div class="step" :class="{ 'active-step' : activedPage == 'FrontOrder' }">
             <h5>2.填寫訂購資料</h5>
           </div>
-          <div class="step" :class="{'active-step' : activedPage == 'FrontCheckout'}">
+          <div class="step" :class="{ 'active-step' : activedPage == 'FrontCheckout' }">
             <h5>3.金流付款</h5>
           </div>
         </div>

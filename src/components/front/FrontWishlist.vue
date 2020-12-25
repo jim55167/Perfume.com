@@ -9,8 +9,8 @@
               <img :src="item.imageUrl">
               <h4>{{ item.title }}</h4>
               <p>{{ item.category }}</p>
-              <p style="display:flex">NT{{ item.price | currency}}
-                <span style="text-decoration:line-through;">NT{{ item.origin_price | currency}}</span>
+              <p class="d-flex">NT{{ item.price | currency }}
+                <del>NT{{ item.origin_price | currency }}</del>
               </p>
             </a>
             <div class="products-add">
@@ -24,13 +24,13 @@
           </div>
         </div>
       </div>
-    </div>
+    
     <div class="emptyCart-wrap" v-if="!loveItem">
       <h4>收藏欄位空空的！</h4>
       <router-link class="btn btn-primary shopping-link" to="/home">Shopping Now</router-link>
     </div>
     <!-- pagination -->
-    <div style="display: flex;"> 
+    <div class="d-flex"> 
       <nav aria-label="Page navigation example" style="margin:0 auto 15px">
         <ul class="pagination">
           <li class="page-item" :class="{ 'disabled': current_page === 1 }">
@@ -40,10 +40,10 @@
               </a>
           </li>
           <li class="page-item" v-for="page in totalPage" :key="page"
-            :class="{'active': current_page === page}"> 
+            :class="{ 'active': current_page === page }"> 
             <a class="page-link" href="#" @click="getPage(page)">{{ page }}</a>
           </li>
-          <li class="page-item" :class="{'disabled': current_page === totalPage}">
+          <li class="page-item" :class="{ 'disabled': current_page === totalPage }">
             <a class="page-link" href="#" aria-label="Next"
             @click="getPage(current_page + 1)">
             <span aria-hidden="true">&raquo;</span>
@@ -52,6 +52,7 @@
         </ul>
       </nav> 
     </div>
+  </div>
     <GoTop></GoTop>
     <div class="screen" v-if="lightBox">
       <div class="view-box">
@@ -63,8 +64,9 @@
 </template>
 
 <script>
-import $ from 'jquery';
+
 import GoTop from '../GoTop';
+
 export default {
   data(){
     return{
@@ -72,9 +74,6 @@ export default {
       countPage: 12, 
       love: JSON.parse(localStorage.getItem('loveList')) || [],
     }
-  },
-   components: {
-    GoTop,
   },
   methods: {
     getAllProducts() {
@@ -84,7 +83,6 @@ export default {
       const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
       this.$store.dispatch('updateLoading',true);
       this.$http.get(api).then((response) => {
-        console.log(response);
         if(response.data.success){
           this.$store.dispatch('updateLoading',false);
           this.$router.push(`../front_single_product/${response.data.product.id}`).catch(err => {});
@@ -115,7 +113,6 @@ export default {
       if(vm.love.indexOf(id) < 0) {
         vm.love.push(id)
       } else {
-        console.log(vm.love)
         vm.love.splice(index, 1);
       }
       localStorage.setItem('loveList', JSON.stringify(vm.love));
@@ -173,6 +170,9 @@ export default {
   created() {
     this.getAllProducts();
     this.getCart();
+  },
+  components: {
+    GoTop,
   },
 }
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="home-container">
+    <div class="home-container d-flex">
       <div class="text-block">
         <h4>Perfume your day</h4>
         <p>
@@ -58,9 +58,11 @@
             <div class="home-box-text3">
                 <h4>3. <br>Critical percentage of planned maintenance</h4>
                 <p>Calculating the critical percentage of planned maintenance will help you prioritize the most important operations that should be performed immediately.</p>
-                <button class="btn default">
-                  <a href="https://uk.lush.com/?gclid=CjwKCAiAiML-BRAAEiwAuWVgglmqlvvT6eUCpujr6rRLWwg8norkCerZWOCXMTUwXAyavs_Fr7JiIxoCpRsQAvD_BwE" target="_blank" style="text-decoration: none;color:#000000;padding:20px 65px;">Plan a free online training</a>
-                </button>
+            </div>
+            <div class="btn-box">
+              <button class="btn default">
+                <a href="https://uk.lush.com/?gclid=CjwKCAiAiML-BRAAEiwAuWVgglmqlvvT6eUCpujr6rRLWwg8norkCerZWOCXMTUwXAyavs_Fr7JiIxoCpRsQAvD_BwE" target="_blank">Plan a free online training</a>
+              </button>
             </div>           
           </div>         
         </div>
@@ -76,11 +78,11 @@
               </div>
             </div>
           </a>
-            <h4>{{item.title}}</h4>
-            <p>{{item.category}}</p>
-            <tr style="display:flex;">
-              <td>NT{{item.price}}</td>
-              <td style="text-decoration:line-through;color:#8D8D8D;">NT{{item.origin_price}}</td>
+            <h4>{{ item.title }}</h4>
+            <p>{{ item.category }}</p>
+            <tr class="d-flex">
+              <td>NT{{ item.price }}</td>
+              <del>NT{{ item.origin_price }}</del>
             </tr>
         </div>
       </div>
@@ -98,8 +100,7 @@
         </div>
       </div>
     </div>
-
-    <div class="footer-box">
+    <div class="footer-box-product">
       <div class="footer-box-item">
         <div class="footer-text">
           <h4>
@@ -133,31 +134,26 @@ export default {
       },
     }
   },
-  components: {
-    GoTop,
-  },
   methods: {
     getSingleProduct() {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${this.productId}`;
+      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/product/${ this.productId }`;
       this.$store.dispatch('updateLoading',true);
       this.randomProduct(this.localCateProducts, 3);
-      this.$http.get(api).then(response => {
- 
+      this.$http.get(api).then(response => { 
         if (response.data.success) {
           this.product = response.data.product;
-          console.log(response.data.product);
           this.$set(this.product, "num", 1);
           this.$store.dispatch('updateLoading',false);
         }
       })
     },
     getRandomProduct(id) {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
+      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/product/${ id }`;
       this.$store.dispatch('updateLoading',true);
       this.$http.get(api).then(response => {
         if (response.data.success) {
           this.$store.dispatch('updateLoading',false);
-          this.$router.push( `../front_single_product/${response.data.product.id}`).catch(err => {err});  
+          this.$router.push( `../front_single_product/${ response.data.product.id }`).catch(err => {err});  
         }
       });
     },
@@ -165,8 +161,7 @@ export default {
       let newArr = [];
       if (arr.length <= num) {
         num = arr.length; 
-      }
-    
+      }   
       rand(num);
 
       function rand(selectQty) {
@@ -187,7 +182,6 @@ export default {
         rand(selectQty);
       }
       this.recommandProducts = newArr;
-      console.log(this.recommandProducts);
     }
   },
   created() {
@@ -196,7 +190,9 @@ export default {
       localStorage.getItem("cateFilteredList")
     );
     this.getSingleProduct();
-  }
-
+  },
+  components: {
+    GoTop,
+  },
 }
 </script>

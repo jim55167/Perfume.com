@@ -3,19 +3,19 @@
     <Loading :active.sync="isLoading"></Loading>
     <div class="products-navbar">
       <div class="products-navbar-item">
-        <a href="#" :class="{ 'active': visibility === 'All'}"
+        <a href="#" :class="{ 'active': visibility === 'All' }"
          @click="visibility='All'">All</a>
-        <a href="#" :class="{ 'active': visibility === 'Jo Malone'}"
+        <a href="#" :class="{ 'active': visibility === 'Jo Malone' }"
          @click="visibility='Jo Malone'">Jo Malone</a>
-        <a href="#" :class="{ 'active': visibility === 'Dior'}"
+        <a href="#" :class="{ 'active': visibility === 'Dior' }"
          @click="visibility='Dior'">Dior</a>
-        <a href="#" :class="{ 'active': visibility === 'CHANEL'}"
+        <a href="#" :class="{ 'active': visibility === 'CHANEL' }"
          @click="visibility='CHANEL'">CHANEL</a>
-        <a href="#" :class="{ 'active': visibility === 'YSL'}"
+        <a href="#" :class="{ 'active': visibility === 'YSL' }"
          @click="visibility='YSL'">YSL</a>
-        <a href="#" :class="{ 'active': visibility === 'Penhaligon'}"
+        <a href="#" :class="{ 'active': visibility === 'Penhaligon' }"
          @click="visibility='Penhaligon'">Penhaligon</a>
-        <a href="#" :class="{ 'active': visibility === 'Chloe'}"
+        <a href="#" :class="{ 'active': visibility === 'Chloe' }"
          @click="visibility='Chloe'">Chloe</a>
 
       </div>
@@ -28,8 +28,8 @@
               <img :src="item.imageUrl">
               <h4>{{ item.title }}</h4>
               <p>{{ item.category }}</p>
-              <p style="display:flex">NT{{ item.price | currency}}
-                <span style="text-decoration:line-through;">NT{{ item.origin_price | currency}}</span>
+              <p class="d-flex">NT{{ item.price | currency }}
+                <del>NT{{ item.origin_price | currency }}</del>
               </p>
             </a>
             <div class="products-add">
@@ -51,7 +51,7 @@
       </div>
     </div>
     <!-- pagination -->
-    <div style="display: flex;"> 
+    <div class="d-flex"> 
       <nav aria-label="Page navigation example" style="margin:0 auto 15px">
         <ul class="pagination">
           <li class="page-item" :class="{ 'disabled': current_page === 1 }">
@@ -61,10 +61,10 @@
               </a>
           </li>
           <li class="page-item" v-for="page in totalPage" :key="page"
-            :class="{'active': current_page === page}"> 
+            :class="{ 'active': current_page === page }"> 
             <a class="page-link" href="#" @click="getPage(page)">{{ page }}</a>
           </li>
-          <li class="page-item" :class="{'disabled': current_page === totalPage}">
+          <li class="page-item" :class="{ 'disabled': current_page === totalPage }">
             <a class="page-link" href="#" aria-label="Next"
             @click="getPage(current_page + 1)">
             <span aria-hidden="true">&raquo;</span>
@@ -73,7 +73,7 @@
         </ul>
       </nav> 
     </div>
-    <div class="footer-box">
+    <div class="footer-box-product">
       <div class="footer-box-item">
         <div class="footer-text">
           <h4>
@@ -92,8 +92,9 @@
 </template>
 
 <script>
-import $ from 'jquery';
+
 import GoTop from '../GoTop';
+
 export default {
   data(){
     return{
@@ -102,9 +103,6 @@ export default {
       visibility: 'All',
       love: JSON.parse(localStorage.getItem('loveList')) || [],
     }
-  },
-   components: {
-    GoTop,
   },
   methods: {
     getAllProducts() {
@@ -115,7 +113,6 @@ export default {
       this.$store.dispatch('updateLoading',true);
       localStorage.setItem('cateFilteredList', JSON.stringify(this.products));
       this.$http.get(api).then((response) => {
-        console.log(response);
         if(response.data.success){
           this.$store.dispatch('updateLoading',false);
           this.$router.push(`../front_single_product/${response.data.product.id}`).catch(err => {});
@@ -146,9 +143,7 @@ export default {
       if(vm.love.indexOf(id) < 0) {
         vm.love.push(id)        
       } else {
-        console.log(vm.love)
         vm.love.splice(index, 1);
-        
       }
       localStorage.setItem('loveList', JSON.stringify(vm.love));
     }
@@ -166,13 +161,11 @@ export default {
     categoryData(){
       if (this.visibility == 'All') {
         return this.products;
-        console.log(this.products);
       }else if(this.visibility == 'Jo Malone'){
         let categoryList = [];
         this.products.forEach(function(item) {
           if (item.category == 'Jo Malone'){
             categoryList.push(item)
-            console.log(categoryList);
           }
         })
         return categoryList;
@@ -243,6 +236,9 @@ export default {
   created() {
     this.getAllProducts();
     this.getCart();
+  },
+  components: {
+    GoTop,
   },
 }
 </script>

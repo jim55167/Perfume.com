@@ -32,7 +32,6 @@
         </tr>
       </tbody>
     </table>
-
   </div>
 </template>
 
@@ -43,20 +42,16 @@ export default {
     return {
       orders: {},
       isNew: false,
-
       isLoading: false,
     };
   },
-
   methods: {
     getOrders(currentPage = 1) {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/orders?page=${currentPage}`;
+      const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/orders?page=${ currentPage }`;
       this.isLoading = true;
       this.$http.get(url).then((response) => {
         this.orders = response.data.orders;
-
         this.isLoading = false;
-        console.log(response);
       });
     },
   },
@@ -75,7 +70,6 @@ export default {
   },
   created() {
     this.getOrders();
-    console.log(process.env.APIPATH);
   },
 };
 </script>

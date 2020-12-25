@@ -56,13 +56,13 @@
             label{
                 margin-bottom: 5px;
                 font-size: 16px;
+                font-family: PingFang TC;
             }
             input[type=email], input[type=password], input[type=text]{
                 height: 38px;
                 width: 100%;
                 border: 1px solid rgb(200,200,200);
                 border-radius: 3px;
-                padding: 3px 5px;
                 margin-bottom: 10px;
                 &:focus{
                     outline: none;
@@ -107,48 +107,5 @@
                 }
             }
         }
-        // .login-content{
-
-        //     h4{
-        //         text-align: left;
-        //         font-size: 32px;
-        //         font-weight: bold;
-        //         font-family: SF Pro Text;
-        //         letter-spacing: 0px;
-        //         color: #000000;
-        //         opacity: 1;
-        //     }
-
-        //     h5{
-        //         text-align: left;
-        //         font-size: 16px;
-        //         font-family: PingFang TC;
-        //         letter-spacing: 0px;
-        //         color: #212529;
-        //         opacity: 1;
-        //     }
-
-        //     .btn-style1{
-        //         padding: 8px 16px !important;
-        //         background: #FFFFFF 0% 0% no-repeat padding-box;
-        //         border: 1px solid #916000;
-        //         opacity: 1;
-        //         color: #916000;
-        //         font-size: 16px;
-        //         font-family: PingFang TC;
-        //     }
-
-        //     .btn-style2{
-        //         padding: 8px 16px !important;
-        //         background: #916000 0% 0% no-repeat padding-box;
-        //         border: 1px solid #916000;
-        //         border-radius: 4px;
-        //         opacity: 1;
-        //         color: #ffffff;
-        //         font-size: 16px;
-        //         font-family: PingFang TC;
-        //         margin-left: 8px;
-        //     }
-        // }
     }
 }

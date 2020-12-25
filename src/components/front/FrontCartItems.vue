@@ -25,11 +25,11 @@
             <select v-model="item.qty" @change="updateCart(item.id, item.product.id, item.qty)">
               <option :value="num" v-for="num in 10" :key="num">{{ num }}</option>
             </select>
-            {{item.product.unit}}
+            {{ item.product.unit }}
           </td>
            <td class="align-middle">
-            {{item.total | currency}}
-            <div class="text-primary" v-if="item.coupon">{{item.final_total | currency}}</div>
+            {{ item.total | currency }}
+            <div class="text-primary" v-if="item.coupon">{{ item.final_total | currency }}</div>
           </td>
           <td class="align-middle">
             <button type="button" class="btn btn-outline-danger btn-sm"
@@ -42,11 +42,11 @@
       <tfoot>
         <tr>
           <td colspan="3" class="text-right">總計</td>
-          <td class="text-right">{{ cart.total | currency}}</td>
+          <td class="text-right">{{ cart.total | currency }}</td>
         </tr>
         <tr v-if="cart.final_total !== cart.total">
           <td colspan="3" class="text-right" style="color:red;">折扣價</td>
-          <td class="text-right" style="color:red;">{{ cart.final_total | currency}}</td>
+          <td class="text-right" style="color:red;">{{ cart.final_total | currency }}</td>
         </tr>
       </tfoot>
     </table>
@@ -54,6 +54,7 @@
       <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼"/>
       <div class="input-group-append">
         <button class="btn btn-primary" type="button" @click="addCouponCode">套用優惠碼</button>
+        <div class="coupon-message">{{ this.focus }}</div>
       </div>
     </div>
 
@@ -65,13 +66,13 @@
 </template>
 
 <script>
-import $ from "jquery";
 
 export default {
-  name:'cartqty',
+  name:'FrontCartItems',
   data() {
     return {
       coupon_code: "",
+      focus: '',
       form: {
         user: {
           name: "",
@@ -85,11 +86,11 @@ export default {
   },
   methods: {
     updateCart(id, productId, qty) {
-      this.$store.dispatch('updateCart', {id, productId, qty})
+      this.$store.dispatch('updateCart', { id, productId, qty })
     },
 
     addToCart(id, qty = 1) {
-      this.$store.dispatch('addtoCart', {id, qty});
+      this.$store.dispatch('addtoCart', { id, qty });
     },
     getCart() {
       this.$store.dispatch('getCart');
@@ -98,13 +99,13 @@ export default {
       this.$store.dispatch('removeCart', id);
     },
     addCouponCode() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/coupon`;
+      const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/coupon`;
       const coupon = {
         code: this.coupon_code
       };
       this.$store.dispatch('updateLoading',true);
       this.$http.post(url, { data: coupon }).then(response => {
-        console.log(response);
+        this.focus = response.data.message;
         this.getCart();
         this.$store.dispatch('updateLoading',false);
       });

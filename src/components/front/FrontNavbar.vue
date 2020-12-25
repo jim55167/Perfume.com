@@ -10,10 +10,10 @@
         <div class="navbar-mobile-box">
           <router-link href="#" to="/shopping_cart/front_cart_items">
             <i class="fas fa-shopping-cart"></i>
-            <span class="badge">{{cart.carts.length}}</span>               
+            <span class="badge">{{ cart.carts.length }}</span>               
           </router-link>
         </div>
-          <ul class="navbar-nav" :class="{'menu-show': showMenu}">
+          <ul class="navbar-nav" :class="{ 'menu-show': showMenu }">
             <li class="nav-item active">
               <router-link class="home-link" href="#" to="/front_products">
                 <i class="fas fa-store-alt"></i>Product
@@ -31,7 +31,7 @@
             <li class="nav-item mobile-shop">
               <router-link href="#" class="home-link" to="/shopping_cart/front_cart_items">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="badge">Cart<a>({{cart.carts.length}})</a></span>               
+                <span class="badge">Cart<a>({{ cart.carts.length }})</a></span>               
               </router-link>
             </li>
             <li class="nav-item nav-setting">
@@ -48,8 +48,6 @@
 
 <script>
 
-import $ from "jquery";
-
 export default {
   data() {
     return {
@@ -60,15 +58,14 @@ export default {
 
   methods: {
     checkLoginStatus() {
-      const api = `${process.env.APIPATH}/api/user/check`;
+      const api = `${ process.env.APIPATH }/api/user/check`;
       this.$http.post(api).then((response) => {
         this.is_login = response.data.success;
-        // console.log(this.is_login);
       });
     },
 
     signOut() {
-      const api = `${process.env.APIPATH}/logout`;
+      const api = `${ process.env.APIPATH }/logout`;
       this.$http.post(api).then((response) => {
         if (response.data.success) {
           this.is_login = false;

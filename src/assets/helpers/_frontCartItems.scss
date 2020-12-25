@@ -55,4 +55,12 @@
       text-align: center;
     }
   }
+
+  .input-group-append{
+    flex-direction: column;
+    .coupon-message{
+      padding-top: 10px;
+      color: red;
+    }
+  }
   

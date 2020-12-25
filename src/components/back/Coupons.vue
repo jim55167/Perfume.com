@@ -144,9 +144,6 @@ export default {
       pagination: {},
     };
   },
-  components: {
-    Pagination,
-  },
   watch: {
     due_date() {
       const timestamp = Math.floor(new Date(this.due_date) / 1000);
@@ -167,29 +164,26 @@ export default {
       }
     },
     getCoupons(page = 1) {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupons?page=${page}`;
+      const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/coupons?page=${ page }`;
       this.isLoading = true;
       this.$http.get(url).then((response) => {
         this.coupons = response.data.coupons;
         this.pagination = response.data.pagination;
-        console.log(response);
         this.isLoading = false;
       });
     },
     updateCoupon() {
       if (this.isNew) {
-        const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon`;
+        const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/coupon`;
         this.$http.post(url, { data: this.tempCoupon }).then((response) => {
-          console.log(response, this.tempCoupon);
           $('#couponModal').modal('hide');
           this.getCoupons();
           this.isLoading = false;
         });
       } else {
-        const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon/${this.tempCoupon.id}`;
+        const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/coupon/${ this.tempCoupon.id }`;
         this.due_date = new Date(this.tempCoupon.due_date * 1000);
         this.$http.put(url, { data: this.tempCoupon }).then((response) => {
-          console.log(response);
           $('#couponModal').modal('hide');
           this.getCoupons();
           this.isLoading = false;
@@ -201,7 +195,7 @@ export default {
       this.tempCoupon = item;
     },
     deleteCoupon() {
-      const url = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/admin/coupon/${this.tempCoupon.id}`;
+      const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/coupon/${ this.tempCoupon.id }`;
       this.$http.delete(url, { data:this.tempCoupon }).then((response) => {
         if(response.data.success) {
           $('#delCouponModal').modal('hide');
@@ -212,6 +206,9 @@ export default {
   },
   created() {
     this.getCoupons();
+  },
+  components: {
+    Pagination,
   },
 };
 </script>

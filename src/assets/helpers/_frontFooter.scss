@@ -1,81 +1,7 @@
 .footer-box {
-  position: relative;
-
-  .footer-box-item{
-    width: 100%;
-    height:600px;
-    position: relative;
-    background-image: url('~@/assets/home/foot2.jpg');
-    background-position: center;
-    background-size:cover;
-    background-repeat:no-repeat;
-
-    .footer-text {
-      position: absolute;
-      top: 50%;
-      left: 25%;
-      @media screen and (max-width: 414px){
-        left: 5%;
-      }
-      @media screen and (max-width: 375px){
-        left: 3%;
-      }
-  
-      h4 {
-        width: 350px;
-        text-align: left;
-        font-size: 32px;
-        font-family: PingFang TC;
-        font-weight: 600;
-        letter-spacing: 0px;
-        color: #8D8D8D;
-        opacity: 1;
-      }
-  
-      .footer-mail {
-        background-color: #916000;
-        border: 2px solid #916000;
-        border-radius: 0px 4px 4px 0px;
-        opacity: 1;
-        width: 345px;
-  
-        input {
-          width: 216px;
-          text-align: center;
-          font-size: 16;
-          font-family: pxSF Pro Text;
-          letter-spacing: 0px;
-          color: #8D8D8D;
-          opacity: 1;
-          border: 0;
-          padding: 12px 26px;
-          border-radius: 4px;
-        }
-  
-        a {
-          padding: 13px 28px;
-          font-size: 16px;
-          font-family: pxSF Pro Text;
-          color: #FFFFFF;
-          text-decoration: none;
-          
-          &:hover{
-            background: #6C4700 0% 0% no-repeat;
-            color: #FFFFFF;
-            cursor: pointer;
-          }
-  
-        }
-  
-        &:hover{
-          background: #6C4700 0% 0% no-repeat padding-box;
-        }
-      }
-    }
-
-  }
-
-  
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 
   .footer-navbar {
     width: 100%;
@@ -86,10 +12,10 @@
       width: 1110px;
       margin: 0 auto;
       display: flex;
-      @media screen and (max-width: 414px){
+      @media screen and (max-width: 414px) {
         width: 414px;
       }
-      @media screen and (max-width: 375px){
+      @media screen and (max-width: 375px) {
         width: 375px;
       }
 
@@ -98,29 +24,29 @@
         padding: 9px 0;
         display: flex;
 
-        @media screen and (max-width: 414px){
+        @media screen and (max-width: 414px) {
           margin: 0 auto;
           width: 385px;
           justify-content: space-between;
         }
-        @media screen and (max-width: 375px){
+        @media screen and (max-width: 375px) {
           width: 345px;
         }
-        p{
-            text-align: left;
-            font-size: 14px;
-            font-family: SF Pro Text;
-            letter-spacing: 0px;
-            color: #FFFFFF;
-            opacity: 1;
-            margin-bottom: initial !important;
-            padding-left: 20px;
-            line-height: 3;
-            display: inline-block;
+        p {
+          text-align: left;
+          font-size: 14px;
+          font-family: SF Pro Text;
+          letter-spacing: 0px;
+          color: #ffffff;
+          opacity: 1;
+          margin-bottom: initial !important;
+          padding-left: 20px;
+          line-height: 3;
+          display: inline-block;
 
-            @media screen and (max-width: 414px){
-              float: right;
-            }
+          @media screen and (max-width: 414px) {
+            float: right;
+          }
         }
       }
     }
@@ -130,7 +56,7 @@
       justify-content: flex-end;
       display: flex;
       margin: initial !important;
-      @media screen and (max-width: 414px){
+      @media screen and (max-width: 414px) {
         display: none;
       }
 
@@ -144,7 +70,7 @@
           line-height: 1.5;
           align-items: center;
           font-size: 18px;
-          color:#FFFFFF;
+          color: #ffffff;
           opacity: 1;
           text-decoration: none;
         }

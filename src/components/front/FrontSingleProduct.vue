@@ -15,9 +15,7 @@
           <div class="single-nav">
             <h3>{{ product.title }}</h3>
             <pre>{{ product.content }}</pre>
-            <div class="single-money">
-              <p>NT{{ product.price | currency }}</p>
-            </div>
+            <p>NT{{ product.price | currency }}</p>
             <div class="single-num">
               <select name="" class="form-control" v-model="product.num">
                 <option :value="num" v-for="num in 10" :key="num">

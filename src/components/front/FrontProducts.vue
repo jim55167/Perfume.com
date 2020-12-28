@@ -80,10 +80,13 @@
             記得<br />
             訂閱以獲取更多資訊！
           </h4>
-          <div class="footer-mail">
-            <input type="email" placeholder="Your email address" />
-            <a role="button">Subscribe</a>
-          </div>
+           <form action="#">
+            <div class="d-flex form-color">
+              <input class="form-control" type="email"
+                name="subscribeEmail" placeholder="Your email address"/>
+              <button class="form-control-btn" type="submit">Subscribe</button>
+            </div>
+           </form>
         </div>
       </div>
     </div>

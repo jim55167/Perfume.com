@@ -24,35 +24,34 @@
           </div>
         </div>
       </div>
-    
-    <div class="emptyCart-wrap" v-if="!loveItem">
-      <h4>收藏欄位空空的！</h4>
-      <router-link class="btn btn-primary shopping-link" to="/home">Shopping Now</router-link>
-    </div>
-    <!-- pagination -->
-    <div class="d-flex"> 
-      <nav aria-label="Page navigation example" style="margin:0 auto 15px">
-        <ul class="pagination">
-          <li class="page-item" :class="{ 'disabled': current_page === 1 }">
-            <a class="page-link" href="#" aria-label="Previous"
-              @click="getPage(current_page - 1)">
-              <span aria-hidden="true">&laquo;</span>
+      <div class="emptyCart-wrap" v-if="!loveItem">
+        <h4>收藏欄位空空的！</h4>
+        <router-link class="btn btn-primary shopping-link" to="/home">Shopping Now</router-link>
+      </div>
+      <!-- pagination -->
+      <div class="d-flex"> 
+        <nav aria-label="Page navigation example" style="margin:0 auto 15px">
+          <ul class="pagination">
+            <li class="page-item" :class="{ 'disabled': current_page === 1 }">
+              <a class="page-link" href="#" aria-label="Previous"
+                @click="getPage(current_page - 1)">
+                <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item" v-for="page in totalPage" :key="page"
+              :class="{ 'active': current_page === page }"> 
+              <a class="page-link" href="#" @click="getPage(page)">{{ page }}</a>
+            </li>
+            <li class="page-item" :class="{ 'disabled': current_page === totalPage }">
+              <a class="page-link" href="#" aria-label="Next"
+              @click="getPage(current_page + 1)">
+              <span aria-hidden="true">&raquo;</span>
               </a>
-          </li>
-          <li class="page-item" v-for="page in totalPage" :key="page"
-            :class="{ 'active': current_page === page }"> 
-            <a class="page-link" href="#" @click="getPage(page)">{{ page }}</a>
-          </li>
-          <li class="page-item" :class="{ 'disabled': current_page === totalPage }">
-            <a class="page-link" href="#" aria-label="Next"
-            @click="getPage(current_page + 1)">
-            <span aria-hidden="true">&raquo;</span>
-            </a>
-          </li>
-        </ul>
-      </nav> 
+            </li>
+          </ul>
+        </nav> 
+      </div>
     </div>
-  </div>
     <GoTop></GoTop>
     <div class="screen" v-if="lightBox">
       <div class="view-box">

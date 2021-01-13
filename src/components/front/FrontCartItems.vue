@@ -59,8 +59,8 @@
     </div>
 
     <div class="d-flex justify-content-between mt-4 step-control">
-      <router-link class="btn btn-primary" to="/home">BACK TO SHOP</router-link>
-      <router-link class="btn btn-danger" to="front_order" v-if="nextPage">FILL INFO</router-link>
+      <router-link class="btn btn-primary" to="/home">返回商場</router-link>
+      <router-link class="btn btn-danger" to="front_order" v-if="nextPage">下一步</router-link>
     </div>
   </div>
 </template>

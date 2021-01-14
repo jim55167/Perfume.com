@@ -3,7 +3,7 @@
     <Loading :active.sync="isLoading"></Loading>
     <div class="products-box">
       <div class="products-item">
-        <div class="products-list" v-for="(item, key) in loveList.slice(pageStart, pageStart + countPage)" :key="key">         
+        <div class="products-list" v-for="(item, key) in loveList.slice(pageStart, pageStart + countPage)" :key="key">
           <div class="products" v-if="loveItem">
             <a href="#" @click.prevent="getProduct(item.id)" style="text-decoration: none;">
               <img :src="item.imageUrl">
@@ -19,8 +19,8 @@
               </a>
               <a href="#" title="加入購物車" @click.prevent="addToCart(item.id)">
                 <i class="fas fa-shopping-cart"></i>
-              </a> 
-            </div>          
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -29,7 +29,7 @@
         <router-link class="btn btn-primary shopping-link" to="/home">Shopping Now</router-link>
       </div>
       <!-- pagination -->
-      <div class="d-flex"> 
+      <div class="d-flex">
         <nav aria-label="Page navigation example" style="margin:0 auto 15px">
           <ul class="pagination">
             <li class="page-item" :class="{ 'disabled': current_page === 1 }">
@@ -39,7 +39,7 @@
                 </a>
             </li>
             <li class="page-item" v-for="page in totalPage" :key="page"
-              :class="{ 'active': current_page === page }"> 
+              :class="{ 'active': current_page === page }">
               <a class="page-link" href="#" @click="getPage(page)">{{ page }}</a>
             </li>
             <li class="page-item" :class="{ 'disabled': current_page === totalPage }">
@@ -49,129 +49,127 @@
               </a>
             </li>
           </ul>
-        </nav> 
+        </nav>
       </div>
     </div>
     <GoTop></GoTop>
     <div class="screen" v-if="lightBox">
       <div class="view-box">
         <div class="box">已加入購物車</div>
-        <div class="cancel" @click="cancelLocation">X</div> 
+        <div class="cancel" @click="cancelLocation">X</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
-import GoTop from '../GoTop';
-
+import GoTop from '@/components/GoTop'
 export default {
-  data(){
-    return{
+  data () {
+    return {
       current_page: 1,
-      countPage: 12, 
-      love: JSON.parse(localStorage.getItem('loveList')) || [],
+      countPage: 12,
+      love: JSON.parse(localStorage.getItem('loveList')) || []
     }
   },
   methods: {
-    getAllProducts() {
-      this.$store.dispatch('getAllProducts');
+    getAllProducts () {
+      this.$store.dispatch('getAllProducts')
     },
-    getProduct(id) {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${id}`;
-      this.$store.dispatch('updateLoading',true);
+    getProduct (id) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
+      this.$store.dispatch('updateLoading', true)
       this.$http.get(api).then((response) => {
-        if(response.data.success){
-          this.$store.dispatch('updateLoading',false);
-          this.$router.push(`../front_single_product/${response.data.product.id}`).catch(err => {});
+        if (response.data.success) {
+          this.$store.dispatch('updateLoading', false)
+          this.$router.push(`../front_single_product/${response.data.product.id}`).catch(err => err)
         }
-      });
+      })
     },
-    getPage(page) {
+    getPage (page) {
       if (page <= 0 || page > this.totalPage) {
-        return;
+        return
       };
-      this.current_page = page;
+      this.current_page = page
     },
-    getCart() {
-      this.$store.dispatch('getCart');
+    getCart () {
+      this.$store.dispatch('getCart')
     },
-    addToCart(id, qty = 1) {
-      this.$store.dispatch('addToCart', { id, qty});
-      this.$store.dispatch('isLightBox',true);
+    addToCart (id, qty = 1) {
+      this.$store.dispatch('addToCart', { id, qty })
+      this.$store.dispatch('isLightBox', true)
     },
-    cancelLocation(){
-      this.$store.dispatch('isLightBox',false);
+    cancelLocation () {
+      this.$store.dispatch('isLightBox', false)
     },
-    addLove(id) {
-      const vm = this;
-      let index = vm.love.findIndex((element) => {
+    addLove (id) {
+      const vm = this
+      const index = vm.love.findIndex((element) => {
         return id === element
-      });
-      if(vm.love.indexOf(id) < 0) {
+      })
+      if (vm.love.indexOf(id) < 0) {
         vm.love.push(id)
       } else {
-        vm.love.splice(index, 1);
+        vm.love.splice(index, 1)
       }
-      localStorage.setItem('loveList', JSON.stringify(vm.love));
+      localStorage.setItem('loveList', JSON.stringify(vm.love))
     }
-  }, 
+  },
   computed: {
-    showLove() {
-      return function(id) {
-        if(this.love.indexOf(id) > -1) {
-          return 'far fa-heart';
+    showLove () {
+      return function (id) {
+        if (this.love.indexOf(id) > -1) {
+          return 'far fa-heart'
         } else {
-          return 'fas fa-heart';
+          return 'fas fa-heart'
         }
       }
     },
-    loveList() {
-      const vm = this;
+    loveList () {
+      const vm = this
       return vm.products.filter((item) => {
         return vm.love.indexOf(item.id) > -1
-      })       
+      })
     },
-    products(){
-      return this.$store.state.products;
+    products () {
+      return this.$store.state.products
     },
-    categories(){
-      return this.$store.state.categories;
+    categories () {
+      return this.$store.state.categories
     },
-    isLoading() {
-      return this.$store.state.isLoading;
+    isLoading () {
+      return this.$store.state.isLoading
     },
-    lightBox(){
-      return this.$store.state.lightBox;
+    lightBox () {
+      return this.$store.state.lightBox
     },
-    cart(){
-      return this.$store.state.cart;
+    cart () {
+      return this.$store.state.cart
     },
-    pageStart() {
-      return (this.current_page - 1) * this.countPage;
+    pageStart () {
+      return (this.current_page - 1) * this.countPage
     },
-    totalPage() {
-      return Math.ceil( this.loveList.length / this.countPage);
+    totalPage () {
+      return Math.ceil(this.loveList.length / this.countPage)
     },
-    loveItem() {
-      if (this.loveList == undefined) {
-        return;
+    loveItem () {
+      if (this.loveList === undefined) {
+        return false
       } else {
-        if (this.loveList.length == 0) {
-          return false;
+        if (this.loveList.length === 0) {
+          return false
         } else {
-          return true;
+          return true
         }
       }
     }
   },
-  created() {
-    this.getAllProducts();
-    this.getCart();
+  created () {
+    this.getAllProducts()
+    this.getCart()
   },
   components: {
-    GoTop,
-  },
+    GoTop
+  }
 }
 </script>

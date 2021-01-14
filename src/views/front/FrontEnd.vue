@@ -11,16 +11,15 @@
 </template>
 
 <script >
-import FrontNavbar from "./FrontNavbar";
-import FrontFooter from "./FrontFooter";
-
-export default { 
-  data() {
-    return {};
+import FrontNavbar from '@/components/front/FrontNavbar'
+import FrontFooter from '@/components/front/FrontFooter'
+export default {
+  data () {
+    return {}
   },
   components: {
     FrontNavbar,
-    FrontFooter,
-  },
-};
+    FrontFooter
+  }
+}
 </script>

@@ -92,42 +92,47 @@
           </div>
         </form>
       </validation-observer>
+      <GoTop></GoTop>
   </div>
 </template>
 
 <script>
+import GoTop from '@/components/GoTop'
 export default {
-  data() {
+  data () {
     return {
       form: {
         user: {
-          name: "",
-          email: "",
-          tel: "",
-          address: ""
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
         },
-        message: ""
+        message: ''
       }
-    };
+    }
   },
   methods: {
-      createOrder() {
-      const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/order`;
-      const order = this.form;
-      this.$store.dispatch('updateLoading',true);
+    createOrder () {
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order`
+      const order = this.form
+      this.$store.dispatch('updateLoading', true)
       this.$http.post(url, { data: order }).then(response => {
-        console.log("訂單已建立", response);
+        console.log('訂單已建立', response)
         if (response.data.success) {
-          this.$router.push(`../shopping_cart/front_checkout/${ response.data.orderId }`);
+          this.$router.push(`../shopping_cart/front_checkout/${response.data.orderId}`)
         }
-        this.$store.dispatch('updateLoading',false);
-      });
+        this.$store.dispatch('updateLoading', false)
+      })
     }
   },
   computed: {
-    isLoading() {
-      return this.$store.state.isLoading;
-    },
+    isLoading () {
+      return this.$store.state.isLoading
+    }
   },
-};
+  components: {
+    GoTop
+  }
+}
 </script>

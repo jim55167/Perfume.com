@@ -32,44 +32,50 @@
         </tr>
       </tbody>
     </table>
+    <GoTop></GoTop>
   </div>
 </template>
 
 <script>
+import GoTop from '@/components/GoTop'
 
 export default {
-  data() {
+  data () {
     return {
       orders: {},
       isNew: false,
-      isLoading: false,
-    };
+      isLoading: false
+    }
   },
   methods: {
-    getOrders(currentPage = 1) {
-      const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/orders?page=${ currentPage }`;
-      this.isLoading = true;
+    getOrders (currentPage = 1) {
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/orders?page=${currentPage}`
+      this.isLoading = true
       this.$http.get(url).then((response) => {
-        this.orders = response.data.orders;
-        this.isLoading = false;
-      });
-    },
+        this.orders = response.data.orders
+        this.isLoading = false
+      })
+    }
   },
   computed: {
-    sortOrder() {
-      let newOrder = [];
+    sortOrder () {
+      let newOrder = []
       if (this.orders.length) {
-        newOrder = this.orders.sort((a, b) => {
-          const aIsPaid = a.is_paid ? 1 : 0;
-          const bIsPaid = b.is_paid ? 1 : 0;
-          return bIsPaid - aIsPaid;
-        });
+        newOrder = this.orders
+        return newOrder.sort((a, b) => {
+          const aIsPaid = a.is_paid ? 1 : 0
+          const bIsPaid = b.is_paid ? 1 : 0
+          return bIsPaid - aIsPaid
+        })
       }
-      return newOrder;
-    },
+      return newOrder
+    }
   },
-  created() {
-    this.getOrders();
+  created () {
+    this.getOrders()
   },
-};
+  components: {
+    GoTop
+  }
+}
 </script>

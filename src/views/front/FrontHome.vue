@@ -30,10 +30,10 @@
               <h4>JLo Still</h4>
               <p>這款香水以呈現成熟、優雅的韻味為訴求，性感的的花香調，融入了柑橘、玫瑰、茉莉、小蒼蘭、橙花等元素，表現出女性的性感與韻味。</p>
               <a href="https://www.beauty321.com/post/22460#p2" target="_blank">查看更多</a>
-          </div>         
+          </div>
         </div>
-        <div class="home-item">
-          <div class="home-box-text">
+        <div class="home-item d-flex">
+          <div class="home-box-text d-flex">
               <h4>CHANEL N°5</h4>
               <p>N°5，女性魅力的極致精髓。散發柔美澄透的乙醛花束香氣。經典傳奇香氛，蘊藏於極簡設計的獨特瓶身。</p>
               <a href="https://www.chanel.com/tw/fragrance/chanel-number-5/" target="_blank">查看更多</a>
@@ -44,27 +44,27 @@
         </div>
         <div class="home-item home-item-reverse">
           <div>
-              <img src="~@/assets/home/home4.png">
+            <img src="~@/assets/home/home4.png">
           </div>
           <div>
             <div class="home-box-text3">
-                <h4>1. <br>Levels of Preventive Maintenance Compliance</h4>
-                <p>The core idea of preventative maintenance is the performance of proactive actions against unscheduled downtime in order to identify potential defects before they evolve into something more severe.</p>
+              <h4>1. <br>Levels of Preventive Maintenance Compliance</h4>
+              <p>The core idea of preventative maintenance is the performance of proactive actions against unscheduled downtime in order to identify potential defects before they evolve into something more severe.</p>
             </div>
             <div class="home-box-text3">
-                <h4>2. <br>Percentage of Planned Maintenance</h4>
-                <p>The planned maintenance percentage is the total planned maintenance time in your CMMS software over a date range over the total number of hours of a service performed by the technicians.</p>
+              <h4>2. <br>Percentage of Planned Maintenance</h4>
+              <p>The planned maintenance percentage is the total planned maintenance time in your CMMS software over a date range over the total number of hours of a service performed by the technicians.</p>
             </div>
             <div class="home-box-text3">
-                <h4>3. <br>Critical percentage of planned maintenance</h4>
-                <p>Calculating the critical percentage of planned maintenance will help you prioritize the most important operations that should be performed immediately.</p>
+              <h4>3. <br>Critical percentage of planned maintenance</h4>
+              <p>Calculating the critical percentage of planned maintenance will help you prioritize the most important operations that should be performed immediately.</p>
             </div>
             <div class="btn-box">
               <button class="btn default">
                 <a href="https://uk.lush.com/?gclid=CjwKCAiAiML-BRAAEiwAuWVgglmqlvvT6eUCpujr6rRLWwg8norkCerZWOCXMTUwXAyavs_Fr7JiIxoCpRsQAvD_BwE" target="_blank">Plan a free online training</a>
               </button>
-            </div>           
-          </div>         
+            </div>
+          </div>
         </div>
     </div>
     <div class="home-products">
@@ -123,79 +123,77 @@
 
 <script>
 
-import $ from 'jquery';
-import GoTop from '../GoTop';
+import GoTop from '@/components/GoTop'
 
 export default {
-  data(){
-    return{
-      productId: "",
+  data () {
+    return {
+      productId: '',
       recommandProducts: [],
       localCateProducts: [],
       product: {
         num: 1
-      },
+      }
     }
   },
   methods: {
-    getSingleProduct() {
-      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/product/${ this.productId }`;
-      this.$store.dispatch('updateLoading',true);
-      this.randomProduct(this.localCateProducts, 3);
-      this.$http.get(api).then(response => { 
+    getSingleProduct () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${this.productId}`
+      this.$store.dispatch('updateLoading', true)
+      this.randomProduct(this.localCateProducts, 3)
+      this.$http.get(api).then(response => {
         if (response.data.success) {
-          this.product = response.data.product;
-          this.$set(this.product, "num", 1);
-          this.$store.dispatch('updateLoading',false);
+          this.product = response.data.product
+          this.$set(this.product, 'num', 1)
+          this.$store.dispatch('updateLoading', false)
         }
       })
     },
-    getRandomProduct(id) {
-      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/product/${ id }`;
-      this.$store.dispatch('updateLoading',true);
+    getRandomProduct (id) {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${id}`
+      this.$store.dispatch('updateLoading', true)
       this.$http.get(api).then(response => {
         if (response.data.success) {
-          this.$store.dispatch('updateLoading',false);
-          this.$router.push( `../front_single_product/${ response.data.product.id }`).catch(err => {err});  
+          this.$store.dispatch('updateLoading', false)
+          this.$router.push(`../front_single_product/${response.data.product.id}`).catch(err => err)
         }
-      });
+      })
     },
-    randomProduct(arr, num) {   
-      let newArr = [];
+    randomProduct (arr, num) {
+      const newArr = []
       if (arr.length <= num) {
-        num = arr.length; 
-      }   
-      rand(num);
-
-      function rand(selectQty) {
-        if (selectQty == 0) {
-          return;
-        }
-        let index = Math.floor(Math.random() * arr.length);
-        let flag = true;
-        newArr.forEach(function(item) {
-          if (item == arr[index]) { 
-            flag = false;
-          }
-        });
-        if (flag) {
-          newArr.push(arr[index]);
-          selectQty--;
-        }
-        rand(selectQty);
+        num = arr.length
       }
-      this.recommandProducts = newArr;
+      rand(num)
+      function rand (selectQty) {
+        if (selectQty === 0) {
+          return
+        }
+        const index = Math.floor(Math.random() * arr.length)
+        let flag = true
+        newArr.forEach(function (item) {
+          if (item === arr[index]) {
+            flag = false
+          }
+        })
+        if (flag) {
+          newArr.push(arr[index])
+          selectQty--
+        }
+        rand(selectQty)
+      }
+      this.recommandProducts = newArr
     }
   },
-  created() {
-    this.productId = this.$route.params.productID;
+  created () {
+    this.productId = this.$route.params.productID
     this.localCateProducts = JSON.parse(
-      localStorage.getItem("cateFilteredList")
-    );
-    this.getSingleProduct();
+      localStorage.getItem('cateFilteredList')
+    )
+    this.getSingleProduct()
   },
   components: {
-    GoTop,
-  },
+    GoTop
+  }
 }
 </script>

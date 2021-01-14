@@ -62,73 +62,75 @@
       <router-link class="btn btn-primary" to="/home">返回商場</router-link>
       <router-link class="btn btn-danger" to="front_order" v-if="nextPage">下一步</router-link>
     </div>
+    <GoTop></GoTop>
   </div>
 </template>
 
 <script>
-
+import GoTop from '@/components/GoTop'
 export default {
-  name:'FrontCartItems',
-  data() {
+  name: 'FrontCartItems',
+  data () {
     return {
-      coupon_code: "",
+      coupon_code: '',
       focus: '',
       form: {
         user: {
-          name: "",
-          email: "",
-          tel: "",
-          address: ""
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
         },
-        message: ""
-      }
-    };
-  },
-  methods: {
-    updateCart(id, productId, qty) {
-      this.$store.dispatch('updateCart', { id, productId, qty })
-    },
-
-    addToCart(id, qty = 1) {
-      this.$store.dispatch('addtoCart', { id, qty });
-    },
-    getCart() {
-      this.$store.dispatch('getCart');
-    },
-    removeCart(id) {
-      this.$store.dispatch('removeCart', id);
-    },
-    addCouponCode() {
-      const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/coupon`;
-      const coupon = {
-        code: this.coupon_code
-      };
-      this.$store.dispatch('updateLoading',true);
-      this.$http.post(url, { data: coupon }).then(response => {
-        this.focus = response.data.message;
-        this.getCart();
-        this.$store.dispatch('updateLoading',false);
-      });
-    },
-    
-  },
-  computed: {
-    cart(){
-      return this.$store.state.cart;
-    },
-    isLoading() {
-      return this.$store.state.isLoading;
-    },
-    nextPage() {
-      if(this.cart.carts == 0) {
-        return false;
-      } else {
-        return true;
+        message: ''
       }
     }
   },
-  created() {
-    this.getCart();
+  methods: {
+    updateCart (id, productId, qty) {
+      this.$store.dispatch('updateCart', { id, productId, qty })
+    },
+    addToCart (id, qty = 1) {
+      this.$store.dispatch('addtoCart', { id, qty })
+    },
+    getCart () {
+      this.$store.dispatch('getCart')
+    },
+    removeCart (id) {
+      this.$store.dispatch('removeCart', id)
+    },
+    addCouponCode () {
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/coupon`
+      const coupon = {
+        code: this.coupon_code
+      }
+      this.$store.dispatch('updateLoading', true)
+      this.$http.post(url, { data: coupon }).then(response => {
+        this.focus = response.data.message
+        this.getCart()
+        this.$store.dispatch('updateLoading', false)
+      })
+    }
+  },
+  computed: {
+    cart () {
+      return this.$store.state.cart
+    },
+    isLoading () {
+      return this.$store.state.isLoading
+    },
+    nextPage () {
+      if (this.cart.carts === 0) {
+        return false
+      } else {
+        return true
+      }
+    }
+  },
+  created () {
+    this.getCart()
+  },
+  components: {
+    GoTop
   }
-};
+}
 </script>

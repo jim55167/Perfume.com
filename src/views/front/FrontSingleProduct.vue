@@ -49,101 +49,98 @@
      <div class="screen" v-if="lightBox">
       <div class="view-box">
         <div class="box">已加入購物車</div>
-        <div class="cancel" @click="cancelLocation">X</div> 
+        <div class="cancel" @click="cancelLocation">X</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-
-import GoTop from '../GoTop';
-
+import GoTop from '@/components/GoTop'
 export default {
-  data(){
-    return{
-      productId: "",
+  data () {
+    return {
+      productId: '',
       product: {
         num: 1
       },
-      love: JSON.parse(localStorage.getItem('loveList')) || [],
+      love: JSON.parse(localStorage.getItem('loveList')) || []
     }
   },
   watch: {
-    $route(to, from) {
-      this.productId = this.$route.params.productID;
-      this.getSingleProduct();
+    $route (to, from) {
+      this.productId = this.$route.params.productID
+      this.getSingleProduct()
     }
   },
   methods: {
-    getSingleProduct() {
-      const api = `${process.env.APIPATH}/api/${process.env.CUSTOMPATH}/product/${this.productId}`;
-      this.$store.dispatch('updateLoading',true);
+    getSingleProduct () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/product/${this.productId}`
+      this.$store.dispatch('updateLoading', true)
       this.$http.get(api).then(response => {
         if (response.data.success) {
-          this.product = response.data.product;
-          this.$set(this.product, "num", 1);
-          this.$store.dispatch('updateLoading',false);
+          this.product = response.data.product
+          this.$set(this.product, 'num', 1)
+          this.$store.dispatch('updateLoading', false)
         }
       })
     },
-    getCart() {
-      this.$store.dispatch('getCart');
+    getCart () {
+      this.$store.dispatch('getCart')
     },
-    addToCart(id, qty = 1) {
-      this.$store.dispatch('addToCart', { id, qty}); 
-      this.$store.dispatch('isLightBox',true); 
+    addToCart (id, qty = 1) {
+      this.$store.dispatch('addToCart', { id, qty })
+      this.$store.dispatch('isLightBox', true)
     },
-    removeCart(id) {
-      this.$store.dispatch('removeCart', id);
+    removeCart (id) {
+      this.$store.dispatch('removeCart', id)
     },
-    cancelLocation(){
-      this.$store.dispatch('isLightBox',false);
+    cancelLocation () {
+      this.$store.dispatch('isLightBox', false)
     },
-    addLove(id) {
-      const vm = this;
-      let index = vm.love.findIndex((element) => {
+    addLove (id) {
+      const vm = this
+      const index = vm.love.findIndex((element) => {
         return id === element
-      });
-      if(vm.love.indexOf(id) < 0) {
+      })
+      if (vm.love.indexOf(id) < 0) {
         vm.love.push(id)
       } else {
-        vm.love.splice(index, 1);
+        vm.love.splice(index, 1)
       }
-      localStorage.setItem('loveList', JSON.stringify(vm.love));
-      this.$store.dispatch('isLightBox',true);
+      localStorage.setItem('loveList', JSON.stringify(vm.love))
     }
   },
   computed: {
-    showLove() {
-      return function(id) {
-        if(this.love.indexOf(id) > -1) {
+    showLove () {
+      return function (id) {
+        if (this.love.indexOf(id) > -1) {
           return 'far fa-heart'
         } else {
           return 'fas fa-heart'
         }
       }
     },
-    isLoading() {
-      return this.$store.state.isLoading;
+    isLoading () {
+      return this.$store.state.isLoading
     },
-    cart(){
-      return this.$store.state.cart;
+    cart () {
+      return this.$store.state.cart
     },
-    loadingItem() {
-      return this.$store.state.loadingItem;
+    loadingItem () {
+      return this.$store.state.loadingItem
     },
-    lightBox(){
-      return this.$store.state.lightBox;
-    },
+    lightBox () {
+      return this.$store.state.lightBox
+    }
   },
-  created() {
-    this.productId = this.$route.params.productID;
-    this.getSingleProduct();
-    this.getCart();
+  created () {
+    this.productId = this.$route.params.productID
+    this.getSingleProduct()
+    this.getCart()
   },
-  components:{
-    GoTop,
-  },
-};
+  components: {
+    GoTop
+  }
+}
 </script>

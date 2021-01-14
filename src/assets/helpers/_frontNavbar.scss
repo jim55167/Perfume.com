@@ -12,7 +12,9 @@
         width: 1110px;
         margin: 0 auto;
         display: flex;
-
+        @media screen and (max-width: 1024px){
+            width: 902px;
+        }
         @media screen and (max-width: 414px){
             width: 414px;
         }
@@ -21,9 +23,8 @@
         }
 
         .navbar-logo{
-            width: 100%;
-            padding: 9px 0;
 
+            padding: 9px 10px;
             @media screen and (max-width: 414px){
                 width: 100%;
                 padding-left: 20px;

@@ -116,19 +116,20 @@
       </div>
     </div>
     <Pagination :pagination="pagination" @changePage="getCoupons"></Pagination>
+    <GoTop></GoTop>
   </div>
 </template>
 
 <script>
-
-import $ from 'jquery';
-import Pagination from '../back/Pagination';
+import $ from 'jquery'
+import Pagination from '@/components/Pagination'
+import GoTop from '@/components/GoTop'
 
 export default {
   props: {
-    config: Object,
+    config: Object
   },
-  data() {
+  data () {
     return {
       coupons: {},
       tempCoupon: {
@@ -136,79 +137,80 @@ export default {
         is_enabled: 0,
         percent: 100,
         due_date: 0,
-        code: '',
+        code: ''
       },
       due_date: new Date(),
       isNew: false,
       isLoading: false,
-      pagination: {},
-    };
+      pagination: {}
+    }
   },
   watch: {
-    due_date() {
-      const timestamp = Math.floor(new Date(this.due_date) / 1000);
-      this.tempCoupon.due_date = timestamp;
-    },
+    due_date () {
+      const timestamp = Math.floor(new Date(this.due_date) / 1000)
+      this.tempCoupon.due_date = timestamp
+    }
   },
   methods: {
-    openCouponModal(isNew, item) {
-      $('#couponModal').modal('show');
-      this.isNew = isNew;
+    openCouponModal (isNew, item) {
+      $('#couponModal').modal('show')
+      this.isNew = isNew
       if (this.isNew) {
-        this.tempCoupon = {};
-        this.isLoading = false;
+        this.tempCoupon = {}
+        this.isLoading = false
       } else {
-        this.tempCoupon = Object.assign({}, item);
-        const dateAndTime = new Date(this.tempCoupon.due_date * 1000).toISOString().split('T');
-        this.due_date = dateAndTime[0];
+        this.tempCoupon = Object.assign({}, item)
+        const dateAndTime = new Date(this.tempCoupon.due_date * 1000).toISOString().split('T')
+        this.due_date = dateAndTime[0]
       }
     },
-    getCoupons(page = 1) {
-      const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/coupons?page=${ page }`;
-      this.isLoading = true;
+    getCoupons (page = 1) {
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupons?page=${page}`
+      this.isLoading = true
       this.$http.get(url).then((response) => {
-        this.coupons = response.data.coupons;
-        this.pagination = response.data.pagination;
-        this.isLoading = false;
-      });
+        this.coupons = response.data.coupons
+        this.pagination = response.data.pagination
+        this.isLoading = false
+      })
     },
-    updateCoupon() {
+    updateCoupon () {
       if (this.isNew) {
-        const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/coupon`;
+        const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon`
         this.$http.post(url, { data: this.tempCoupon }).then((response) => {
-          $('#couponModal').modal('hide');
-          this.getCoupons();
-          this.isLoading = false;
-        });
+          $('#couponModal').modal('hide')
+          this.getCoupons()
+          this.isLoading = false
+        })
       } else {
-        const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/coupon/${ this.tempCoupon.id }`;
-        this.due_date = new Date(this.tempCoupon.due_date * 1000);
+        const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${this.tempCoupon.id}`
+        this.due_date = new Date(this.tempCoupon.due_date * 1000)
         this.$http.put(url, { data: this.tempCoupon }).then((response) => {
-          $('#couponModal').modal('hide');
-          this.getCoupons();
-          this.isLoading = false;
-        });
+          $('#couponModal').modal('hide')
+          this.getCoupons()
+          this.isLoading = false
+        })
       }
     },
-    deleteCouponModal(item) {
-      $('#delCouponModal').modal('show');
-      this.tempCoupon = item;
+    deleteCouponModal (item) {
+      $('#delCouponModal').modal('show')
+      this.tempCoupon = item
     },
-    deleteCoupon() {
-      const url = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/admin/coupon/${ this.tempCoupon.id }`;
-      this.$http.delete(url, { data:this.tempCoupon }).then((response) => {
-        if(response.data.success) {
-          $('#delCouponModal').modal('hide');
-          this.getCoupons();
+    deleteCoupon () {
+      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/admin/coupon/${this.tempCoupon.id}`
+      this.$http.delete(url, { data: this.tempCoupon }).then((response) => {
+        if (response.data.success) {
+          $('#delCouponModal').modal('hide')
+          this.getCoupons()
         }
-      });
-    },
+      })
+    }
   },
-  created() {
-    this.getCoupons();
+  created () {
+    this.getCoupons()
   },
   components: {
     Pagination,
-  },
-};
+    GoTop
+  }
+}
 </script>

@@ -6,18 +6,15 @@
 </template>
 
 <script>
-
-import AlertMessage from './components/back/AlertMessage'
-
+import AlertMessage from './components/AlertMessage'
 export default {
   name: 'App',
   components: {
-    AlertMessage,
+    AlertMessage
   }
-};
+}
 </script>
 
 <style lang="scss">
 @import "./assets/all.scss";
-
 </style>

@@ -88,51 +88,49 @@
 </template>
 
 <script>
-
-import $ from "jquery";
-
+import $ from 'jquery'
 export default {
-  data() {
+  data () {
     return {
       order: {
         user: {}
       },
-      orderId: ""
-    };
+      orderId: ''
+    }
   },
   methods: {
-    getOrder() {
-      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/order/${ this.orderId }`;
-      this.$store.dispatch('updateLoading',true);
+    getOrder () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/order/${this.orderId}`
+      this.$store.dispatch('updateLoading', true)
       this.$http.get(api).then(response => {
-        this.order = response.data.order;
-        this.$store.dispatch('updateLoading',false);
-      });
+        this.order = response.data.order
+        this.$store.dispatch('updateLoading', false)
+      })
     },
-    payOrder() {
-      const api = `${ process.env.APIPATH }/api/${ process.env.CUSTOMPATH }/pay/${ this.orderId }`;
-      this.$store.dispatch('updateLoading',true);
+    payOrder () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/pay/${this.orderId}`
+      this.$store.dispatch('updateLoading', true)
       this.$http.post(api).then(response => {
         if (response.data.success) {
-          this.getOrder();
-          $("#paymentCompeleted").modal("show");
+          this.getOrder()
+          $('#paymentCompeleted').modal('show')
         }
-        this.$store.dispatch('updateLoading',false);
-      });
+        this.$store.dispatch('updateLoading', false)
+      })
     },
-    goToProducts() {
-      $("#paymentCompeleted").modal("hide");
-      this.$router.push("/home");
+    goToProducts () {
+      $('#paymentCompeleted').modal('hide')
+      this.$router.push('/home')
     }
   },
   computed: {
-    isLoading() {
-      return this.$store.state.isLoading;
-    },
+    isLoading () {
+      return this.$store.state.isLoading
+    }
   },
-  created() {
-    this.orderId = this.$route.params.orderId;
-    this.getOrder();
+  created () {
+    this.orderId = this.$route.params.orderId
+    this.getOrder()
   }
-};
+}
 </script>

@@ -6,28 +6,28 @@
 
 <script>
 export default {
-  name: "goTop",
-  data() {
+  name: 'goTop',
+  data () {
     return {
       btnFlag: true
-    };
-  },
-  methods: {
-    goTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-      });
     }
   },
-  mounted() {
+  methods: {
+    goTop () {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
+    }
+  },
+  mounted () {
     document.body.onscroll = () => {
       if (document.documentElement.scrollTop > 200) {
-        this.btnFlag = true;
+        this.btnFlag = true
       } else {
-        this.btnFlag = false;
+        this.btnFlag = false
       }
-    };
+    }
   }
-};
+}
 </script>

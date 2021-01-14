@@ -26,57 +26,52 @@
   </div>
 </template>
 
-
 <script>
 export default {
-  data() {
+  data () {
     return {
-      couponCode: "",
+      couponCode: '',
       form: {
         user: {
-          name: "",
-          email: "",
-          tel: "",
-          address: ""
+          name: '',
+          email: '',
+          tel: '',
+          address: ''
         },
-        message: ""
+        message: ''
       },
       activePage: this.$route.name
-    };
+    }
   },
-
   methods: {
-    getCart() {
-      this.$store.dispatch('getCart');
-    },
+    getCart () {
+      this.$store.dispatch('getCart')
+    }
   },
-
   computed: {
-    cart(){
-      return this.$store.state.cart;
+    cart () {
+      return this.$store.state.cart
     },
-    isLoading() {
-      return this.$store.state.isLoading;
+    isLoading () {
+      return this.$store.state.isLoading
     },
-    activedPage() {
-      return this.$route.name;
+    activedPage () {
+      return this.$route.name
     },
-
-    cartHasItem() {
-      if (this.cart.carts == undefined) {
-        return;
+    cartHasItem () {
+      if (this.cart.carts === undefined) {
+        return false
       } else {
-        if (this.cart.carts.length == 0) {
-          return false;
+        if (this.cart.carts.length === 0) {
+          return false
         } else {
-          return true;
+          return true
         }
       }
     }
   },
-
-  created() {
-    this.getCart();
+  created () {
+    this.getCart()
   }
-};
+}
 </script>

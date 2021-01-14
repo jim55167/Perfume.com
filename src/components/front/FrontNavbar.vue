@@ -10,7 +10,7 @@
         <div class="navbar-mobile-box">
           <router-link href="#" to="/shopping_cart/front_cart_items">
             <i class="fas fa-shopping-cart"></i>
-            <span class="badge">{{ cart.carts.length }}</span>               
+            <span class="badge">{{ cart.carts.length }}</span>
           </router-link>
         </div>
           <ul class="navbar-nav" :class="{ 'menu-show': showMenu }">
@@ -31,7 +31,7 @@
             <li class="nav-item mobile-shop">
               <router-link href="#" class="home-link" to="/shopping_cart/front_cart_items">
                 <i class="fas fa-shopping-cart"></i>
-                <span class="badge">Cart<a>({{ cart.carts.length }})</a></span>               
+                <span class="badge">Cart<a>({{ cart.carts.length }})</a></span>
               </router-link>
             </li>
             <li class="nav-item nav-setting">
@@ -47,48 +47,44 @@
 </template>
 
 <script>
-
 export default {
-  data() {
+  data () {
     return {
-      showMenu: false, 
-      is_login: false,
-    };
+      showMenu: false,
+      is_login: false
+    }
   },
-
   methods: {
-    checkLoginStatus() {
-      const api = `${ process.env.APIPATH }/api/user/check`;
+    checkLoginStatus () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/user/check`
       this.$http.post(api).then((response) => {
-        this.is_login = response.data.success;
-      });
+        this.is_login = response.data.success
+      })
     },
-
-    signOut() {
-      const api = `${ process.env.APIPATH }/logout`;
+    signOut () {
+      const api = `${process.env.VUE_APP_APIPATH}/logout`
       this.$http.post(api).then((response) => {
         if (response.data.success) {
-          this.is_login = false;
-          this.$router.push("/home").catch(err => {err});
+          this.is_login = false
+          this.$router.push('/home')
         }
-      });
+      })
     },
-    toggleClass() {
-      this.showMenu = !this.showMenu;
+    toggleClass () {
+      this.showMenu = !this.showMenu
     },
-    getCart() {
-      this.$store.dispatch('getCart');
-    },
+    getCart () {
+      this.$store.dispatch('getCart')
+    }
   },
   computed: {
-    cart(){
-    return this.$store.state.cart;
+    cart () {
+      return this.$store.state.cart
+    }
   },
-  },
-  created() {
-    this.checkLoginStatus();
-    this.getCart();
-  },
-};
+  created () {
+    this.checkLoginStatus()
+    this.getCart()
+  }
+}
 </script>
-

@@ -18,13 +18,13 @@
             </li>
             <li class="nav-item">
               <router-link href="#" to="/admin/orders"><i class="fas fa-money-check"></i>ORDER LIST</router-link>
-            </li>            
+            </li>
             <li class="nav-item">
               <a href="#" v-if="is_login" @click.prevent="signOut" to="/home"><i class="fas fa-user"></i>log out</a>
               <router-link to="/login" v-else><i class="fas fa-user"></i>log in</router-link>
             </li>
             <li class="nav-item">
-            <router-link to="/home" v-if="is_login">             
+            <router-link to="/home" v-if="is_login">
               <i class="fas fa-store-alt ml-1"></i>FRONT END
             </router-link>
           </li>
@@ -36,34 +36,30 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       is_login: false
-    };
-  },
-
-  methods: {
-    checkLoginStatus() {
-      const api = `${ process.env.APIPATH }/api/user/check`;
-      this.$http.post(api).then(response => {
-        this.is_login = response.data.success;
-      });
-    },
-
-    signOut() {
-      const api = `${ process.env.APIPATH }/logout`;
-      this.$http.post(api).then(response => {
-        if (response.data.success) {
-          this.is_login = false;
-          this.$router.push("/home");
-        }
-      });
     }
   },
-
-  created() {
-    this.checkLoginStatus();
+  methods: {
+    checkLoginStatus () {
+      const api = `${process.env.VUE_APP_APIPATH}/api/user/check`
+      this.$http.post(api).then(response => {
+        this.is_login = response.data.success
+      })
+    },
+    signOut () {
+      const api = `${process.env.VUE_APP_APIPATH}/logout`
+      this.$http.post(api).then(response => {
+        if (response.data.success) {
+          this.is_login = false
+          this.$router.push('/home')
+        }
+      })
+    }
+  },
+  created () {
+    this.checkLoginStatus()
   }
-};
+}
 </script>
-

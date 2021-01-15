@@ -39,6 +39,7 @@ extend('secret', {
   message: 'This is not the magic word'
 })
 
+Vue.prototype.$bus = new Vue()
 Vue.component('ValidationObserver', ValidationObserver)
 Vue.component('ValidationProvider', ValidationProvider)
 Vue.component('Loading', Loading)

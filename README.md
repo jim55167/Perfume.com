@@ -1,24 +1,5 @@
-# perfume3.0
+# Perfume.com <br/>
 
-## Project setup
-```
-npm install
-```
+## [DEMO](https://jim55167.github.io/Perfume.com/#/home)<br/>
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+#### 目前Mobile版本僅提供414px與375px

@@ -14,24 +14,23 @@
           </router-link>
         </div>
           <ul class="navbar-nav" :class="{ 'menu-show': showMenu }">
-            <li class="nav-item active">
-              <router-link class="home-link" href="#" to="/front_products">
+            <li class="nav-item">
+              <router-link class="home-link link-active" href="#" to="/front_products">
                 <i class="fas fa-store-alt"></i>Product
               </router-link>
             </li>
             <li class="nav-item">
-              <a href="#" class="home-link" v-if="is_login" @click.prevent="signOut" to="/home"><i class="fas fa-user"></i>log out</a>
-              <router-link class="home-link" to="/login" v-else><i class="fas fa-user"></i>log in</router-link>
+              <a href="#" class="home-link link-active" v-if="is_login" @click.prevent="signOut" to="/home"><i class="fas fa-user"></i>log out</a>
+              <router-link class="home-link link-active" to="/login" v-else><i class="fas fa-user"></i>log in</router-link>
             </li>
             <li class="nav-item">
-              <router-link href="#" class="home-link" to="/front_wishlist">
+              <router-link href="#" class="home-link link-active" to="/front_wishlist">
                 <i class="fas fa-heart"></i>Wishlist
               </router-link>
             </li>
             <li class="nav-item mobile-shop">
-              <router-link href="#" class="home-link" to="/shopping_cart/front_cart_items">
-                <i class="fas fa-shopping-cart"></i>
-                <span class="badge">Cart<a>({{ cart.carts.length }})</a></span>
+              <router-link href="#" class="home-link link-active" to="/shopping_cart/front_cart_items">
+                <i class="fas fa-shopping-cart"></i>Cart({{ cart.carts.length }})
               </router-link>
             </li>
             <li class="nav-item nav-setting">

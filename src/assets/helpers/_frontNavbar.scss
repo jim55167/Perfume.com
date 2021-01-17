@@ -134,16 +134,8 @@
                     }
                 }
 
-                .badge{
-                    display: flex;
-                    line-height: 1.5;
-                    align-items: center;
-                    font-size: 18px;
-                    color: #8D8D8D;
-                    opacity: 1;
-                    text-decoration: none;
-                    font-weight: inherit !important;
-
+                .link-active:hover{
+                    color: black;
                 }
 
                 &.mobile-shop{
@@ -159,7 +151,7 @@
                         display: block;     
                     }
                 }
-            }
+            }  
         }
 
         .showmenu{

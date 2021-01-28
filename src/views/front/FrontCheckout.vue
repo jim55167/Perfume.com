@@ -59,7 +59,7 @@
         </tbody>
       </table>
       <div class="text-right" v-if="order.is_paid === false">
-        <button class="btn btn-danger">確認付款去</button>
+        <button type="button" class="btn btn-danger">確認付款去</button>
       </div>
     </form>
     <!-- Modal -->
@@ -77,7 +77,7 @@
             <img src="~@/assets/all/ok.png">
             <h4>AWESOME</h4>
             <p>已完成訂單</p>
-            <button class="btn btn-primary" @click="goToProducts">
+            <button type="button" class="btn btn-primary" @click="goToProducts">
               返回購物車!
             </button>
           </div>

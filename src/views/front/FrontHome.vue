@@ -8,7 +8,7 @@
           oneself a costume that according to the person who wears it.
         </p>
         <router-link href="#" to="/front_products"
-          ><button class="btn default">Shop now</button></router-link
+          ><button type="button" class="btn default">Shop now</button></router-link
         >
       </div>
     </div>
@@ -97,7 +97,7 @@
           </div>
 
           <div class="btn-box">
-            <button class="btn default">
+            <button type="button" class="btn default">
               <a
                 href="https://uk.lush.com/?gclid=CjwKCAiAiML-BRAAEiwAuWVgglmqlvvT6eUCpujr6rRLWwg8norkCerZWOCXMTUwXAyavs_Fr7JiIxoCpRsQAvD_BwE"
                 target="_blank"
@@ -167,7 +167,7 @@
                 name="subscribeEmail"
                 placeholder="Your email address"
               />
-              <button class="form-control-btn" type="submit">Subscribe</button>
+              <input class="form-control-btn" type="submit" value="Subscribe">
             </div>
           </form>
         </div>

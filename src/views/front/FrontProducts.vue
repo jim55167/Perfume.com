@@ -84,7 +84,7 @@
             <div class="d-flex form-color">
               <input class="form-control" type="email"
                 name="subscribeEmail" placeholder="Your email address"/>
-              <button class="form-control-btn" type="submit">Subscribe</button>
+              <input class="form-control-btn" type="submit" value="Subscribe">
             </div>
            </form>
         </div>

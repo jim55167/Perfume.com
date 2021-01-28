@@ -18,9 +18,7 @@
                 <img :src='seen?openEyes:closeEyes' alt="" @click="changeType">
               </div>
               <div class="reply-in">
-                <button type="submit" class="submit-in" >
-                  <i class="fas fa-circle-notch fa-spin" v-if="isLoading" style="margin-right:6px;"></i>登入
-                </button>
+                <input type="submit" value="登入">
               </div>
             </div>
           </form>

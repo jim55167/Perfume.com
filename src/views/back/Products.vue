@@ -2,7 +2,7 @@
   <div>
     <loading :active.sync="isLoading"></loading>
     <div class="text-right mt-4">
-      <button class="btn btn-primary" @click="openModal(true)"> 建立新產品 </button>
+      <button type="button" class="btn btn-primary" @click="openModal(true)"> 建立新產品 </button>
     </div>
     <table class="table mt-4">
       <thead>
@@ -28,9 +28,9 @@
             <span v-else class="text-danger">未啟用</span>
           </td>
           <td>
-            <button class="btn btn-outline-primary btn-sm" style="border-radius:0.2rem;"
+            <button type="button" class="btn btn-outline-primary btn-sm" style="border-radius:0.2rem;"
               @click="openModal(false, item)">編輯</button>
-             <button class="btn btn-outline-danger btn-sm" style="border-radius:0.2rem;"
+             <button type="button" class="btn btn-outline-danger btn-sm" style="border-radius:0.2rem;"
               @click="deleteModal(item)">刪除</button>
           </td>
         </tr>

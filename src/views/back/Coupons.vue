@@ -2,7 +2,7 @@
   <div>
     <Loading :active.sync="isLoading"></Loading>
     <div class="text-right mt-4">
-      <button class="btn btn-primary" @click="openCouponModal(true)">
+      <button type="button" class="btn btn-primary" @click="openCouponModal(true)">
         建立新的優惠券
       </button>
     </div>
@@ -26,9 +26,9 @@
             <span v-else class="text-muted">未起用</span>
           </td>
           <td>
-            <button class="btn btn-outline-primary btn-sm" style="border-radius:0.2rem;"
+            <button type="button" class="btn btn-outline-primary btn-sm" style="border-radius:0.2rem;"
               @click="openCouponModal(false, item)">編輯</button>
-            <button class="btn btn-outline-danger btn-sm" style="border-radius:0.2rem;"
+            <button type="button" class="btn btn-outline-danger btn-sm" style="border-radius:0.2rem;"
               @click="deleteCouponModal(item)">刪除</button>
           </td>
         </tr>

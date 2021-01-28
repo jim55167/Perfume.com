@@ -10,6 +10,10 @@
             width: 902px;
             align-items: center;
         }
+        @media screen and (max-width: 768px){
+            width: 746px;
+            align-items: center;
+        }
         @media screen and (max-width: 414px){
             width: 414px;
             padding: 40px 0;
@@ -27,6 +31,9 @@
                 width: 730px;
                 @media screen and (max-width: 1024px){
                     width: 500px;
+                }
+                @media screen and (max-width: 768px){
+                    width: 373px;
                 }
                 @media screen and (max-width: 414px){
                     width: 385px;
@@ -95,8 +102,9 @@
             }
             .reply, .reply-in{
                width: 100%;
+               position: relative;
             }
-            button[type=submit]{
+            input[type=submit]{
                 float: right;
                 font-size: 16px;
                 display: block;

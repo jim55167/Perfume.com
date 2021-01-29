@@ -5,7 +5,7 @@
         <div class="footer-navbar-item">
           <div class="footer-navbar-logo">
             <router-link href="#" to="/home">
-              <img src="~@/assets/footer/logo.png" />
+              <img alt="LOGO" src="~@/assets/footer/logo.png" />
             </router-link>
             <p>© 2020. All Rights Reserved.</p>
           </div>

@@ -6,7 +6,7 @@
         <div class="products-list" v-for="(item, key) in loveList.slice(pageStart, pageStart + countPage)" :key="key">
           <div class="products" v-if="loveItem">
             <a href="#" @click.prevent="getProduct(item.id)" style="text-decoration: none;">
-              <img :src="item.imageUrl">
+              <img alt="主圖" :src="item.imageUrl">
               <h4>{{ item.title }}</h4>
               <p>{{ item.category }}</p>
               <p class="d-flex">NT{{ item.price | currency }}

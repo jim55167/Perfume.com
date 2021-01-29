@@ -4,7 +4,7 @@
       <div class="navbar-items">
         <div class="navbar-logo">
           <router-link href="#" to="/home">
-            <img src="~@/assets/logo/LOGO.png" />
+            <img alt="LOGO" src="~@/assets/logo/LOGO.png" />
           </router-link>
         </div>
         <div class="navbar-mobile-box">
@@ -39,7 +39,7 @@
               </router-link>
             </li>
           </ul>
-         <a href="#" class="showmenu" @click.prevent="toggleClass"><img src="~@/assets/all/SHOWMENU.png"/></a>
+         <a href="#" class="showmenu" @click.prevent="toggleClass"><img alt="選單" src="~@/assets/all/SHOWMENU.png"/></a>
       </div>
     </nav>
   </div>

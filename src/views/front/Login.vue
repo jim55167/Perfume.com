@@ -5,7 +5,7 @@
       <div class="login">
         <div class="login-box">
           <div class="login-img">
-            <img src="~@/assets/login/login.jpg">
+            <img alt="Loading" src="~@/assets/login/login.jpg">
           </div>
           <form class="wrap" @submit.prevent="signin">
             <h3>Log in</h3>
@@ -15,7 +15,7 @@
               <label for="inputPassword">密碼</label>
               <div class="password-wrap">
                 <input class="form-control mb-3" :type="pwdType" id="inputPassword" placeholder="Password" v-model="user.password" required @on-change="userPassword"/>
-                <img :src='seen?openEyes:closeEyes' alt="" @click.prevent="changeType">
+                <img :src='seen?openEyes:closeEyes' alt="顯示/隱藏" @click.prevent="changeType">
               </div>
               <div class="reply-in">
                 <input type="submit" value="登入">

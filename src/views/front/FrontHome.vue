@@ -26,12 +26,12 @@
           </div>
         </div>
         <div class="animated-img">
-          <img src="~@/assets/home/home1.png" />
+          <img alt="圖一" src="~@/assets/home/home1.png" />
         </div>
       </div>
       <div class="home-item home-item-reverse">
         <div class="animated-img">
-          <img src="~@/assets/home/home2.jpg" />
+          <img alt="圖二" src="~@/assets/home/home2.jpg" />
         </div>
         <div class="home-box-text2 d-flex">
           <div class="home-text animated">
@@ -60,12 +60,12 @@
           </div>
         </div>
         <div class="animated-img">
-          <img src="~@/assets/home/home3.png" />
+          <img alt="圖三" src="~@/assets/home/home3.png" />
         </div>
       </div>
       <div class="home-item home-item-reverse">
         <div class="animated-img">
-          <img src="~@/assets/home/home4.png" />
+          <img alt="圖四" src="~@/assets/home/home4.png" />
         </div>
         <div class="home-box-text3 d-flex">
           <div class="home-text animated">
@@ -117,7 +117,7 @@
         >
           <a href="#" @click.prevent="getRandomProduct(item.id)">
             <div class="home-willlike">
-              <img :src="item.imageUrl2" />
+              <img alt="商品圖" :src="item.imageUrl2" />
               <div class="glass d-flex justify-content-center">
                 <span>查看更多</span>
               </div>
@@ -135,7 +135,7 @@
     <div class="home-bottle">
       <div class="home-bottle-box animated-img">
         <div class="home-bottle-box-img">
-          <img src="~@/assets/home/home5.jpg" />
+          <img alt="圖五" src="~@/assets/home/home5.jpg" />
         </div>
         <div class="home-bottle-text">
           <h4>Bottle-Recycling</h4>

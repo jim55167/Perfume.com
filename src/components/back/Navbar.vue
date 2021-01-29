@@ -4,7 +4,7 @@
       <div class="setting-items">
         <div class="setting-logo">
           <router-link href="#" to="/home">
-            <img src="~@/assets/logo/LOGO.png" />
+            <img alt="LOGO" src="~@/assets/logo/LOGO.png" />
           </router-link>
         </div>
           <ul class="setting-nav" style="margin-bottom:0;">

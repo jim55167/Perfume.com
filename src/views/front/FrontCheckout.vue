@@ -74,7 +74,7 @@
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-body" style="padding:0">
-            <img src="~@/assets/all/ok.png">
+            <img alt="完成圖" src="~@/assets/all/ok.png">
             <p>已完成訂單</p>
             <input type="submit" class="btn btn-primary" @click.prevent="goToProducts" value="返回首頁!">
           </div>

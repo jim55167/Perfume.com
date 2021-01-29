@@ -89,8 +89,7 @@
                     <input type="file" id="customFile" class="form-control"
                         ref="files" @change="uploadFile">
                   </div>
-                  <img img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
-                  class="img-fluid" alt="" :src="tempProduct.imageUrl">
+                  <img class="img-fluid" alt="圖一" :src="tempProduct.imageUrl">
               </div>
 
               <div class="col-sm-4">
@@ -107,8 +106,7 @@
                     <input type="file" id="customFile" class="form-control"
                         ref="files2" @change="infoImg">
                   </div>
-                  <img img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
-                  class="img-fluid" alt="" :src="tempProduct.imageUrl2">
+                  <img class="img-fluid" alt="圖二" :src="tempProduct.imageUrl2">
               </div>
 
               <div class="col-sm-4">
@@ -125,8 +123,7 @@
                     <input type="file" id="customFile" class="form-control"
                         ref="files3" @change="infoSizeImg">
                   </div>
-                  <img img="https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=828346ed697837ce808cae68d3ddc3cf&auto=format&fit=crop&w=1350&q=80"
-                  class="img-fluid" alt="" :src="tempProduct.imageUrl3">
+                  <img class="img-fluid" alt="圖三" :src="tempProduct.imageUrl3">
               </div>
 
               <div class="col-sm-8" style="margin:0 auto;">

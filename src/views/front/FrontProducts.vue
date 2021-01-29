@@ -25,7 +25,7 @@
         <div class="products-list" v-for="(item, key) in categoryData.slice(pageStart, pageStart + countPage)" :key="key">
           <div class="products">
             <a href="#" @click.prevent="getProduct(item.id)" style="text-decoration: none;">
-              <img :src="item.imageUrl">
+              <img alt="圖一" :src="item.imageUrl">
               <h4>{{ item.title }}</h4>
               <p>{{ item.category }}</p>
               <p class="d-flex">NT{{ item.price | currency }}

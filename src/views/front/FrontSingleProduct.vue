@@ -5,11 +5,11 @@
       <div class="single-item">
           <div class="single-img">
               <div class="single-img-nav">
-                  <img :src="product.imageUrl">
+                  <img alt="圖一" :src="product.imageUrl">
               </div>
               <div class="single-img-nav2">
-                  <img :src="product.imageUrl2">
-                  <img :src="product.imageUrl3">
+                  <img alt="圖二" :src="product.imageUrl2">
+                  <img alt="圖三" :src="product.imageUrl3">
               </div>
           </div>
           <div class="single-nav">
@@ -40,8 +40,8 @@
             </div>
           </div>
           <div class="single-img-nav3">
-            <img :src="product.imageUrl2">
-            <img :src="product.imageUrl3">
+            <img alt="圖二" :src="product.imageUrl2">
+            <img alt="圖三" :src="product.imageUrl3">
           </div>
       </div>
     </div>

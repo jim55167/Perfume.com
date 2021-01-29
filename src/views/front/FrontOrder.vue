@@ -118,7 +118,6 @@ export default {
       const order = this.form
       this.$store.dispatch('updateLoading', true)
       this.$http.post(url, { data: order }).then(response => {
-        console.log('訂單已建立', response)
         if (response.data.success) {
           this.$router.push(`../shopping_cart/front_checkout/${response.data.orderId}`)
         }

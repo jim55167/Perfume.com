@@ -15,7 +15,7 @@
               <label for="inputPassword">密碼</label>
               <div class="password-wrap">
                 <input class="form-control mb-3" :type="pwdType" id="inputPassword" placeholder="Password" v-model="user.password" required @on-change="userPassword"/>
-                <img :src='seen?openEyes:closeEyes' alt="" @click="changeType">
+                <img :src='seen?openEyes:closeEyes' alt="" @click.prevent="changeType">
               </div>
               <div class="reply-in">
                 <input type="submit" value="登入">

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :class="{ btnFlag }" class="goTop" @click="goTop"></div>
+    <div :class="{ btnFlag }" class="goTop" @click.prevent="goTop"></div>
   </div>
 </template>
 

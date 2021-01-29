@@ -7,7 +7,7 @@
             class="page-link"
             href="#"
             aria-label="Previous"
-            @click="changePage(pagination.current_page - 1)"
+            @click.prevent="changePage(pagination.current_page - 1)"
           >
             <span aria-hidden="true">&laquo;</span>
           </a>
@@ -18,14 +18,14 @@
           :key="page"
           :class="{ 'active' : pagination.current_page == page }"
         >
-          <a class="page-link" href="#" @click="changePage(page)">{{ page }}</a>
+          <a class="page-link" href="#" @click.prevent="changePage(page)">{{ page }}</a>
         </li>
         <li class="page-item" :class="{ 'disabled' : !pagination.has_next }">
           <a
             class="page-link"
             href="#"
             aria-label="Next"
-            @click="changePage(pagination.current_page + 1)"
+            @click.prevent="changePage(pagination.current_page + 1)"
           >
             <span aria-hidden="true">&raquo;</span>
           </a>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 export default {
   props: ['pagination'],
   data () {
@@ -43,6 +44,7 @@ export default {
   },
   methods: {
     changePage (targetPage) {
+      $('html, body').animate({ scrollTop: 0 }, 600)
       this.$emit('changePage', targetPage)
     }
   }

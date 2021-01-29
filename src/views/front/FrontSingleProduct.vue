@@ -22,7 +22,7 @@
                   {{ num }} {{ product.unit }}
                 </option>
               </select>
-              <button type="button" class="btn" @click="addToCart(product.id, product.num)">
+              <button type="button" class="btn" @click.prevent="addToCart(product.id, product.num)">
                 <i class="fas fa-circle-notch fa-spin" v-if="product.id === loadingItem"></i>加入購物車
               </button>
             </div>
@@ -49,7 +49,7 @@
      <div class="screen" v-if="lightBox">
       <div class="view-box">
         <div class="box">已加入購物車</div>
-        <div class="cancel" @click="cancelLocation">X</div>
+        <div class="cancel" @click.prevent="cancelLocation">X</div>
       </div>
     </div>
   </div>

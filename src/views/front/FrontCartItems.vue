@@ -33,7 +33,7 @@
           </td>
           <td class="align-middle">
             <button type="button" class="btn btn-outline-danger btn-sm"
-              @click="removeCart(item.id)">
+              @click.prevent="removeCart(item.id)">
               <i class="far fa-trash-alt"></i>
             </button>
           </td>
@@ -53,7 +53,7 @@
     <div class="input-group mb-3 input-group-sm">
       <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼"/>
       <div class="input-group-append">
-        <button class="btn btn-primary" type="button" @click="addCouponCode">套用優惠碼</button>
+        <button class="btn btn-primary" type="button" @click.prevent="addCouponCode">套用優惠碼</button>
         <div class="coupon-message">{{ this.focus }}</div>
       </div>
     </div>

@@ -59,7 +59,7 @@
         </tbody>
       </table>
       <div class="text-right" v-if="order.is_paid === false">
-        <button type="button" class="btn btn-danger">確認付款去</button>
+        <input type="submit" class="btn btn-danger" value="確認付款去">
       </div>
     </form>
     <!-- Modal -->
@@ -75,11 +75,8 @@
         <div class="modal-content">
           <div class="modal-body" style="padding:0">
             <img src="~@/assets/all/ok.png">
-            <h4>AWESOME</h4>
             <p>已完成訂單</p>
-            <button type="button" class="btn btn-primary" @click="goToProducts">
-              返回購物車!
-            </button>
+            <input type="submit" class="btn btn-primary" @click.prevent="goToProducts" value="返回首頁!">
           </div>
         </div>
       </div>
@@ -120,7 +117,7 @@ export default {
     },
     goToProducts () {
       $('#paymentCompeleted').modal('hide')
-      this.$router.push('/home')
+      this.$router.push('/home').catch(err => err)
     }
   },
   computed: {

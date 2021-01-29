@@ -2,7 +2,7 @@
   <div>
     <Loading :active.sync="isLoading"></Loading>
     <div class="text-right mt-4">
-      <button type="button" class="btn btn-primary" @click="openCouponModal(true)">
+      <button type="button" class="btn btn-primary" @click.prevent="openCouponModal(true)">
         建立新的優惠券
       </button>
     </div>
@@ -27,9 +27,9 @@
           </td>
           <td>
             <button type="button" class="btn btn-outline-primary btn-sm" style="border-radius:0.2rem;"
-              @click="openCouponModal(false, item)">編輯</button>
+              @click.prevent="openCouponModal(false, item)">編輯</button>
             <button type="button" class="btn btn-outline-danger btn-sm" style="border-radius:0.2rem;"
-              @click="deleteCouponModal(item)">刪除</button>
+              @click.prevent="deleteCouponModal(item)">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -80,7 +80,7 @@
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <button type="button" class="btn btn-primary"
-              @click="updateCoupon">更新優惠券</button>
+              @click.prevent="updateCoupon">更新優惠券</button>
           </div>
         </div>
       </div>
@@ -110,7 +110,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-third" data-dismiss="modal">CANCEL</button>
-            <button type="button" class="btn btn-danger" @click="deleteCoupon">ACCEPT</button>
+            <button type="button" class="btn btn-danger" @click.prevent="deleteCoupon">ACCEPT</button>
           </div>
         </div>
       </div>

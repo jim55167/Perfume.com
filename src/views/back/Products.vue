@@ -2,7 +2,7 @@
   <div>
     <loading :active.sync="isLoading"></loading>
     <div class="text-right mt-4">
-      <button type="button" class="btn btn-primary" @click="openModal(true)"> 建立新產品 </button>
+      <button type="button" class="btn btn-primary" @click.prevent="openModal(true)"> 建立新產品 </button>
     </div>
     <table class="table mt-4">
       <thead>
@@ -29,9 +29,9 @@
           </td>
           <td>
             <button type="button" class="btn btn-outline-primary btn-sm" style="border-radius:0.2rem;"
-              @click="openModal(false, item)">編輯</button>
+              @click.prevent="openModal(false, item)">編輯</button>
              <button type="button" class="btn btn-outline-danger btn-sm" style="border-radius:0.2rem;"
-              @click="deleteModal(item)">刪除</button>
+              @click.prevent="deleteModal(item)">刪除</button>
           </td>
         </tr>
       </tbody>
@@ -201,7 +201,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-primary" @click="updateProduct">確認</button>
+            <button type="button" class="btn btn-primary" @click.prevent="updateProduct">確認</button>
         </div>
         </div>
       </div>
@@ -223,7 +223,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">取消</button>
-            <button type="button" class="btn btn-danger" @click="deleteProduct">確認刪除</button>
+            <button type="button" class="btn btn-danger" @click.prevent="deleteProduct">確認刪除</button>
         </div>
         </div>
     </div>
@@ -264,7 +264,7 @@ export default {
         this.tempProduct = {}
         this.isNew = true
       } else {
-        this.tempProduct = '{...item}'
+        this.tempProduct = { ...item }
         this.isNew = false
       }
       $('#productModal').modal('show')
@@ -357,6 +357,7 @@ export default {
       })
     },
     getPage (page) {
+      $('html, body').animate({ scrollTop: 0 }, 600)
       if (page <= 0 || page > this.totalPage) {
         return
       }

@@ -4,19 +4,19 @@
     <div class="products-navbar">
       <div class="products-navbar-item">
         <a href="#" :class="{ 'active': visibility === 'All' }"
-         @click="visibility='All'">All</a>
+         @click.prevent="visibility='All'">All</a>
         <a href="#" :class="{ 'active': visibility === 'Jo Malone' }"
-         @click="visibility='Jo Malone'">Jo Malone</a>
+         @click.prevent="visibility='Jo Malone'">Jo Malone</a>
         <a href="#" :class="{ 'active': visibility === 'Dior' }"
-         @click="visibility='Dior'">Dior</a>
+         @click.prevent="visibility='Dior'">Dior</a>
         <a href="#" :class="{ 'active': visibility === 'CHANEL' }"
-         @click="visibility='CHANEL'">CHANEL</a>
+         @click.prevent="visibility='CHANEL'">CHANEL</a>
         <a href="#" :class="{ 'active': visibility === 'YSL' }"
-         @click="visibility='YSL'">YSL</a>
+         @click.prevent="visibility='YSL'">YSL</a>
         <a href="#" :class="{ 'active': visibility === 'Penhaligon' }"
-         @click="visibility='Penhaligon'">Penhaligon</a>
+         @click.prevent="visibility='Penhaligon'">Penhaligon</a>
         <a href="#" :class="{ 'active': visibility === 'Chloe' }"
-         @click="visibility='Chloe'">Chloe</a>
+         @click.prevent="visibility='Chloe'">Chloe</a>
 
       </div>
     </div>
@@ -44,7 +44,7 @@
           <div class="screen" v-if="lightBox">
             <div class="view-box">
               <div class="box">已加入購物車</div>
-              <div class="cancel" @click="cancelLocation">X</div>
+              <div class="cancel" @click.prevent="cancelLocation">X</div>
             </div>
           </div>
         </div>
@@ -56,17 +56,17 @@
         <ul class="pagination">
           <li class="page-item" :class="{ 'disabled': current_page === 1 }">
             <a class="page-link" href="#" aria-label="Previous"
-              @click="getPage(current_page - 1)">
+              @click.prevent="getPage(current_page - 1)">
               <span aria-hidden="true">&laquo;</span>
               </a>
           </li>
           <li class="page-item" v-for="page in totalPage" :key="page"
             :class="{ 'active': current_page === page }">
-            <a class="page-link" href="#" @click="getPage(page)">{{ page }}</a>
+            <a class="page-link" href="#" @click.prevent="getPage(page)">{{ page }}</a>
           </li>
           <li class="page-item" :class="{ 'disabled': current_page === totalPage }">
             <a class="page-link" href="#" aria-label="Next"
-            @click="getPage(current_page + 1)">
+            @click.prevent="getPage(current_page + 1)">
             <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
@@ -96,6 +96,7 @@
 
 <script>
 import GoTop from '@/components/GoTop'
+import $ from 'jquery'
 export default {
   data () {
     return {
@@ -121,6 +122,7 @@ export default {
       })
     },
     getPage (page) {
+      $('html, body').animate({ scrollTop: 0 }, 600)
       if (page <= 0 || page > this.totalPage) {
         return
       };
@@ -165,7 +167,7 @@ export default {
         data = this.products
       } else if (this.visibility === 'Jo Malone') {
         const categoryList = []
-        this.products.forEach(function (item) {
+        this.products.forEach((item) => {
           if (item.category === 'Jo Malone') {
             categoryList.push(item)
           }
@@ -173,7 +175,7 @@ export default {
         data = categoryList
       } else if (this.visibility === 'Dior') {
         const categoryList = []
-        this.products.forEach(function (item) {
+        this.products.forEach((item) => {
           if (item.category === 'Dior') {
             categoryList.push(item)
           }
@@ -181,7 +183,7 @@ export default {
         data = categoryList
       } else if (this.visibility === 'CHANEL') {
         const categoryList = []
-        this.products.forEach(function (item) {
+        this.products.forEach((item) => {
           if (item.category === 'CHANEL') {
             categoryList.push(item)
           }
@@ -189,7 +191,7 @@ export default {
         data = categoryList
       } else if (this.visibility === 'YSL') {
         const categoryList = []
-        this.products.forEach(function (item) {
+        this.products.forEach((item) => {
           if (item.category === 'YSL') {
             categoryList.push(item)
           }
@@ -197,7 +199,7 @@ export default {
         data = categoryList
       } else if (this.visibility === 'Penhaligon') {
         const categoryList = []
-        this.products.forEach(function (item) {
+        this.products.forEach((item) => {
           if (item.category === 'Penhaligon') {
             categoryList.push(item)
           }
@@ -205,7 +207,7 @@ export default {
         data = categoryList
       } else if (this.visibility === 'Chloe') {
         const categoryList = []
-        this.products.forEach(function (item) {
+        this.products.forEach((item) => {
           if (item.category === 'Chloe') {
             categoryList.push(item)
           }

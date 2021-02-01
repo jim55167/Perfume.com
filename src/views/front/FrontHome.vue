@@ -7,9 +7,11 @@
           A perfume is like a piece of clothing, a message, a way of presenting
           oneself a costume that according to the person who wears it.
         </p>
-        <router-link href="#" to="/front_products"
-          ><button type="button" class="btn default">Shop now</button></router-link
-        >
+        <div class="bt-center d-flex">
+          <router-link to="/front_products">
+            <input type="button" class="btn default mx-auto" value="Shop now">
+          </router-link>
+        </div>
       </div>
     </div>
 

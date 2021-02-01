@@ -48,26 +48,23 @@
       }
     }
 
-    .btn {
-      font-size: 25px;
-      font-family: SF Pro Text;
+    .bt-center{
+      justify-content: center;
 
-      &.default {
-        width: 350px;
-        border: 2px solid;
-        color: #ffffff;
-        border-radius: 30px;
-        padding: 10px 0;
-        @media screen and (max-width: 414px) {
-          width: 345px;
-          margin-left: 20px;
-        }
-        @media screen and (max-width: 375px) {
-          margin-left: 0;
-        }
-
-        &:hover {
-          background: #ffffff4d 0% 0% no-repeat padding-box;
+      .btn {
+        font-size: 25px;
+        font-family: SF Pro Text;
+  
+        &.default {
+          width: 350px;
+          border: 2px solid;
+          color: #ffffff;
+          border-radius: 30px;
+          padding: 10px 0;
+  
+          &:hover {
+            background: #ffffff4d 0% 0% no-repeat padding-box;
+          }
         }
       }
     }
@@ -327,12 +324,6 @@
           border-radius: 30px;
           opacity: 1;
           padding: 13px 0;
-          @media screen and (max-width: 414px) {
-            margin-left: 15px;
-          }
-          @media screen and (max-width: 375px) {
-            margin: 0 auto;
-          }
   
           &:hover {
             background: #0000000d 0% 0% no-repeat padding-box;

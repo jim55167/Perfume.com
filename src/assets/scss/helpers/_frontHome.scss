@@ -154,8 +154,8 @@
 
         &.animated{
           opacity: 0;
-          transition: all 2s;
-          transition-delay: .5s;
+          transition: all 1s;
+          transition-delay: .3s;
           transform: translateY(50px);
 
           &.fadeIn {
@@ -167,7 +167,7 @@
     }
     .animated-img{
       opacity: 0;
-      transition: all 2s;
+      transition: all 1s;
       transform: translateY(50px);
 
       &.fadeIn-img {
@@ -236,8 +236,8 @@
 
         &.animated{
           opacity: 0;
-          transition: all 2s;
-          transition-delay: .5s;
+          transition: all 1s;
+          transition-delay: .3s;
           transform: translateY(50px);
 
           &.fadeIn {
@@ -293,8 +293,8 @@
 
         &.animated{
           opacity: 0;
-          transition: all 2s;
-          transition-delay: .5s;
+          transition: all 1s;
+          transition-delay: .3s;
           transform: translateY(50px);
 
           &.fadeIn {
@@ -462,7 +462,7 @@
 
     &.animated-img{
       opacity: 0;
-      transition: all 2s;
+      transition: all 1s;
       transform: translateY(50px);
 
       &.fadeIn-img {
@@ -555,7 +555,7 @@
 
     &.animated-img{
       opacity: 0;
-      transition: all 2s;
+      transition: all 1s;
       transform: translateY(40px);
 
       &.fadeIn-img {

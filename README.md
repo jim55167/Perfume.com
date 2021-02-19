@@ -1,8 +1,4 @@
-# Perfume.com <br/>
-
-#### 
-
-# 電商網站 - 女孩的夢想衣櫃
+# 電商網站 - 香水專櫃
 ![](https://img.onl/8svaNQ)
 
 ## DEMO

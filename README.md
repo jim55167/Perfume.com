@@ -30,7 +30,6 @@ https://jim55167.github.io/Perfume.com/#/home
 + ESlint Aribnb
 
 ## 使用套件
-+ swiper
 + vee-validate
 + vue-loading-overlay
 + vue-axios

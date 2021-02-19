@@ -48,11 +48,11 @@ export default new Vuex.Store({
     },
     getAllProducts (context) {
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
-      context.commit('LOADING', true)
+      context.dispatch('updateLoading', true)
       axios.get(url).then(response => {
         context.commit('PRODUCTS', response.data.products)
         context.commit('CATEGORIES', response.data.products)
-        context.commit('LOADING', false)
+        context.dispatch('updateLoading', false)
       })
     },
     updateCart (context, { id, productId, qty }) {
@@ -62,7 +62,7 @@ export default new Vuex.Store({
         product_id: productId,
         qty
       }
-      context.commit('LOADING', true)
+      context.dispatch('updateLoading', true)
       axios.delete(deleteapi).then(response => {
         if (response.data.success) {
           axios.post(addapi, { data: cart }).then(response => {
@@ -74,20 +74,23 @@ export default new Vuex.Store({
       })
     },
     getCart (context) {
-      const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
-      context.commit('LOADING', true)
-      axios.get(url).then(response => {
-        if (response.data.data.carts) {
-          context.commit('CART', response.data.data)
-        }
-        context.commit('LOADING', false)
+      return new Promise((resolve) => {
+        const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+        context.dispatch('updateLoading', true)
+        axios.get(url).then(response => {
+          if (response.data.data.carts) {
+            context.commit('CART', response.data.data)
+            resolve(response.data.data.carts)
+          }
+          context.dispatch('updateLoading', false)
+        })
       })
     },
     removeCart (context, id) {
       const api = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${id}`
-      context.commit('LOADING', true)
+      context.dispatch('updateLoading', true)
       axios.delete(api).then(response => {
-        context.commit('LOADING', false)
+        context.dispatch('updateLoading', false)
         context.dispatch('getCart')
       })
     },
@@ -101,10 +104,8 @@ export default new Vuex.Store({
       axios.post(url, { data: cart }).then(response => {
         context.dispatch('getCart')
         context.commit('LOADINGITEM', '')
-        context.commit('LOADING', false)
+        context.dispatch('updateLoading', false)
       })
     }
-  },
-  modules: {
   }
 })

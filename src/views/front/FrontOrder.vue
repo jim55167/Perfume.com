@@ -88,7 +88,7 @@
 
           <div class="d-flex justify-content-between mt-4 step-control">
             <router-link class="btn btn-primary" to="front_cart_items">返回購物車</router-link>
-            <button type="button" class="btn btn-danger" :disabled="invalid" @click.prevent="createOrder">送出訂單</button>
+            <input type="button" class="btn btn-danger" :disabled="invalid" @click="createOrder" value="送出訂單">
           </div>
         </form>
       </validation-observer>

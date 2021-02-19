@@ -19,7 +19,7 @@
           </td>
           <td class="align-middle text-center">
             {{ item.product.title }}
-            <div class="text-primary" v-if="item.coupon">已套用優惠券</div>
+            <div class="text-danger" v-if="item.coupon">已套用優惠券</div>
           </td>
           <td class="align-middle d-sm-table-cell d-none qty-adjust">
             <select v-model="item.qty" @change="updateCart(item.id, item.product.id, item.qty)">
@@ -27,9 +27,9 @@
             </select>
             {{ item.product.unit }}
           </td>
-           <td class="align-middle">
+          <td class="align-middle">
             {{ item.total | currency }}
-            <div class="text-primary" v-if="item.coupon">{{ item.final_total | currency }}</div>
+            <div class="text-danger" v-if="item.coupon">{{ item.final_total | currency }}</div>
           </td>
           <td class="align-middle">
             <button type="button" class="btn btn-outline-danger btn-sm"
@@ -53,8 +53,8 @@
     <div class="input-group mb-3 input-group-sm">
       <input type="text" class="form-control" v-model="coupon_code" placeholder="請輸入優惠碼"/>
       <div class="input-group-append">
-        <button class="btn btn-primary" type="button" @click.prevent="addCouponCode">套用優惠碼</button>
-        <div class="coupon-message">{{ this.focus }}</div>
+        <input class="btn btn-primary" type="button" @click="addCouponCode" value="套用優惠碼">
+        <div class="coupon-message">{{ this.focus}}</div>
       </div>
     </div>
 
@@ -73,24 +73,12 @@ export default {
   data () {
     return {
       coupon_code: '',
-      focus: '',
-      form: {
-        user: {
-          name: '',
-          email: '',
-          tel: '',
-          address: ''
-        },
-        message: ''
-      }
+      focus: ''
     }
   },
   methods: {
     updateCart (id, productId, qty) {
       this.$store.dispatch('updateCart', { id, productId, qty })
-    },
-    addToCart (id, qty = 1) {
-      this.$store.dispatch('addtoCart', { id, qty })
     },
     getCart () {
       this.$store.dispatch('getCart')

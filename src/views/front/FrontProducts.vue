@@ -4,19 +4,19 @@
     <div class="products-navbar">
       <div class="products-navbar-item">
         <a href="#" :class="{ 'active': visibility === 'All' }"
-         @click.prevent="visibility='All'">All</a>
+        @click.prevent="visibility='All'">All</a>
         <a href="#" :class="{ 'active': visibility === 'Jo Malone' }"
-         @click.prevent="visibility='Jo Malone'">Jo Malone</a>
+        @click.prevent="visibility='Jo Malone'">Jo Malone</a>
         <a href="#" :class="{ 'active': visibility === 'Dior' }"
-         @click.prevent="visibility='Dior'">Dior</a>
+        @click.prevent="visibility='Dior'">Dior</a>
         <a href="#" :class="{ 'active': visibility === 'CHANEL' }"
-         @click.prevent="visibility='CHANEL'">CHANEL</a>
+        @click.prevent="visibility='CHANEL'">CHANEL</a>
         <a href="#" :class="{ 'active': visibility === 'YSL' }"
-         @click.prevent="visibility='YSL'">YSL</a>
+        @click.prevent="visibility='YSL'">YSL</a>
         <a href="#" :class="{ 'active': visibility === 'Penhaligon' }"
-         @click.prevent="visibility='Penhaligon'">Penhaligon</a>
+        @click.prevent="visibility='Penhaligon'">Penhaligon</a>
         <a href="#" :class="{ 'active': visibility === 'Chloe' }"
-         @click.prevent="visibility='Chloe'">Chloe</a>
+        @click.prevent="visibility='Chloe'">Chloe</a>
 
       </div>
     </div>
@@ -80,13 +80,13 @@
             記得<br />
             訂閱以獲取更多資訊！
           </h4>
-           <form action="#">
+          <form action="#">
             <div class="d-flex form-color">
               <input class="form-control" type="email"
                 name="subscribeEmail" placeholder="Your email address"/>
               <input class="form-control-btn" type="submit" value="Subscribe">
             </div>
-           </form>
+          </form>
         </div>
       </div>
     </div>
@@ -96,6 +96,7 @@
 
 <script>
 import GoTop from '@/components/GoTop'
+import axios from 'axios'
 import $ from 'jquery'
 export default {
   data () {
@@ -103,7 +104,8 @@ export default {
       current_page: 1,
       countPage: 12,
       visibility: 'All',
-      love: JSON.parse(localStorage.getItem('loveList')) || []
+      love: JSON.parse(localStorage.getItem('loveList')) || [],
+      flag: false
     }
   },
   methods: {
@@ -132,7 +134,42 @@ export default {
       this.$store.dispatch('getCart')
     },
     addToCart (id, qty = 1) {
-      this.$store.dispatch('addToCart', { id, qty })
+      if (this.flag) {
+        return
+      }
+      const addApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
+      this.$store.dispatch('updateLoading', true)
+      this.$store.dispatch('getCart').then(cartItem => {
+        const cartProducts = cartItem.filter(item => {
+          console.log(item)
+          return item.product_id === id
+        })
+        let cart = {
+          product_id: id,
+          qty
+        }
+        if (cartProducts.length > 0) {
+          this.flag = true
+          const totalNum = cartProducts[0].qty
+          cart = {
+            product_id: id,
+            qty: qty + totalNum
+          }
+          const deleteApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${cartProducts[0].id}`
+          Promise.all([axios.post(addApi, { data: cart }), axios.delete(deleteApi)])
+            .then(() => {
+              this.flag = false
+            })
+        } else if (cartProducts.length === 0) {
+          this.$http.post(addApi, { data: cart }).then(response => {
+            this.flag = false
+            if (response.data.success) {
+              this.$store.dispatch('getCart')
+              this.$store.dispatch('updateLoading', false)
+            }
+          })
+        }
+      })
       this.$store.dispatch('isLightBox', true)
     },
     cancelLocation () {

@@ -46,7 +46,7 @@
       </div>
     </div>
     <GoTop></GoTop>
-     <div class="screen" v-if="lightBox">
+    <div class="screen" v-if="lightBox">
       <div class="view-box">
         <div class="box">已加入購物車</div>
         <div class="cancel" @click.prevent="cancelLocation">X</div>
@@ -57,6 +57,7 @@
 
 <script>
 import GoTop from '@/components/GoTop'
+import axios from 'axios'
 export default {
   data () {
     return {
@@ -64,7 +65,8 @@ export default {
       product: {
         num: 1
       },
-      love: JSON.parse(localStorage.getItem('loveList')) || []
+      love: JSON.parse(localStorage.getItem('loveList')) || [],
+      flag: false
     }
   },
   watch: {
@@ -89,11 +91,43 @@ export default {
       this.$store.dispatch('getCart')
     },
     addToCart (id, qty = 1) {
-      this.$store.dispatch('addToCart', { id, qty })
+      if (this.flag) {
+        return
+      }
+      const addApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart`
       this.$store.dispatch('isLightBox', true)
-    },
-    removeCart (id) {
-      this.$store.dispatch('removeCart', id)
+      this.$store.dispatch('updateLoading', true)
+      this.$store.dispatch('getCart').then(cartItem => {
+        const cartProducts = cartItem.filter(item => {
+          console.log(item)
+          return item.product_id === id
+        })
+        let cart = {
+          product_id: id,
+          qty
+        }
+        if (cartProducts.length > 0) {
+          this.flag = true
+          const totalNum = cartProducts[0].qty
+          cart = {
+            product_id: id,
+            qty: qty + totalNum
+          }
+          const deleteApi = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/cart/${cartProducts[0].id}`
+          Promise.all([axios.post(addApi, { data: cart }), axios.delete(deleteApi)])
+            .then(() => {
+              this.flag = false
+            })
+        } else if (cartProducts.length === 0) {
+          this.$http.post(addApi, { data: cart }).then(response => {
+            this.flag = false
+            if (response.data.success) {
+              this.$store.dispatch('getCart')
+              this.$store.dispatch('updateLoading', false)
+            }
+          })
+        }
+      })
     },
     cancelLocation () {
       this.$store.dispatch('isLightBox', false)

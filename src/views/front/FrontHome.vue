@@ -24,7 +24,7 @@
               全新嗅覺體驗，花香四溢、明亮馥郁。結合茉莉、依蘭依蘭、橙花和最迷人的格拉斯晚香玉之花香，呈現出夢幻花香氣息。
               極具女性特質的香奈兒嘉柏麗香水，專為光芒四射的她而生。
             </p>
-            <a href="https://www.chanel.com/tw/" target="_blank">查看更多</a>
+            <a href="https://www.chanel.com/tw/" target="_blank" rel=”nofollow”>查看更多</a>
           </div>
         </div>
         <div class="animated-img">
@@ -41,7 +41,7 @@
             <p>
               這款香水以呈現成熟、優雅的韻味為訴求，性感的的花香調，融入了柑橘、玫瑰、茉莉、小蒼蘭、橙花等元素，表現出女性的性感與韻味。
             </p>
-            <a href="https://www.beauty321.com/post/22460#p2" target="_blank"
+            <a href="https://www.beauty321.com/post/22460#p2" target="_blank" rel=”nofollow”
               >查看更多</a
             >
           </div>
@@ -56,7 +56,7 @@
             </p>
             <a
               href="https://www.chanel.com/tw/fragrance/chanel-number-5/"
-              target="_blank"
+              target="_blank" rel=”nofollow”
               >查看更多</a
             >
           </div>
@@ -102,7 +102,7 @@
             <button type="button" class="btn default">
               <a
                 href="https://uk.lush.com/?gclid=CjwKCAiAiML-BRAAEiwAuWVgglmqlvvT6eUCpujr6rRLWwg8norkCerZWOCXMTUwXAyavs_Fr7JiIxoCpRsQAvD_BwE"
-                target="_blank"
+                target="_blank" rel=”nofollow”
                 >Plan a free online training</a
               >
             </button>
@@ -150,7 +150,7 @@
             Campaign and planted more than 860 pine trees for a better
             environment.</i
           >
-          <a href="https://www.dior.com/en_at" target="_blank">查看更多</a>
+          <a href="https://www.dior.com/en_at" target="_blank" rel=”nofollow”>查看更多</a>
         </div>
       </div>
     </div>

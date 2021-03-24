@@ -224,24 +224,21 @@ export default {
       if (arr.length <= num) {
         num = arr.length
       }
-      rand(num)
-      function rand (selectQty) {
-        if (selectQty === 0) {
-          return
-        }
-        const index = Math.floor(Math.random() * arr.length)
-        let flag = true
-        newArr.forEach(function (item) {
-          if (item === arr[index]) {
-            flag = false
-          }
-        })
-        if (flag) {
-          newArr.push(arr[index])
-          selectQty--
-        }
-        rand(selectQty)
+      $('html, body').animate({ scrollTop: 0 }, 600)
+      const arrIndex = []
+      const randomIndex = []
+      arr.forEach((item, i) => {
+        arrIndex.push(i)
+      })
+      for (let i = 0; i < num; i++) {
+        const index = Math.floor(Math.random() * arrIndex.length)
+        console.log(index)
+        randomIndex.push(arrIndex.splice(index, 1)[0])
       }
+      randomIndex.forEach(item => {
+        console.log(item)
+        newArr.push(arr[item])
+      })
       this.recommandProducts = newArr
     }
   },

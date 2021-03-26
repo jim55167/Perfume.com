@@ -17,12 +17,11 @@
         @click.prevent="visibility='Penhaligon'">Penhaligon</a>
         <a href="#" :class="{ 'active': visibility === 'Chloe' }"
         @click.prevent="visibility='Chloe'">Chloe</a>
-
       </div>
     </div>
     <div class="products-box">
-      <div class="products-item">
-        <div class="products-list" v-for="(item, key) in categoryData.slice(pageStart, pageStart + countPage)" :key="key">
+      <div class="products-item d-flex">
+        <div class="products-list d-flex" v-for="(item, key) in categoryData.slice(pageStart, pageStart + countPage)" :key="key">
           <div class="products">
             <a href="#" @click.prevent="getProduct(item.id)" style="text-decoration: none;">
               <img alt="圖一" :src="item.imageUrl">
@@ -32,13 +31,14 @@
                 <del>NT{{ item.origin_price | currency }}</del>
               </p>
             </a>
-            <div class="products-add">
+            <div class="products-add d-flex">
               <a href="#" title="加入收藏" @click.prevent="addLove(item.id)">
                 <i :class="showLove(item.id)"></i>
               </a>
               <a href="#" title="加入購物車" @click.prevent="addToCart(item.id)">
                 <i class="fas fa-shopping-cart"></i>
               </a>
+              <Star :product-item="item" @update="changeStar"></Star>
             </div>
           </div>
           <div class="screen" v-if="lightBox">
@@ -96,6 +96,7 @@
 
 <script>
 import GoTop from '@/components/GoTop'
+import Star from '@/components/Star'
 import axios from 'axios'
 import $ from 'jquery'
 export default {
@@ -105,7 +106,8 @@ export default {
       countPage: 12,
       visibility: 'All',
       love: JSON.parse(localStorage.getItem('loveList')) || [],
-      flag: false
+      flag: false,
+      isActive: true
     }
   },
   methods: {
@@ -141,7 +143,6 @@ export default {
       this.$store.dispatch('updateLoading', true)
       this.$store.dispatch('getCart').then(cartItem => {
         const cartProducts = cartItem.filter(item => {
-          console.log(item)
           return item.product_id === id
         })
         let cart = {
@@ -176,16 +177,24 @@ export default {
       this.$store.dispatch('isLightBox', false)
     },
     addLove (id) {
-      const vm = this
-      const index = vm.love.findIndex((element) => {
+      const index = this.love.findIndex((element) => {
         return id === element
       })
-      if (vm.love.indexOf(id) < 0) {
-        vm.love.push(id)
+      if (this.love.indexOf(id) < 0) {
+        this.love.push(id)
       } else {
-        vm.love.splice(index, 1)
+        this.love.splice(index, 1)
       }
-      localStorage.setItem('loveList', JSON.stringify(vm.love))
+      localStorage.setItem('loveList', JSON.stringify(this.love))
+    },
+    changeStar (value) {
+      const newProducts = JSON.parse(JSON.stringify(this.products))
+      newProducts.forEach(item => {
+        if (item.id === value.id) {
+          item.star = value.star
+        }
+      })
+      this.$store.dispatch('updateProduct', newProducts)
     }
   },
   computed: {
@@ -275,12 +284,13 @@ export default {
       return Math.ceil(this.categoryData.length / this.countPage)
     }
   },
-  created () {
+  mounted () {
     this.getAllProducts()
     this.getCart()
   },
   components: {
-    GoTop
+    GoTop,
+    Star
   }
 }
 </script>

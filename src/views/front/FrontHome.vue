@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="home-container d-flex">
+    <section class="home-container d-flex">
       <div class="text-block">
         <h4>Perfume your day</h4>
         <p>
@@ -13,10 +13,10 @@
           </router-link>
         </div>
       </div>
-    </div>
+    </section>
 
     <div class="home-banner">
-      <div class="home-item">
+      <section class="home-item">
         <div class="home-box-text d-flex">
           <div class="home-text animated">
             <h4>Gabrielle CHANEL</h4>
@@ -30,8 +30,8 @@
         <div class="animated-img">
           <img alt="圖一" src="~@/assets/home/home1.png" />
         </div>
-      </div>
-      <div class="home-item home-item-reverse">
+      </section>
+      <section class="home-item home-item-reverse">
         <div class="animated-img">
           <img alt="圖二" src="~@/assets/home/home2.jpg" />
         </div>
@@ -46,8 +46,8 @@
             >
           </div>
         </div>
-      </div>
-      <div class="home-item d-flex">
+      </section>
+      <section class="home-item d-flex">
         <div class="home-box-text d-flex">
           <div class="home-text animated">
             <h4>CHANEL N°5</h4>
@@ -64,12 +64,12 @@
         <div class="animated-img">
           <img alt="圖三" src="~@/assets/home/home3.png" />
         </div>
-      </div>
+      </section>
       <div class="home-item home-item-reverse">
         <div class="animated-img">
           <img alt="圖四" src="~@/assets/home/home4.png" />
         </div>
-        <div class="home-box-text3 d-flex">
+        <section class="home-box-text3 d-flex">
           <div class="home-text animated">
             <h4>1. <br />Levels of Preventive Maintenance Compliance</h4>
             <p>
@@ -80,23 +80,23 @@
             </p>
           </div>
 
-          <div class="home-text animated">
+          <section class="home-text animated">
             <h4>2. <br />Percentage of Planned Maintenance</h4>
             <p>
               The planned maintenance percentage is the total planned
               maintenance time in your CMMS software over a date range over the
               total number of hours of a service performed by the technicians.
             </p>
-          </div>
+          </section>
 
-          <div class="home-text animated">
+          <section class="home-text animated">
             <h4>3. <br />Critical percentage of planned maintenance</h4>
             <p>
               Calculating the critical percentage of planned maintenance will
               help you prioritize the most important operations that should be
               performed immediately.
             </p>
-          </div>
+          </section>
 
           <div class="btn-box">
             <button type="button" class="btn default">
@@ -107,7 +107,7 @@
               >
             </button>
           </div>
-        </div>
+        </section>
       </div>
     </div>
     <div class="home-products">
@@ -134,7 +134,7 @@
         </div>
       </div>
     </div>
-    <div class="home-bottle">
+    <section class="home-bottle">
       <div class="home-bottle-box animated-img">
         <div class="home-bottle-box-img">
           <img alt="圖五" src="~@/assets/home/home5.jpg" />
@@ -153,7 +153,7 @@
           <a href="https://www.dior.com/en_at" target="_blank" rel=”nofollow”>查看更多</a>
         </div>
       </div>
-    </div>
+    </section>
     <div class="footer-box-product">
       <div class="footer-box-item">
         <div class="footer-text">
@@ -232,11 +232,9 @@ export default {
       })
       for (let i = 0; i < num; i++) {
         const index = Math.floor(Math.random() * arrIndex.length)
-        console.log(index)
         randomIndex.push(arrIndex.splice(index, 1)[0])
       }
       randomIndex.forEach(item => {
-        console.log(item)
         newArr.push(arr[item])
       })
       this.recommandProducts = newArr

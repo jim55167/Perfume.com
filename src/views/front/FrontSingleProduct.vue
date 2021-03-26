@@ -99,7 +99,6 @@ export default {
       this.$store.dispatch('updateLoading', true)
       this.$store.dispatch('getCart').then(cartItem => {
         const cartProducts = cartItem.filter(item => {
-          console.log(item)
           return item.product_id === id
         })
         let cart = {

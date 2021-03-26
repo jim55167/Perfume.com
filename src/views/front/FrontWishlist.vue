@@ -2,7 +2,7 @@
   <div>
     <Loading :active.sync="isLoading"></Loading>
     <div class="products-box">
-      <div class="products-item">
+      <div class="products-item d-flex">
         <div class="products-list" v-for="(item, key) in loveList.slice(pageStart, pageStart + countPage)" :key="key">
           <div class="products" v-if="loveItem">
             <a href="#" @click.prevent="getProduct(item.id)" style="text-decoration: none;">

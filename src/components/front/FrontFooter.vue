@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="footer-box">
+    <footer class="footer-box">
       <nav class="footer-navbar navbar-expand-lg navbar-light">
         <div class="footer-navbar-item">
           <div class="footer-navbar-logo">
@@ -25,6 +25,6 @@
           </ul>
         </div>
       </nav>
-    </div>
+    </footer>
   </div>
 </template>

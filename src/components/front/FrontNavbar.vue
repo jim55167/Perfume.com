@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <header class="navbar navbar-expand-lg navbar-light">
       <div class="navbar-items">
         <div class="navbar-logo">
           <router-link href="#" to="/home">
@@ -39,9 +39,9 @@
               </router-link>
             </li>
           </ul>
-         <a href="#" class="showmenu" @click.prevent="toggleClass"><img alt="選單" src="~@/assets/all/SHOWMENU.png"/></a>
+        <a href="#" class="showmenu" @click.prevent="toggleClass"><img alt="選單" src="~@/assets/all/SHOWMENU.png"/></a>
       </div>
-    </nav>
+    </header>
   </div>
 </template>
 

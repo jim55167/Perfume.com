@@ -50,9 +50,12 @@ export default new Vuex.Store({
       const url = `${process.env.VUE_APP_APIPATH}/api/${process.env.VUE_APP_CUSTOMPATH}/products/all`
       context.dispatch('updateLoading', true)
       axios.get(url).then(response => {
-        context.commit('PRODUCTS', response.data.products)
-        context.commit('CATEGORIES', response.data.products)
-        context.dispatch('updateLoading', false)
+        response.data.products.forEach(item => {
+          item.star = 0
+          context.commit('PRODUCTS', response.data.products)
+          context.commit('CATEGORIES', response.data.products)
+          context.dispatch('updateLoading', false)
+        })
       })
     },
     updateCart (context, { id, productId, qty }) {
@@ -106,6 +109,9 @@ export default new Vuex.Store({
         context.commit('LOADINGITEM', '')
         context.dispatch('updateLoading', false)
       })
+    },
+    updateProduct (context, product) {
+      context.commit('PRODUCTS', product)
     }
   }
 })

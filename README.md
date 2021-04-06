@@ -33,6 +33,7 @@ https://jim55167.github.io/Perfume.com/#/home
 + vee-validate
 + vue-loading-overlay
 + vue-axios
++ GSAP
 
 ## 備註
 目前Mobile版本僅提供414px與375px

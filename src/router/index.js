@@ -68,8 +68,8 @@ const routes = [
   },
   {
     path: '/admin',
-    name: 'Dashboard',
-    component: () => import('@/views/back/Dashboard'),
+    name: 'Setting',
+    component: () => import('@/views/back/Setting'),
     children: [
       {
         path: 'products',

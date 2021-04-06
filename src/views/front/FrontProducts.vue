@@ -106,6 +106,7 @@ export default {
       countPage: 12,
       visibility: 'All',
       love: JSON.parse(localStorage.getItem('loveList')) || [],
+      starLocal: JSON.parse(localStorage.getItem('starList')) || [],
       flag: false,
       isActive: true
     }
@@ -177,7 +178,7 @@ export default {
       this.$store.dispatch('isLightBox', false)
     },
     addLove (id) {
-      const index = this.love.findIndex((element) => {
+      const index = this.love.findIndex(element => {
         return id === element
       })
       if (this.love.indexOf(id) < 0) {
@@ -192,8 +193,15 @@ export default {
       newProducts.forEach(item => {
         if (item.id === value.id) {
           item.star = value.star
+          const stardemo = {
+            star: item.star,
+            id: item.id
+          }
+          this.starLocal.push(stardemo)
         }
       })
+      localStorage.setItem('starList', JSON.stringify(this.starLocal))
+      console.log(this.starLocal)
       this.$store.dispatch('updateProduct', newProducts)
     }
   },

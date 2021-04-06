@@ -39,7 +39,7 @@
               </router-link>
             </li>
           </ul>
-        <a href="#" class="showmenu" @click.prevent="toggleClass"><img alt="選單" src="~@/assets/all/SHOWMENU.png"/></a>
+        <a href="#" class="icon" @click.prevent="toggleClass"><img alt="選單" src="~@/assets/all/SHOWMENU.png"/></a>
       </div>
     </header>
   </div>

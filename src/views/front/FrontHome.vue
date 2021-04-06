@@ -16,9 +16,9 @@
     </section>
 
     <div class="home-banner">
-      <section class="home-item">
+      <section class="home-item scroll_item1">
         <div class="home-box-text d-flex">
-          <div class="home-text animated">
+          <div class="home-text scroll_text1">
             <h4>Gabrielle CHANEL</h4>
             <p>
               全新嗅覺體驗，花香四溢、明亮馥郁。結合茉莉、依蘭依蘭、橙花和最迷人的格拉斯晚香玉之花香，呈現出夢幻花香氣息。
@@ -27,16 +27,16 @@
             <a href="https://www.chanel.com/tw/" target="_blank" rel=”nofollow”>查看更多</a>
           </div>
         </div>
-        <div class="animated-img">
+        <div class="scroll_img1">
           <img alt="圖一" src="~@/assets/home/home1.png" />
         </div>
       </section>
-      <section class="home-item home-item-reverse">
-        <div class="animated-img">
+      <section class="home-item home-item-reverse scroll_item2">
+        <div class="scroll_img2">
           <img alt="圖二" src="~@/assets/home/home2.jpg" />
         </div>
-        <div class="home-box-text2 d-flex">
-          <div class="home-text animated">
+        <div class="home-box-text2 d-flex scroll_text2">
+          <div class="home-text">
             <h4>JLo Still</h4>
             <p>
               這款香水以呈現成熟、優雅的韻味為訴求，性感的的花香調，融入了柑橘、玫瑰、茉莉、小蒼蘭、橙花等元素，表現出女性的性感與韻味。
@@ -47,9 +47,9 @@
           </div>
         </div>
       </section>
-      <section class="home-item d-flex">
-        <div class="home-box-text d-flex">
-          <div class="home-text animated">
+      <section class="home-item d-flex scroll_item3">
+        <div class="home-box-text d-flex scroll_text3">
+          <div class="home-text">
             <h4>CHANEL N°5</h4>
             <p>
               N°5，女性魅力的極致精髓。散發柔美澄透的乙醛花束香氣。經典傳奇香氛，蘊藏於極簡設計的獨特瓶身。
@@ -61,16 +61,16 @@
             >
           </div>
         </div>
-        <div class="animated-img">
+        <div class="scroll_img3">
           <img alt="圖三" src="~@/assets/home/home3.png" />
         </div>
       </section>
-      <div class="home-item home-item-reverse">
-        <div class="animated-img">
+      <div class="home-item home-item-reverse scroll_item4">
+        <div class="scroll_img4">
           <img alt="圖四" src="~@/assets/home/home4.png" />
         </div>
         <section class="home-box-text3 d-flex">
-          <div class="home-text animated">
+          <div class="home-text scroll_nav1">
             <h4>1. <br />Levels of Preventive Maintenance Compliance</h4>
             <p>
               The core idea of preventative maintenance is the performance of
@@ -80,7 +80,7 @@
             </p>
           </div>
 
-          <section class="home-text animated">
+          <section class="home-text scroll_nav2">
             <h4>2. <br />Percentage of Planned Maintenance</h4>
             <p>
               The planned maintenance percentage is the total planned
@@ -89,7 +89,7 @@
             </p>
           </section>
 
-          <section class="home-text animated">
+          <section class="home-text scroll_nav3">
             <h4>3. <br />Critical percentage of planned maintenance</h4>
             <p>
               Calculating the critical percentage of planned maintenance will
@@ -98,7 +98,7 @@
             </p>
           </section>
 
-          <div class="btn-box">
+          <div class="btn-box scroll_btn">
             <button type="button" class="btn default">
               <a
                 href="https://uk.lush.com/?gclid=CjwKCAiAiML-BRAAEiwAuWVgglmqlvvT6eUCpujr6rRLWwg8norkCerZWOCXMTUwXAyavs_Fr7JiIxoCpRsQAvD_BwE"
@@ -111,7 +111,7 @@
       </div>
     </div>
     <div class="home-products">
-      <div class="home-item-box animated-img">
+      <div class="home-item-box">
         <div
           class="home-products-item"
           v-for="(item, index) in recommandProducts"
@@ -135,7 +135,7 @@
       </div>
     </div>
     <section class="home-bottle">
-      <div class="home-bottle-box animated-img">
+      <div class="home-bottle-box">
         <div class="home-bottle-box-img">
           <img alt="圖五" src="~@/assets/home/home5.jpg" />
         </div>
@@ -251,25 +251,91 @@ export default {
     GoTop
   },
   mounted () {
-    $(document).ready(function () {
-      $(window).scroll(function () {
-        const scrollPos = $(window).scrollTop()
-        const windowHeight = $(window).height()
-
-        $('.animated').each(function () {
-          const thisPos = $(this).offset().top
-          if ((windowHeight + scrollPos) >= thisPos) {
-            $(this).addClass('fadeIn')
-          }
-        })
-        $('.animated-img').each(function () {
-          const thisPos = $(this).offset().top
-          if ((windowHeight + scrollPos) >= thisPos) {
-            $(this).addClass('fadeIn-img')
-          }
-        })
-      })
+    const scroll = this.$gsap.timeline({
+      scrollTrigger: {
+        trigger: '.scroll_item1',
+        start: 'center bottom',
+        end: 'center center',
+        toggleActions: 'play none none none'
+      }
     })
+    scroll
+      .fromTo('.scroll_img1',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1 }
+      )
+      .fromTo('.scroll_text1',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1, delay: 0.2 }
+      )
+    const scroll2 = this.$gsap.timeline({
+      scrollTrigger: {
+        trigger: '.scroll_item2',
+        start: 'top center',
+        end: 'center center',
+        toggleActions: 'play none none none'
+      }
+    })
+    scroll2
+      .fromTo('.scroll_img2',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1 }
+      )
+      .fromTo('.scroll_text2',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1, delay: 0.2 }
+      )
+    const scroll3 = this.$gsap.timeline({
+      scrollTrigger: {
+        trigger: '.scroll_item3',
+        start: 'top center',
+        end: 'center center',
+        toggleActions: 'play none none none'
+      }
+    })
+    scroll3
+      .fromTo('.scroll_img3',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1 }
+      )
+      .fromTo('.scroll_text3',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1, delay: 0.2 }
+      )
+    const scroll4 = this.$gsap.timeline({
+      scrollTrigger: {
+        trigger: '.scroll_item4',
+        start: 'top center',
+        end: 'center center',
+        toggleActions: 'play none none none',
+        markers: true
+      }
+    })
+    scroll4
+      .fromTo('.scroll_img4',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1 }
+      )
+      .fromTo('.scroll_text4',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 0.5, duration: 1 }
+      )
+      .fromTo('.scroll_nav1',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1, delay: 0.1 }
+      )
+      .fromTo('.scroll_nav2',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1, delay: 0.1 }
+      )
+      .fromTo('.scroll_nav3',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1, delay: 0.1 }
+      )
+      .fromTo('.scroll_btn',
+        { y: '50%', opacity: 0 },
+        { y: '0%', opacity: 1, duration: 1, delay: 0.1 }
+      )
   }
 }
 </script>

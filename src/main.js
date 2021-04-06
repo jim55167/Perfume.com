@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './App.vue'
+import gsap from 'gsap'
+import scrollTrigger from 'gsap/ScrollTrigger'
 import router from './router'
 import store from './store'
 import axios from 'axios'
@@ -39,6 +41,9 @@ extend('secret', {
   message: 'This is not the magic word'
 })
 
+gsap.registerPlugin(scrollTrigger)
+Vue.prototype.$gsap = gsap
+Vue.prototype.$scrollTrigger = scrollTrigger
 Vue.prototype.$bus = new Vue()
 Vue.component('ValidationObserver', ValidationObserver)
 Vue.component('ValidationProvider', ValidationProvider)

@@ -39,7 +39,7 @@ export default {
         username: '',
         password: ''
       },
-      seen: '',
+      seen: false,
       pwdType: 'password',
       openEyes: require('@/assets/login/open.png'),
       closeEyes: require('@/assets/login/close.png'),
@@ -55,7 +55,7 @@ export default {
         if (response.data.success) {
           const token = response.data.token
           const expired = response.data.expired
-          document.cookie = `hexToken=${token};expires=${new Date(expired)};`
+          document.cookie = `jim55167=${token};expires=${new Date(expired)};`
           this.$router.push('/home').catch(err => err)
         }
       })

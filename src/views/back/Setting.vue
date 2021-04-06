@@ -15,7 +15,8 @@
 import Navbar from '@/components/back/Navbar'
 export default {
   created () {
-    const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
+    const token = document.cookie.replace(/(?:(?:^|.*;\s*)jim55167\s*=\s*([^;]*).*$)|^.*$/, '$1')
+    console.log(token, 'mycookie')
     this.$http.defaults.headers.common.Authorization = `${token}`
   },
   components: {

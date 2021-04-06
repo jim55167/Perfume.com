@@ -20,7 +20,7 @@ https://jim55167.github.io/Perfume.com/#/home
   
 ## 使用技術
 + Vue Cli 3
-+　Vue Router
++ Vue Router
 + Vuex
 + RESTful APIs
 + RWD

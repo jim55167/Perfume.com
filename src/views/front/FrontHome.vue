@@ -307,8 +307,8 @@ export default {
         trigger: '.scroll_item4',
         start: 'top center',
         end: 'center center',
-        toggleActions: 'play none none none',
-        markers: true
+        toggleActions: 'play none none none'
+        // markers: true
       }
     })
     scroll4

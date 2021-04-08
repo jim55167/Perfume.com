@@ -20,7 +20,7 @@ https://jim55167.github.io/Perfume.com/#/home
   
 ## 使用技術
 + Vue Cli 3
-+　Vue Router
++ Vue Router
 + Vuex
 + RESTful APIs
 + RWD
@@ -33,6 +33,7 @@ https://jim55167.github.io/Perfume.com/#/home
 + vee-validate
 + vue-loading-overlay
 + vue-axios
++ GSAP
 
 ## 備註
 目前Mobile版本僅提供414px與375px

@@ -38,7 +38,7 @@
               <a href="#" title="加入購物車" @click.prevent="addToCart(item.id)">
                 <i class="fas fa-shopping-cart"></i>
               </a>
-              <Star :product-item="item" @update="changeStar" v-model="starLocal"></Star>
+              <Star :product-item="item" @update="changeStar"></Star>
             </div>
           </div>
           <div class="screen" v-if="lightBox">

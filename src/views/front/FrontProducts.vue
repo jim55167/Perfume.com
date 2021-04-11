@@ -38,7 +38,7 @@
               <a href="#" title="加入購物車" @click.prevent="addToCart(item.id)">
                 <i class="fas fa-shopping-cart"></i>
               </a>
-              <Star :product-item="item" @update="changeStar"></Star>
+              <Star :product-item="item" @update="changeStar" v-model="starLocal"></Star>
             </div>
           </div>
           <div class="screen" v-if="lightBox">
@@ -194,13 +194,16 @@ export default {
         if (item.id === value.id) {
           item.star = value.star
           if (this.starLocal.indexOf(item.id) === -1) {
-            this.starLocal.push(item.id)
+            const demo = {
+              id: item.id,
+              total: item.star
+            }
+            this.starLocal.push(demo)
           }
         }
       })
       this.$store.dispatch('updateProduct', newProducts)
       localStorage.setItem('starList', JSON.stringify(this.starLocal))
-      console.log(this.starLocal)
     }
   },
   computed: {

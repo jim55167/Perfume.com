@@ -193,17 +193,13 @@ export default {
       newProducts.forEach(item => {
         if (item.id === value.id) {
           item.star = value.star
-          if (this.starLocal.indexOf(item.id) === -1) {
-            const demo = {
-              id: item.id,
-              total: item.star
-            }
-            this.starLocal.push(demo)
-          }
         }
       })
-      this.$store.dispatch('updateProduct', newProducts)
+      if (this.starLocal.indexOf(value) === -1) {
+        this.starLocal.push(value)
+      }
       localStorage.setItem('starList', JSON.stringify(this.starLocal))
+      this.$store.dispatch('updateProduct', newProducts)
     }
   },
   computed: {

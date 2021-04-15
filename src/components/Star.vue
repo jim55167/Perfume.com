@@ -37,15 +37,15 @@ export default {
     },
     productItem: {
       type: Object
+    },
+    starControl: {
+      type: Boolean
     }
   },
   methods: {
     changeValue (star) {
-      const starInfo = {
-        star: star,
-        id: this.productItem.id
-      }
-      this.$emit('update', starInfo)
+      this.productItem.star = star
+      this.$emit('update', this.productItem)
     }
   },
   computed: {

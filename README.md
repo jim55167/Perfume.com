@@ -2,7 +2,7 @@
 ![](https://img.onl/8svaNQ)
 
 ## DEMO
-https://jim55167.github.io/Perfume.com/#/home
+https://jim55167.github.io/home
 
 ## 簡介
 此作品為 Vue.js 前端練習，功能包含：
